@@ -9,7 +9,8 @@ export const Wrapper = styled.div`
 `;
 
 export const SelectContainer = styled.div`
-  transition: ${({ fade }) => fade && "opacity 0.7s ease-in-out;"} 
+  transition: ${({ fade }) => fade && "opacity 0.5s ease-in-out;"} 
+  background:black;
   background-image: ${({ select, index }) =>
     select[index] && `url(../img/selectbackground${index + 1}.png)`};
   display: flex;
@@ -19,9 +20,7 @@ export const SelectContainer = styled.div`
   height: 100%;
 `;
 
-export const Logo = styled.div`
-  margin: 116px auto 0 auto;
-`;
+export const Logo = styled.div``;
 
 export const Title = styled.div`
   padding: 0 37.5px;
@@ -49,6 +48,7 @@ export const SelectItem = styled.button`
   border: none;
   width: 285px;
   height: 54px;
+  backdrop-filter: blur(25px);
   background-color: ${({ select, index }) =>
     select[index] ? "#ffc300" : "rgba(184, 184, 184, 0.5)"};
   border-radius: 28.5px;
@@ -65,11 +65,17 @@ export const SelectItem = styled.button`
   }
 `;
 
-// .start{
-//   opcaity:0;
-// }
+export const Back = styled.div`
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  margin-right: 115px;
+`;
 
-// .end{
-//   opacity:1;
-//   transition: opacity:0.5s;
-// }
+export const BackAndLogo = styled.div`
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 19px 160px 19px 20px;
+  margin-top: 69px;
+`;

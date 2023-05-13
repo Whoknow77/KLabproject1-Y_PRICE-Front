@@ -6,10 +6,14 @@ import {
   SelectContainer,
   Title,
   Wrapper,
+  Back,
+  BackAndLogo,
 } from "./SelectStyledComponents";
 import { region } from "../region";
+import { useNavigate } from "react-router-dom";
 
 function Select() {
+  const navigate = useNavigate();
   let [select, isSelected] = useState([
     false,
     false,
@@ -25,7 +29,7 @@ function Select() {
   useEffect(() => {
     setTimeout(() => {
       setFade("end");
-    }, 10);
+    }, 100);
     return () => {
       setFade("");
     };
@@ -35,9 +39,18 @@ function Select() {
   return (
     <Wrapper>
       <SelectContainer select={select} index={index} fade={fade}>
-        <Logo>
-          <img src="/img/selectlogo.png" alt="selectlogo" />
-        </Logo>
+        <BackAndLogo>
+          <Back
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            <img src="/img/back.png" alt="Back" />
+          </Back>
+          <Logo>
+            <img src="/img/selectlogo.png" alt="selectlogo" />
+          </Logo>
+        </BackAndLogo>
         <Title>
           <span>Choose the place</span>
           <br />
