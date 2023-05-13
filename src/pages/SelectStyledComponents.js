@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -10,8 +9,11 @@ export const Wrapper = styled.div`
 `;
 
 export const SelectContainer = styled.div`
-  background-image: url("../img/gung.png");
+  transition: ${({ fade }) => fade && "opacity 0.7s ease-in-out;"} 
+  background-image: ${({ select, index }) =>
+    select[index] && `url(../img/selectbackground${index + 1}.png)`};
   display: flex;
+  opacity:${({ fade }) => (fade ? "1" : "0")};
   flex-direction: column;
   width: 100%;
   height: 100%;
@@ -47,39 +49,16 @@ export const SelectItem = styled.button`
   border: none;
   width: 285px;
   height: 54px;
-  background: rgba(184, 184, 184, 0.5);
-  backdrop-filter: blur(25px);
+  background-color: ${({ select, index }) =>
+    select[index] ? "#ffc300" : "rgba(184, 184, 184, 0.5)"};
   border-radius: 28.5px;
   font-weight: 300;
   font-size: 15px;
   display: flex;
-  color: #fff;
+  color: ${({ select, index }) => (select[index] ? "#515151" : "#fff")};
   span {
     margin-left: 7px;
-    color: #fff;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-  }
-`;
-
-export const SelectItem2 = styled.button`
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  width: 285px;
-  height: 54px;
-  background: rgba(184, 184, 184, 0.5);
-  backdrop-filter: blur(25px);
-  border-radius: 28.5px;
-  color: #fff;
-  font-weight: 300;
-  font-size: 15px;
-  display: flex;
-  span {
-    margin-left: 7px;
-    color: #fff;
+    color: ${({ select, index }) => (select[index] ? "#515151" : "#fff")};
     font-weight: 600;
     font-size: 20px;
     line-height: 24px;

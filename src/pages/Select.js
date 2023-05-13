@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Logo,
   SelectBox,
@@ -19,9 +19,22 @@ function Select() {
     false,
   ]);
 
+  let [index, setIndex] = useState(0);
+  let [fade, setFade] = useState("");
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFade("end");
+    }, 10);
+    return () => {
+      setFade("");
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index]);
+
   return (
     <Wrapper>
-      <SelectContainer>
+      <SelectContainer select={select} index={index} fade={fade}>
         <Logo>
           <img src="/img/selectlogo.png" alt="selectlogo" />
         </Logo>
@@ -36,9 +49,11 @@ function Select() {
                   select={select}
                   index={index}
                   key={index}
+                  fade={fade}
                   onClick={() => {
                     let copy = [false, false, false, false, false, false];
                     copy.splice(index, 1, true);
+                    setIndex(index);
                     isSelected(copy);
                   }}
                 >
@@ -47,7 +62,6 @@ function Select() {
                 </SelectItem>
               );
             })}
-            ;
           </SelectBox>
         </Title>
       </SelectContainer>
