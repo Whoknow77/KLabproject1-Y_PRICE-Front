@@ -11,7 +11,6 @@ export const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
 `;
 
 export const Logo = styled.div`
@@ -27,6 +26,7 @@ export const Title = styled.div`
 
 export const MainTitle = styled.div`
   line-height: 55px;
+  font-family: "fantasy";
   font-size: 55px;
   font-weight: 800;
   margin-bottom: 30px;
