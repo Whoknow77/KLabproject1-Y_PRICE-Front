@@ -1,8 +1,8 @@
 export const region = [
-  { section: "Seoul", zone: "Gangnam" },
-  { section: "Seoul", zone: "Hongdae" },
-  { section: "Seoul", zone: "Gyeongbokgung" },
-  { section: "Seoul", zone: "Itaewon" },
-  { section: "Busan", zone: "Haeundae" },
-  { section: "Jeju", zone: "Aewol-eup" },
+  { city: "Seoul", area: "Gangnam" },
+  { city: "Seoul", area: "Hongdae" },
+  { city: "Seoul", area: "Gyeongbokgung" },
+  { city: "Seoul", area: "Itaewon" },
+  { city: "Busan", area: "Haeundae" },
+  { city: "Jeju", area: "Aewol-eup" },
 ];

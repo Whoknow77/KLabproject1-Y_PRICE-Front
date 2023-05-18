@@ -3,13 +3,14 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Select from "./pages/Select";
-
+import Map from "./pages/Map";
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="select" element={<Select />} />
+        <Route path="map" element={<Map />} />
       </Routes>
     </div>
   );

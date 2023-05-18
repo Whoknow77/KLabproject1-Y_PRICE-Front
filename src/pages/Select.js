@@ -70,8 +70,8 @@ function Select() {
                     isSelected(copy);
                   }}
                 >
-                  {item.section}
-                  <span>{item.zone}</span>
+                  {item.city}
+                  <span>{item.area}</span>
                 </SelectItem>
               );
             })}

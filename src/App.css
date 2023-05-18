@@ -1,4 +1,12 @@
 * {
   font-family: "Pretendard";
+  box-sizing: border-box;
   color: #515151;
+  text-decoration: none;
+}
+
+input::placeholder {
+  color: #ffc300;
+  font-weight: 500;
+  font-size: 18px;
 }
