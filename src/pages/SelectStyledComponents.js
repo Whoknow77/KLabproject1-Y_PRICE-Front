@@ -9,73 +9,77 @@ export const Wrapper = styled.div`
 `;
 
 export const SelectContainer = styled.div`
-  transition: ${({ fade }) => fade && "opacity 0.5s ease-in-out;"} 
-  background:black;
-  background-image: ${({ select, index }) =>
-    select[index] && `url(../img/selectbackground${index + 1}.png)`};
   display: flex;
-  opacity:${({ fade }) => (fade ? "1" : "0")};
+  transition: ${({ fade }) => fade && "opacity 0.5s ease-in-out;"} 
+  background: ${({ id }) =>
+    `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/selectbackground${
+      id + 1
+    }.jpg)`};
   flex-direction: column;
+  opacity:${({ fade }) => (fade ? "1" : "0")};
   width: 100%;
   height: 100%;
 `;
 
-export const Logo = styled.div``;
-
 export const Title = styled.div`
   padding: 0 37.5px;
-  margin-top: 20px;
+  margin-top: 120px;
   span {
+    justify-content: center;
+    display: flex;
     color: #fff;
     font-weight: 700;
     font-size: 32px;
-    line-height: 38px;
     text-align: center;
   }
 `;
 
 export const SelectBox = styled.div`
   display: flex;
-  flex-direction: column;
-  margin: 50px auto 0 auto;
-  gap: 20px;
-`;
-
-export const SelectItem = styled.button`
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  width: 285px;
-  height: 54px;
-  backdrop-filter: blur(25px);
-  background-color: ${({ select, index }) =>
-    select[index] ? "#ffc300" : "rgba(184, 184, 184, 0.5)"};
-  border-radius: 28.5px;
+  margin: 203px auto 0 auto;
+  gap: 35px;
   font-weight: 300;
   font-size: 15px;
-  display: flex;
-  color: ${({ select, index }) => (select[index] ? "#515151" : "#fff")};
+  line-height: 24px;
+
+  div {
+    width: 154px;
+  }
+
   span {
-    margin-left: 7px;
-    color: ${({ select, index }) => (select[index] ? "#515151" : "#fff")};
+    justify-content: center;
+    display: flex;
+    color: #fff;
+  }
+
+  .area {
     font-weight: 600;
     font-size: 20px;
-    line-height: 24px;
   }
 `;
 
-export const Back = styled.div`
+export const BackButton = styled.button`
+  background: url(/img/back.png);
+  color: black;
+  width: 48px;
+  border: none;
   cursor: pointer;
-  width: 24px;
-  height: 24px;
-  margin-right: 115px;
+`;
+export const NextButton = styled.button`
+  background: url(/img/next.png);
+  width: 48px;
+  border: none;
+  cursor: pointer;
 `;
 
-export const BackAndLogo = styled.div`
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  padding: 19px 160px 19px 20px;
-  margin-top: 69px;
+export const GoButton = styled.button`
+  background: #ffc300;
+  border-radius: 27px;
+  width: 89%;
+  height: 54px;
+  margin: 234px auto 0 auto;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
 `;

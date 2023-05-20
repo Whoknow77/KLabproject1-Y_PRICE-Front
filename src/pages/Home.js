@@ -37,7 +37,7 @@ function Home() {
             type="button"
             className="button"
             onClick={() => {
-              navigate("/select");
+              navigate("/select/0");
             }}
           >
             Start →

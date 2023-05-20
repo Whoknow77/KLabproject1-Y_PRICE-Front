@@ -1,30 +1,20 @@
 import React, { useEffect, useState } from "react";
 import {
-  Logo,
   SelectBox,
-  SelectItem,
   SelectContainer,
   Title,
   Wrapper,
-  Back,
-  BackAndLogo,
+  NextButton,
+  BackButton,
+  GoButton,
 } from "./SelectStyledComponents";
 import { region } from "../region";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Select() {
   const navigate = useNavigate();
-  let [select, isSelected] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
-
-  let [index, setIndex] = useState(0);
-  let [fade, setFade] = useState("");
+  const [fade, setFade] = useState(0);
+  let { id } = useParams();
 
   useEffect(() => {
     setTimeout(() => {
@@ -34,49 +24,50 @@ function Select() {
       setFade("");
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index]);
+  }, [id]);
 
   return (
     <Wrapper>
-      <SelectContainer select={select} index={index} fade={fade}>
-        <BackAndLogo>
-          <Back
-            onClick={() => {
-              navigate("/");
-            }}
-          >
-            <img src="/img/back.png" alt="Back" />
-          </Back>
-          <Logo>
-            <img src="/img/selectlogo.png" alt="selectlogo" />
-          </Logo>
-        </BackAndLogo>
+      <SelectContainer id={Number(id)} fade={fade}>
         <Title>
-          <span>Choose the place</span>
-          <br />
-          <span>you want to visit</span>
-          <SelectBox>
-            {region.map((item, index) => {
-              return (
-                <SelectItem
-                  select={select}
-                  index={index}
-                  key={index}
-                  fade={fade}
-                  onClick={() => {
-                    let copy = [false, false, false, false, false, false];
-                    copy.splice(index, 1, true);
-                    setIndex(index);
-                    isSelected(copy);
-                  }}
-                >
-                  {item.city}
-                  <span>{item.area}</span>
-                </SelectItem>
-              );
-            })}
-          </SelectBox>
+          <span>
+            Choose the place
+            <br />
+            you want to visit
+          </span>
         </Title>
+        <SelectBox>
+          <BackButton
+            onClick={() => {
+              if (Number(id) === 0) {
+                navigate(`/select/${Number(id) + 5}`);
+              } else {
+                navigate(`/select/${Number(id) - 1}`);
+              }
+            }}
+          />
+          <div>
+            <span className="city">{region[Number(id)].city}</span>
+            <span className="area">{region[Number(id)].area}</span>
+          </div>
+          <NextButton
+            onClick={() => {
+              if (Number(id) === 5) {
+                navigate(`/select/${Number(id) - 5}`);
+              } else {
+                navigate(`/select/${Number(id) + 1}`);
+              }
+            }}
+          />
+        </SelectBox>
+
+        <GoButton
+          onClick={() => {
+            navigate(`/map/${Number(id)}`);
+          }}
+        >
+          Go
+        </GoButton>
       </SelectContainer>
     </Wrapper>
   );
