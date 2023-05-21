@@ -36,16 +36,12 @@ export const Title = styled.div`
 
 export const SelectBox = styled.div`
   display: flex;
+  justify-content: space-between;
+  width: 100%;
   margin: 203px auto 0 auto;
-  gap: 35px;
   font-weight: 300;
   font-size: 15px;
   line-height: 24px;
-
-  div {
-    width: 154px;
-  }
-
   span {
     justify-content: center;
     display: flex;
@@ -60,7 +56,7 @@ export const SelectBox = styled.div`
 
 export const BackButton = styled.button`
   background: url(/img/back.png);
-  color: black;
+  margin-left: 20px;
   width: 48px;
   border: none;
   cursor: pointer;
@@ -70,6 +66,7 @@ export const NextButton = styled.button`
   width: 48px;
   border: none;
   cursor: pointer;
+  margin-right: 20px;
 `;
 
 export const GoButton = styled.button`
@@ -77,7 +74,7 @@ export const GoButton = styled.button`
   border-radius: 27px;
   width: 89%;
   height: 54px;
-  margin: 234px auto 0 auto;
+  margin: 234px auto 63px auto;
   font-size: 20px;
   font-weight: 600;
   border: none;

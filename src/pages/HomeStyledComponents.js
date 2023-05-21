@@ -18,22 +18,32 @@ export const Logo = styled.div`
 `;
 
 export const Title = styled.div`
-  padding: 0 20px;
+  margin: 0 auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 30px;
   margin-bottom: 442px;
 `;
 
 export const MainTitle = styled.div`
+  margin: 0 auto;
   line-height: 55px;
-  font-family: "fantasy";
   font-size: 55px;
   font-weight: 800;
-  margin-bottom: 30px;
   span {
     font-weight: 700;
     color: #ffc300;
   }
+`;
+
+export const SubTitle = styled.div`
+  position: relative;
+  left: -10px;
+  margin: 0 auto;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 21px;
 `;
 
 export const Button = styled.button`
@@ -51,10 +61,4 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-export const SubTitle = styled.div`
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 21px;
 `;

@@ -26,12 +26,14 @@ function Home() {
             <br />
             <span>Food Prices</span>
             <br />
-            of South Korea?
+            of South
+            <br />
+            Korea?
           </MainTitle>
           <SubTitle>
-            Discover local food costs in South Korea
+            <span>Discover local food costs in South Korea</span>
             <br />
-            with ease using our service.
+            <span>with ease using our service.</span>
           </SubTitle>
           <Button
             type="button"
