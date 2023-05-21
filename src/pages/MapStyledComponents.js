@@ -15,11 +15,12 @@ export const MapContainer = styled.div`
 `;
 
 export const Header = styled.div`
-  color: #fff;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   margin-bottom: 15px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(15px);
 `;
 
 export const Select = styled.div`
@@ -89,7 +90,7 @@ export const ResInfo = styled.div`
     display: none;
   }
   gap: 10px;
-  width: 100%;
+  width: 97%;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   border-radius: 15px 15px 0px 0px;
 `;
@@ -131,11 +132,10 @@ export const Restuarant = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 90%;
   height: 90px;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
-  width: 100%;
+  width: 93%;
   div {
     text-align: left;
     padding: 13.5px 5px;
@@ -348,4 +348,7 @@ export const Restuarants = styled.div`
   flex-direction: column;
   gap: 10px;
   overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
