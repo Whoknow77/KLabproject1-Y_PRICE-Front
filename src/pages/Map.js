@@ -34,6 +34,12 @@ import {
   FoodInfoPrice,
   FoodExchangeButton,
   FoodInfoPriceItem,
+  Restuarants,
+  TransitionGraphBox,
+  SoldBar,
+  SoldNumber,
+  SoldPrice,
+  GraphItem,
 } from "./MapStyledComponents";
 import { region, food } from "../region";
 
@@ -61,6 +67,8 @@ function Map() {
           >
             <span className="city">{region[Number(id)].city}</span>
             <span className="area">{region[Number(id)].area}</span>
+            <img src="/img/exchange_down.png" alt="exchange_down" />
+            <img src="" alt="" />
           </Select>
           <Search>
             <img src="/img/searchbutton.png" alt="search" />
@@ -277,7 +285,65 @@ function Map() {
 
           <FoodTransition>
             <TransitionTitle>Now sold at this price!</TransitionTitle>
-            <TransitionGraph></TransitionGraph>
+            <TransitionGraphBox>
+              <TransitionGraph>
+                <GraphItem>
+                  <SoldNumber>0</SoldNumber>
+                  <SoldBar count={1}></SoldBar>
+                  <SoldPrice>1000₩</SoldPrice>
+                </GraphItem>
+                <GraphItem>
+                  <SoldNumber>1</SoldNumber>
+                  <SoldBar count={2}></SoldBar>
+                  <SoldPrice>2000₩</SoldPrice>
+                </GraphItem>
+                <GraphItem>
+                  <SoldNumber>2</SoldNumber>
+                  <SoldBar count={2}></SoldBar>
+                  <SoldPrice>3000₩</SoldPrice>
+                </GraphItem>
+                <GraphItem>
+                  <SoldNumber>3</SoldNumber>
+                  <SoldBar count={3}></SoldBar>
+                  <SoldPrice>4000₩</SoldPrice>
+                </GraphItem>
+                <GraphItem>
+                  <SoldNumber>3</SoldNumber>
+                  <SoldBar count={3}></SoldBar>
+                  <SoldPrice>4000₩</SoldPrice>
+                </GraphItem>
+                <GraphItem>
+                  <SoldNumber>4</SoldNumber>
+                  <SoldBar count={4}></SoldBar>
+                  <SoldPrice>5000₩</SoldPrice>
+                </GraphItem>
+                <GraphItem>
+                  <SoldNumber>3</SoldNumber>
+                  <SoldBar count={3}></SoldBar>
+                  <SoldPrice>6000₩</SoldPrice>
+                </GraphItem>
+                <GraphItem>
+                  <SoldNumber>2</SoldNumber>
+                  <SoldBar count={2}></SoldBar>
+                  <SoldPrice>7000₩</SoldPrice>
+                </GraphItem>
+                <GraphItem>
+                  <SoldNumber>1</SoldNumber>
+                  <SoldBar count={1}></SoldBar>
+                  <SoldPrice>8000₩</SoldPrice>
+                </GraphItem>
+                <GraphItem>
+                  <SoldNumber>0</SoldNumber>
+                  <SoldBar count={0}></SoldBar>
+                  <SoldPrice>9000₩</SoldPrice>
+                </GraphItem>
+                <GraphItem>
+                  <SoldNumber>1</SoldNumber>
+                  <SoldBar count={1}></SoldBar>
+                  <SoldPrice>10000₩</SoldPrice>
+                </GraphItem>
+              </TransitionGraph>
+            </TransitionGraphBox>
           </FoodTransition>
 
           <ReswithFood>
@@ -285,50 +351,77 @@ function Map() {
               <Title1>These restaurants have</Title1>
               <Title2>Lamb Skewers</Title2>
             </ResTitle>
-            <Restuarant>
-              <img src="/img/res1.png" alt="res1" />
-              <div>
-                <ResName>Junwoo's Lamb</ResName>
-                <br />
-                <Price>3000₩</Price>
-              </div>
-            </Restuarant>
-            <Restuarant>
-              <img src="/img/res1.png" alt="res1" />
-              <div>
-                <ResName>Junwoo's Lamb</ResName>
-                <br />
-                <Price>3000₩</Price>
-              </div>
-            </Restuarant>
-            <Restuarant>
-              <img src="/img/res1.png" alt="res1" />
-              <div>
-                <ResName>Junwoo's Lamb</ResName>
-                <br />
-                <Price>3000₩</Price>
-              </div>
-            </Restuarant>
-            <Restuarant>
-              <img src="/img/res1.png" alt="res1" />
-              <div>
-                <ResName>Junwoo's Lamb</ResName>
-                <br />
-                <Price>3000₩</Price>
-              </div>
-            </Restuarant>
-            <Restuarant>
-              <img src="/img/res1.png" alt="res1" />
-              <div>
-                <ResName>Junwoo's Lamb</ResName>
-                <br />
-                <Price>3000₩</Price>
-              </div>
-            </Restuarant>
+            <Restuarants>
+              <Restuarant>
+                <img src="/img/res1.png" alt="res1" />
+                <div>
+                  <ResName>Junwoo's Lamb</ResName>
+                  <br />
+                  <Price>3000₩</Price>
+                </div>
+              </Restuarant>
+              <Restuarant>
+                <img src="/img/res1.png" alt="res1" />
+                <div>
+                  <ResName>Junwoo's Lamb</ResName>
+                  <br />
+                  <Price>3000₩</Price>
+                </div>
+              </Restuarant>
+              <Restuarant>
+                <img src="/img/res1.png" alt="res1" />
+                <div>
+                  <ResName>Junwoo's Lamb</ResName>
+                  <br />
+                  <Price>3000₩</Price>
+                </div>
+              </Restuarant>
+              <Restuarant>
+                <img src="/img/res1.png" alt="res1" />
+                <div>
+                  <ResName>Junwoo's Lamb</ResName>
+                  <br />
+                  <Price>3000₩</Price>
+                </div>
+              </Restuarant>
+              <Restuarant>
+                <img src="/img/res1.png" alt="res1" />
+                <div>
+                  <ResName>Junwoo's Lamb</ResName>
+                  <br />
+                  <Price>3000₩</Price>
+                </div>
+              </Restuarant>
+              <Restuarant>
+                <img src="/img/res1.png" alt="res1" />
+                <div>
+                  <ResName>Junwoo's Lamb</ResName>
+                  <br />
+                  <Price>3000₩</Price>
+                </div>
+              </Restuarant>
+              <Restuarant>
+                <img src="/img/res1.png" alt="res1" />
+                <div>
+                  <ResName>Junwoo's Lamb</ResName>
+                  <br />
+                  <Price>3000₩</Price>
+                </div>
+              </Restuarant>
+              <Restuarant>
+                <img src="/img/res1.png" alt="res1" />
+                <div>
+                  <ResName>Junwoo's Lamb</ResName>
+                  <br />
+                  <Price>3000₩</Price>
+                </div>
+              </Restuarant>
+            </Restuarants>
           </ReswithFood>
         </FoodSearch>
       </MapContainer>
     </Wrapper>
   );
 }
+
 export default Map;

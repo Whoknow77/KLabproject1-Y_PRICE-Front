@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  max-width: 360px;
-  max-height: 800px;
+  max-width: 600px;
+  min-width: 360px;
   margin: 0 auto;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `;
 export const MapContainer = styled.div`
   display: flex;
@@ -19,6 +19,7 @@ export const Header = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  margin-bottom: 15px;
 `;
 
 export const Select = styled.div`
@@ -50,16 +51,14 @@ export const Search = styled.div`
   margin: 0 auto 10px auto;
   padding: 8px 15px;
   gap: 8px;
-
-  width: 320px;
+  width: 90%;
   height: 40px;
-
   background: #ffffff;
   border: 1.5px solid #ffc300;
   border-radius: 27px;
 
   .searchinput {
-    width: 226px;
+    width: 90%;
     height: 24px;
     font-weight: 500;
     font-size: 18px;
@@ -95,14 +94,15 @@ export const ResInfo = styled.div`
   border-radius: 15px 15px 0px 0px;
 `;
 
-export const Button = styled.div`
+export const Button = styled.button`
+  background: white;
   display: flex;
   justify-content: center;
   border: none;
   outline: none;
   img {
     transition: all 1s ease-in-out;
-    transform: ${({ expand }) => (expand ? "rotate(180deg)" : "rotate(0deg)")};
+    transform: ${({ expand }) => (expand ? "rotate(0deg)" : "rotate(180deg)")};
     cursor: pointer;
   }
 `;
@@ -135,7 +135,9 @@ export const Restuarant = styled.div`
   height: 90px;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
+  width: 100%;
   div {
+    text-align: left;
     padding: 13.5px 5px;
   }
 `;
@@ -154,7 +156,7 @@ export const ResName = styled.span`
 
 export const FoodRecommend = styled.div`
   display: ${({ input, flag }) => (input && !flag ? "block" : "none")};
-  width: 90%;
+  width: 92%;
   margin: 30px auto;
 `;
 
@@ -196,14 +198,18 @@ export const FoodSearch = styled.div`
   margin: 0 auto;
   flex-direction: column;
   text-align: center;
+  gap: 45px;
 `;
 
 export const FoodSection = styled.div`
-  height: 356px;
+  img {
+    width: 100%;
+  }
 `;
 
 export const FoodInfo = styled.div`
   background: #fff1c5;
+  border-radius: 10px 10px 0px 0px;
   padding: 20px 48.5px;
   height: 126px;
 `;
@@ -225,6 +231,7 @@ export const FoodInfoNearby = styled.div`
 export const FoodInfoPrice = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
 `;
 export const FoodInfoPriceItem = styled.div`
@@ -252,20 +259,93 @@ export const FoodExchangeButton = styled.div`
 `;
 
 export const FoodTransition = styled.div`
-  margin: 45px auto 15px auto;
+  margin: 0 auto;
   text-align: center;
   height: 283px;
   font-weight: 600;
   font-size: 20px;
+  width: 100%;
 `;
 
-export const TransitionTitle = styled.div``;
+export const TransitionTitle = styled.div`
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+`;
 
-export const TransitionGraph = styled.div``;
+export const TransitionGraphBox = styled.div`
+  margin-top: 15px;
+  height: 250px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+`;
+
+export const TransitionGraph = styled.div`
+  padding: 15px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  gap: 10px;
+`;
+
+export const GraphItem = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const SoldNumber = styled.div`
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 18px;
+`;
+
+export const SoldBar = styled.div`
+  background: rgba(255, 195, 0, 0.7);
+  border-radius: 15px;
+  margin: 3px 7.5px;
+  height: ${({ count }) => count * 30}px}};
+  width: 30px;
+`;
+
+export const SoldPrice = styled.div`
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+`;
+
 export const ReswithFood = styled.div`
+  overflow: scroll;
   height: 353px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
-export const ResTitle = styled.div``;
-export const Title1 = styled.div``;
-export const Title2 = styled.div``;
+export const ResTitle = styled.div`
+  margin-bottom: 15px;
+`;
+export const Title1 = styled.div`
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+`;
+export const Title2 = styled.div`
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #ffc300;
+`;
+
+export const Restuarants = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: scroll;
+`;
