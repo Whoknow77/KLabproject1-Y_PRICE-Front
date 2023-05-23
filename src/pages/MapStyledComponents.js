@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   height: 100%;
 `;
 export const MapContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -15,6 +16,10 @@ export const MapContainer = styled.div`
 `;
 
 export const Header = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 94px;
+  z-index: 2;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -121,7 +126,6 @@ export const Card = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-
   gap: 10px;
 `;
 
@@ -352,3 +356,11 @@ export const Restuarants = styled.div`
     display: none;
   }
 `;
+
+export const Food = styled.div`
+  display: none;
+`;
+export const Menu = styled.div``;
+export const Info = styled.div``;
+export const Location = styled.div``;
+export const Clock = styled.div``;
