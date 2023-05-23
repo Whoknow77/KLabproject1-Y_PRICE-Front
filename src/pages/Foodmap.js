@@ -60,8 +60,8 @@ function Foodmap({ searchPlace }) {
     <div
       id="map"
       style={{
-        width: "580px",
-        height: "500px",
+        width: "100%",
+        height: "800px",
       }}
     ></div>
   );

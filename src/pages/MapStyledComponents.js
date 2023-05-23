@@ -16,7 +16,7 @@ export const MapContainer = styled.div`
 `;
 
 export const Header = styled.div`
-  position: absolute;
+  position: ${({ input, flag }) => (input ? "static" : "absolute")};
   width: 100%;
   height: 94px;
   z-index: 2;
@@ -83,39 +83,58 @@ img{
 
 export const MapWrapper = styled.div`
   display: ${({ input }) => (input ? "none" : "block")};
+  position: relative;
 `;
 
 export const ResInfo = styled.div`
+  background: white;
+  top: 726px;
+  position: absolute;
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  transition: all 1s ease-in-out;
-  height: ${({ expand }) => (expand ? "294px" : "57px")};
+  transition: all 0.3s ease-in-out;
+  height: ${({ expand }) => (expand ? "294px" : "74px")};
   overflow: scroll;
   &::-webkit-scrollbar {
     display: none;
   }
   gap: 10px;
-  width: 97%;
+  width: 100%;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   border-radius: 15px 15px 0px 0px;
 `;
 
+export const ButtonBox = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
 export const Button = styled.button`
-  background: white;
+  top: -20px;
+  background: #ffc300;
   display: flex;
   justify-content: center;
+  align-items: center;
   border: none;
   outline: none;
-  img {
-    transition: all 1s ease-in-out;
-    transform: ${({ expand }) => (expand ? "rotate(0deg)" : "rotate(180deg)")};
-    cursor: pointer;
-  }
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  z-index: 9999;
+  left: 45%;
+  transform: ${({ expand }) => (expand ? "rotate(0deg)" : "rotate(180deg)")};
+  filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.1));
+  border-radius: 20px;
 `;
 
 export const Title = styled.div`
   display: flex;
+  align-items: center;
   justify-content: center;
+  margin: 20px;
   height: 18px;
   font-weight: 600;
   font-size: 20px;
@@ -186,6 +205,10 @@ export const RecommendImg = styled.div`
   border: 0.5px solid #d9d9d9;
   border-radius: 5px;
   cursor: pointer;
+  img {
+    width: 90px;
+    height: 90px;
+  }
 `;
 
 export const RecommendName = styled.div`
@@ -247,6 +270,7 @@ export const FoodInfoPriceItem = styled.div`
 
 export const FoodExchangeButton = styled.div`
   cursor: pointer;
+  position: relative;
   padding: 4px 10px;
   background: #ffc300;
   border-radius: 20px;
@@ -260,6 +284,38 @@ export const FoodExchangeButton = styled.div`
     border: none;
     outline: none;
   }
+`;
+
+export const MoneyList = styled.div`
+  transform: scaleY(
+    ${({ moneychange }) => (moneychange === "true" ? "1" : "0")}
+  );
+  transform-origin: top;
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 12px 23px;
+  gap: 10px;
+  position: absolute;
+  width: 68px;
+  top: 30px;
+  left: 0;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 5px;
+`;
+
+export const MoneyItem = styled.button`
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
 `;
 
 export const FoodTransition = styled.div`

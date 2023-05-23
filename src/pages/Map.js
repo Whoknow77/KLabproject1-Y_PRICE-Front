@@ -45,10 +45,38 @@ import {
   Info,
   Clock,
   Location,
+  ButtonBox,
+  MoneyList,
+  MoneyItem,
 } from "./MapStyledComponents";
 import { region, food, Res } from "../region";
 
 import Foodmap from "./Foodmap";
+
+function Exchange({ beginrpice, exchangesign }) {
+  let result = beginrpice;
+  switch (exchangesign) {
+    case "€":
+      result = parseFloat(beginrpice * 0.0007).toFixed(2);
+      break;
+    case "£":
+      result = parseFloat(beginrpice * 0.0000061).toFixed(2);
+      break;
+    case "¥":
+      result = parseFloat(beginrpice * 0.0053).toFixed(2);
+      break;
+    case "$":
+      result = parseFloat(beginrpice * 0.00076).toFixed(2);
+      break;
+    case "₩":
+      result = beginrpice;
+      break;
+    default:
+      result = beginrpice;
+  }
+
+  return <FoodInfoPriceItem>{`${result}${exchangesign}`}</FoodInfoPriceItem>;
+}
 
 function Map() {
   let { id } = useParams();
@@ -56,6 +84,9 @@ function Map() {
   let [input, setInput] = useState("");
   const [expand, setExpand] = useState(0);
   let [search, setSearch] = useState("");
+  const [moneychange, setMoneychange] = useState(false);
+  const [moneyitem, setMoneyitem] = useState(["€", "£", "¥", "$", "₩"]);
+  const [exchangesign, setExchangesign] = useState("W");
 
   let flag = food.find((item) => {
     return item.name === search;
@@ -63,11 +94,13 @@ function Map() {
 
   let target = Res.find((item) => item.name === "Xihongshi");
 
+  let beginprice = 3800;
+
   return (
     <Wrapper>
       <MapContainer>
         {/* 검색 바 */}
-        <Header>
+        <Header input={input} flag={flag}>
           <Select
             onClick={() => {
               navigate("/select/0");
@@ -107,8 +140,12 @@ function Map() {
 
         {/* map 기본 페이지(지도 + 음식점 추천) */}
         <MapWrapper input={input} flag={flag}>
-          <Foodmap searchPlace={region[id].search}>
-            <ResInfo expand={expand}>
+          <Foodmap
+            searchPlace={region[id].search}
+            style={{ position: "absolute", width: "100%" }}
+          ></Foodmap>
+          <ResInfo expand={expand}>
+            <ButtonBox>
               <Button expand={expand}>
                 <img
                   src="/img/toggle_down.png"
@@ -118,92 +155,95 @@ function Map() {
                   }}
                 />
               </Button>
-              <Title>이런 식당은 어때요?</Title>
-              <Card>
-                {/* 음식점 정보 */}
-                <Restuarant>
-                  <img src="/img/res1.png" alt="res1" />
-                  <div>
-                    <ResName>Junwoo's Lamb</ResName>
-                    <br />
-                    <Price>3000₩</Price>
-                  </div>
-                </Restuarant>
-                <Restuarant>
-                  <img src="/img/res2.png" alt="res2" />
-                  <div>
-                    <ResName>Xihongshi</ResName>
-                    <br />
-                    <Price>4000₩</Price>
-                  </div>
-                </Restuarant>
-                <Restuarant>
-                  <img src="/img/res2.png" alt="res2" />
-                  <div>
-                    <ResName>Xihongshi</ResName>
-                    <br />
-                    <Price>4000₩</Price>
-                  </div>
-                </Restuarant>
-                <Restuarant>
-                  <img src="/img/res2.png" alt="res2" />
-                  <div>
-                    <ResName>Xihongshi</ResName>
-                    <br />
-                    <Price>4000₩</Price>
-                  </div>
-                </Restuarant>
-                <Restuarant>
-                  <img src="/img/res2.png" alt="res2" />
-                  <div>
-                    <ResName>Xihongshi</ResName>
-                    <br />
-                    <Price>4000₩</Price>
-                  </div>
-                </Restuarant>
-                <Restuarant>
-                  <img src="/img/res2.png" alt="res2" />
-                  <div>
-                    <ResName>Xihongshi</ResName>
-                    <br />
-                    <Price>4000₩</Price>
-                  </div>
-                </Restuarant>
-                <Restuarant>
-                  <img src="/img/res2.png" alt="res2" />
-                  <div>
-                    <ResName>Xihongshi</ResName>
-                    <br />
-                    <Price>4000₩</Price>
-                  </div>
-                </Restuarant>
-                <Restuarant>
-                  <img src="/img/res2.png" alt="res2" />
-                  <div>
-                    <ResName>Xihongshi</ResName>
-                    <br />
-                    <Price>4000₩</Price>
-                  </div>
-                </Restuarant>
-                <Restuarant>
-                  <img src="/img/res2.png" alt="res2" />
-                  <div>
-                    <ResName>Xihongshi</ResName>
-                    <br />
-                    <Price>4000₩</Price>
-                  </div>
-                </Restuarant>
-              </Card>
-            </ResInfo>
-          </Foodmap>
+            </ButtonBox>
+            <Title>Looking for this restaurant?</Title>
+            <Card>
+              {/* 음식점 정보 */}
+              <Restuarant>
+                <img src="/img/res1.png" alt="res1" />
+                <div>
+                  <ResName>Junwoo's Lamb</ResName>
+                  <br />
+                  <Price>3000₩</Price>
+                </div>
+              </Restuarant>
+              <Restuarant>
+                <img src="/img/res2.png" alt="res2" />
+                <div>
+                  <ResName>Xihongshi</ResName>
+                  <br />
+                  <Price>4000₩</Price>
+                </div>
+              </Restuarant>
+              <Restuarant>
+                <img src="/img/res2.png" alt="res2" />
+                <div>
+                  <ResName>Xihongshi</ResName>
+                  <br />
+                  <Price>4000₩</Price>
+                </div>
+              </Restuarant>
+              <Restuarant>
+                <img src="/img/res2.png" alt="res2" />
+                <div>
+                  <ResName>Xihongshi</ResName>
+                  <br />
+                  <Price>4000₩</Price>
+                </div>
+              </Restuarant>
+              <Restuarant>
+                <img src="/img/res2.png" alt="res2" />
+                <div>
+                  <ResName>Xihongshi</ResName>
+                  <br />
+                  <Price>4000₩</Price>
+                </div>
+              </Restuarant>
+              <Restuarant>
+                <img src="/img/res2.png" alt="res2" />
+                <div>
+                  <ResName>Xihongshi</ResName>
+                  <br />
+                  <Price>4000₩</Price>
+                </div>
+              </Restuarant>
+              <Restuarant>
+                <img src="/img/res2.png" alt="res2" />
+                <div>
+                  <ResName>Xihongshi</ResName>
+                  <br />
+                  <Price>4000₩</Price>
+                </div>
+              </Restuarant>
+              <Restuarant>
+                <img src="/img/res2.png" alt="res2" />
+                <div>
+                  <ResName>Xihongshi</ResName>
+                  <br />
+                  <Price>4000₩</Price>
+                </div>
+              </Restuarant>
+              <Restuarant>
+                <img src="/img/res2.png" alt="res2" />
+                <div>
+                  <ResName>Xihongshi</ResName>
+                  <br />
+                  <Price>4000₩</Price>
+                </div>
+              </Restuarant>
+            </Card>
+          </ResInfo>
         </MapWrapper>
 
-        {/* 음식추천 */}
+        {/* 카테고리 추천 */}
         <FoodRecommend input={input} flag={flag}>
           <RecommendTitle>이런 음식은 어때요?</RecommendTitle>
           <RecommendCard>
             <RecommendImg>
-              <img src="/img/food1.png" alt="food1" />
+              <img
+                src="https://t1.kakaocdn.net/thumb/T800x0.q80/?fname=http%3A%2F%2Ft1.daumcdn.net%2Fplace%2F2DE73AF5AD944EE995B4D12A8CD9D107"
+                alt="food1"
+              />
               <RecommendName>냉면</RecommendName>
             </RecommendImg>
             <RecommendImg>
@@ -288,10 +328,28 @@ function Map() {
               <FoodInfoName>Lamb Skewers</FoodInfoName>
               <FoodInfoNearby>Average Price Nearby</FoodInfoNearby>
               <FoodInfoPrice>
-                <FoodInfoPriceItem>3800₩</FoodInfoPriceItem>
-                <FoodExchangeButton>
-                  <span>₩</span>
+                <Exchange beginrpice={beginprice} exchangesign={exchangesign} />
+                <FoodExchangeButton
+                  onClick={(e) => {
+                    setMoneychange(!moneychange);
+                  }}
+                >
+                  <span>{exchangesign}</span>
                   <img src="/img/exchange_down.png" alt="exchange_down" />
+                  <MoneyList moneychange={moneychange + ""}>
+                    {moneyitem.map((sign) => {
+                      return (
+                        <MoneyItem
+                          changeinfo={sign}
+                          onClick={() => {
+                            setExchangesign(sign);
+                          }}
+                        >
+                          {sign}
+                        </MoneyItem>
+                      );
+                    })}
+                  </MoneyList>
                 </FoodExchangeButton>
               </FoodInfoPrice>
             </FoodInfo>
