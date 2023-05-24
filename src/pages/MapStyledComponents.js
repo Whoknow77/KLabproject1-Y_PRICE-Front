@@ -106,8 +106,9 @@ export const ResInfo = styled.div`
 `;
 
 export const ButtonBox = styled.div`
-  position: relative;
+  position: absolute;
   width: 100%;
+  top: 730px;
 `;
 
 export const Button = styled.button`

@@ -145,17 +145,6 @@ function Map() {
             style={{ position: "absolute", width: "100%" }}
           ></Foodmap>
           <ResInfo expand={expand}>
-            <ButtonBox>
-              <Button expand={expand}>
-                <img
-                  src="/img/toggle_down.png"
-                  alt="toggle_down"
-                  onClick={() => {
-                    setExpand(!expand);
-                  }}
-                />
-              </Button>
-            </ButtonBox>
             <Title>Looking for this restaurant?</Title>
             <Card>
               {/* 음식점 정보 */}
@@ -233,6 +222,17 @@ function Map() {
               </Restuarant>
             </Card>
           </ResInfo>
+          <ButtonBox>
+            <Button expand={expand}>
+              <img
+                src="/img/toggle_down.png"
+                alt="toggle_down"
+                onClick={() => {
+                  setExpand(!expand);
+                }}
+              />
+            </Button>
+          </ButtonBox>
         </MapWrapper>
 
         {/* 카테고리 추천 */}
@@ -361,7 +361,7 @@ function Map() {
               <TransitionGraph>
                 <GraphItem>
                   <SoldNumber>0</SoldNumber>
-                  <SoldBar count={1}></SoldBar>
+                  <SoldBar count={0}></SoldBar>
                   <SoldPrice>1000₩</SoldPrice>
                 </GraphItem>
                 <GraphItem>
