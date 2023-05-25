@@ -30,50 +30,62 @@ const StyledSlider = styled(Slider)`
 export default function Select() {
   const navigate = useNavigate();
   const [id, setId] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const sliderRef = React.useRef(null); // 슬라이더에 사용할 ref를 생성합니다.
+
   const settings = {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    // 애니메이션이 진행 중 일때
+    beforeChange: (next) => {
+      setId(next);
+      setIsAnimating(true);
+    },
+    // 애니메이션이 끝났을때
+    afterChange: () => setIsAnimating(false),
     nextArrow: (
-      <NextButton>
-        <img
-          src="/img/next.png"
-          alt=""
-          onClick={() => {
+      <NextButton
+        disabled={isAnimating} // 애니메이션 동작중일때는 클릭 비활성화
+        onClick={() => {
+          if (!isAnimating) {
             if (Number(id) === 5) {
-              setId(Number(id) - 5);
+              sliderRef.current.slickGoTo(0); // 슬라이드 이동
             } else {
-              setId(Number(id) + 1);
+              sliderRef.current.slickGoTo(id + 1); // 슬라이드 이동
             }
-          }}
-        />
+          }
+        }}
+      >
+        <img src="/img/next.png" alt="" />
       </NextButton>
     ),
     prevArrow: (
-      <BackButton>
-        <img
-          src="/img/back.png"
-          alt=""
-          onClick={() => {
+      <BackButton
+        disabled={isAnimating}
+        onClick={() => {
+          if (!isAnimating) {
             if (Number(id) === 0) {
-              setId(Number(id) + 5);
+              sliderRef.current.slickGoTo(5);
             } else {
-              setId(Number(id) - 1);
+              sliderRef.current.slickGoTo(id - 1);
             }
-          }}
-        />
+          }
+        }}
+      >
+        <img src="/img/back.png" alt="" />
       </BackButton>
     ),
   };
 
   return (
     <Wrapper>
-      <StyledSlider {...settings}>
-        {[0, 0, 0, 0, 0, 0].map((item) => {
+      <StyledSlider ref={sliderRef} {...settings}>
+        {[1, 2, 3, 4, 5, 6].map((item, idx) => {
           return (
-            <div>
-              <Image img={`/img/selectbackground${Number(id) + 1}.jpg`} />
+            <div key={idx}>
+              <Image img={`/img/selectbackground${item}.jpg`} />
             </div>
           );
         })}
@@ -86,8 +98,8 @@ export default function Select() {
         </span>
       </Title>
       <SelectBox>
-        <span className="city">{region[Number(id)].city}</span>
-        <span className="area">{region[Number(id)].area}</span>
+        <span className="city">{region[id].city}</span>
+        <span className="area">{region[id].area}</span>
       </SelectBox>
       <GoButton
         onClick={() => {
