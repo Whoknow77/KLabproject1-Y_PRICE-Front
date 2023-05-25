@@ -7,7 +7,7 @@ import {
   NextButton,
   BackButton,
   GoButton,
-} from "./SelectStyledComponents";
+} from "../components/SelectStyledComponents";
 import { region } from "../region";
 import { useNavigate, useParams } from "react-router-dom";
 

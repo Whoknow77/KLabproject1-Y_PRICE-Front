@@ -18,7 +18,7 @@ export const SelectContainer = styled.div`
   flex-direction: column;
   opacity:${({ fade }) => (fade ? "1" : "0")};
   width: 100%;
-  height: 100%;
+  height: 800px;
 `;
 
 export const Title = styled.div`

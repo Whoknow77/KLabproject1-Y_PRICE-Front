@@ -101,7 +101,6 @@ export const MoneyItem = styled.button`
 export const FoodTransition = styled.div`
   margin: 0 auto;
   text-align: center;
-  height: 283px;
   font-weight: 600;
   font-size: 20px;
   width: 100%;

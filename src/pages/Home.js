@@ -8,7 +8,7 @@ import {
   Wrapper,
   Button,
   Logo,
-} from "./HomeStyledComponents";
+} from "../components/HomeStyledComponents";
 
 function Home() {
   const navigate = useNavigate();

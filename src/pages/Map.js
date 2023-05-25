@@ -7,7 +7,7 @@ import {
   Info,
   Clock,
   Location,
-} from "./MapStyledComponents";
+} from "../components/MapStyledComponents";
 import { useParams } from "react-router-dom";
 
 import DefaultMap from "../components/DefaultMap";

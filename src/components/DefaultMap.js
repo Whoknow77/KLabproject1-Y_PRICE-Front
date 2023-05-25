@@ -1,6 +1,6 @@
 import React from "react";
 
-import Foodmap from "../pages/Foodmap";
+import Foodmap from "./Foodmap";
 import { region } from "../region";
 import {
   MapWrapper,
@@ -15,6 +15,14 @@ import {
 } from "./DefaultMapStyledComponents";
 
 function DefaultMap({ input, flag, expand, setExpand, id }) {
+  let Restaurant = [
+    { name: "Junwoo's Lamb", price: "3000₩" },
+    { name: "Junwoo's Lamb", price: "3000₩" },
+    { name: "Junwoo's Lamb", price: "3000₩" },
+    { name: "Junwoo's Lamb", price: "3000₩" },
+    { name: "Junwoo's Lamb", price: "3000₩" },
+    { name: "Junwoo's Lamb", price: "3000₩" },
+  ];
   return (
     <MapWrapper input={input}>
       <Foodmap
@@ -25,78 +33,18 @@ function DefaultMap({ input, flag, expand, setExpand, id }) {
         <Title>Looking for this restaurant?</Title>
         <Card>
           {/* 음식점 정보 */}
-          <Restuarant>
-            <img src="/img/res1.png" alt="res1" />
-            <div>
-              <ResName>Junwoo's Lamb</ResName>
-              <br />
-              <Price>3000₩</Price>
-            </div>
-          </Restuarant>
-          <Restuarant>
-            <img src="/img/res2.png" alt="res2" />
-            <div>
-              <ResName>Xihongshi</ResName>
-              <br />
-              <Price>4000₩</Price>
-            </div>
-          </Restuarant>
-          <Restuarant>
-            <img src="/img/res2.png" alt="res2" />
-            <div>
-              <ResName>Xihongshi</ResName>
-              <br />
-              <Price>4000₩</Price>
-            </div>
-          </Restuarant>
-          <Restuarant>
-            <img src="/img/res2.png" alt="res2" />
-            <div>
-              <ResName>Xihongshi</ResName>
-              <br />
-              <Price>4000₩</Price>
-            </div>
-          </Restuarant>
-          <Restuarant>
-            <img src="/img/res2.png" alt="res2" />
-            <div>
-              <ResName>Xihongshi</ResName>
-              <br />
-              <Price>4000₩</Price>
-            </div>
-          </Restuarant>
-          <Restuarant>
-            <img src="/img/res2.png" alt="res2" />
-            <div>
-              <ResName>Xihongshi</ResName>
-              <br />
-              <Price>4000₩</Price>
-            </div>
-          </Restuarant>
-          <Restuarant>
-            <img src="/img/res2.png" alt="res2" />
-            <div>
-              <ResName>Xihongshi</ResName>
-              <br />
-              <Price>4000₩</Price>
-            </div>
-          </Restuarant>
-          <Restuarant>
-            <img src="/img/res2.png" alt="res2" />
-            <div>
-              <ResName>Xihongshi</ResName>
-              <br />
-              <Price>4000₩</Price>
-            </div>
-          </Restuarant>
-          <Restuarant>
-            <img src="/img/res2.png" alt="res2" />
-            <div>
-              <ResName>Xihongshi</ResName>
-              <br />
-              <Price>4000₩</Price>
-            </div>
-          </Restuarant>
+          {Restaurant.map((res) => {
+            return (
+              <Restuarant>
+                <img src="/img/res1.png" alt="res1" />
+                <div>
+                  <ResName>{res.name}</ResName>
+                  <br />
+                  <Price>{res.price}</Price>
+                </div>
+              </Restuarant>
+            );
+          })}
         </Card>
       </ResInfo>
       <ButtonBox>
