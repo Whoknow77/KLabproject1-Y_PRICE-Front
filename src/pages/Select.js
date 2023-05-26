@@ -30,7 +30,6 @@ const StyledSlider = styled(Slider)`
 export default function Select() {
   const navigate = useNavigate();
   const [id, setId] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
   const sliderRef = React.useRef(null); // 슬라이더에 사용할 ref를 생성합니다.
 
   const settings = {
@@ -39,41 +38,20 @@ export default function Select() {
     slidesToShow: 1,
     slidesToScroll: 1,
     // 애니메이션이 진행 중 일때
-    beforeChange: (next) => {
-      setId(next);
-      setIsAnimating(true);
+    beforeChange: (current, next) => {
+      if (current - next === -5 || current - next === 1) {
+        setId((prevId) => (prevId === 0 ? 5 : prevId - 1));
+      } else {
+        setId((prevId) => (prevId + 1) % 6);
+      }
     },
-    // 애니메이션이 끝났을때
-    afterChange: () => setIsAnimating(false),
     nextArrow: (
-      <NextButton
-        disabled={isAnimating} // 애니메이션 동작중일때는 클릭 비활성화
-        onClick={() => {
-          if (!isAnimating) {
-            if (Number(id) === 5) {
-              sliderRef.current.slickGoTo(0); // 슬라이드 이동
-            } else {
-              sliderRef.current.slickGoTo(id + 1); // 슬라이드 이동
-            }
-          }
-        }}
-      >
+      <NextButton>
         <img src="/img/next.png" alt="" />
       </NextButton>
     ),
     prevArrow: (
-      <BackButton
-        disabled={isAnimating}
-        onClick={() => {
-          if (!isAnimating) {
-            if (Number(id) === 0) {
-              sliderRef.current.slickGoTo(5);
-            } else {
-              sliderRef.current.slickGoTo(id - 1);
-            }
-          }
-        }}
-      >
+      <BackButton>
         <img src="/img/back.png" alt="" />
       </BackButton>
     ),
