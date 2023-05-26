@@ -85,50 +85,37 @@ export default function MainCarousel(props) {
 
 ### 슬라이드를 깜빡이지 않고 부드럽게 넘기기
 
-react-slick 라이브러리의 특성상 이미지 슬라이드는 라이브러리가 제공하는 기능에 의해 자동으로 변경되기 때문에, onClick을 사용해 id를 변경하더라도 슬라이드가 직접적으로 변경되지는 않는다.
+react-slick 라이브러리의 특성상 이미지 슬라이드는 라이브러리가 제공하는 기능에 의해 자동으로 변경된다.
 
-그래서 여기서는 react-slick의 `slickGoTo` 메서드를 사용해야 한다. 이 메서드는 특정 슬라이드로 직접 이동하는 기능을 제공하고, 이를 활용하려면 먼저 슬라이더에 ref를 설정하고, slickGoTo 메서드를 호출할 때 해당 ref를 사용하면 된다.
-
-이외에 이미지가 변할때마다 변하는 문구들은 따로 `useState`로 관리되는 변수를 통해 제어한다.
+따라서 이미지가 변할때마다 변하는 문구들은 따로 `useState`로 관리되는 변수를 통해 제어한다.
 
 ```js
-const sliderRef = React.useRef(null); // 슬라이더에 사용할 ref를 생성합니다. => 슬라이드 직접 조작 가능
+const [id, setId] = useState(0);
 
-    nextArrow: (
-      <NextButton
-        onClick={() => {
-          if (!isAnimating) {
-            if (Number(id) === 5) {
-              setId(0);
-              sliderRef.current.slickGoTo(0); // 슬라이드 이동
-            } else {
-              setId(id + 1);
-              sliderRef.current.slickGoTo(id + 1); // 슬라이드 이동
-            }
-          }
-        }}
-      >
-      </NextButton>
-    ),
-    prevArrow: (
-      <BackButton
-        onClick={() => {
-          if (!isAnimating) {
-            if (Number(id) === 0) {
-              setId(5);
-              sliderRef.current.slickGoTo(5); // 슬라이드 이동
-            } else {
-              setId(id - 1);
-              sliderRef.current.slickGoTo(id - 1); // 슬라이드 이동
-            }
-          }
-        }}
-      >
-      </BackButton>
-
-<StyledSlider ref={sliderRef} {...settings}>
-  // ...
-</StyledSlider>;
+const settings = {
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  // 애니메이션이 진행 중 일때
+  beforeChange: (current, next) => {
+    if (current - next === -5 || current - next === 1) {
+      setId((prevId) => (prevId === 0 ? 5 : prevId - 1));
+    } else {
+      setId((prevId) => (prevId + 1) % 6);
+    }
+  },
+  nextArrow: (
+    <NextButton>
+      <img src="/img/next.png" alt="" />
+    </NextButton>
+  ),
+  prevArrow: (
+    <BackButton>
+      <img src="/img/back.png" alt="" />
+    </BackButton>
+  ),
+};
 ```
 
 슬라이더에 사용할 ref를 선언 후, `sliderRef`를 통해 조건에 따라 `sliderRef.current.slickGoTo()`를 이용해 슬라이드를 직접 조작하여 문제를 해결할 수 있다.
@@ -158,54 +145,6 @@ const IMG = styled.img`
   background-size: cover;
 `;
 ```
-
-### 슬라이드가 다 넘어가지 않았을때는 버튼의 이벤트 리스너를 제어하기
-
-```js
-const [isAnimating, setIsAnimating] = useState(false); // 애니메이션 진행 중 state
-```
-
-애니메이션이 진행중인지를 나타내는 `isAnimating` state를 두어 애니메이션이 진행 중 일때 동작하는 `beforChange`에 값을 true로, 애니메이션이 끝났을 때 동작하는 `afterChange`에 값을 false로 두었고,
-
-```js
-const settings = {
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 3000, // 3초마다 슬라이드 전환
-  // 애니메이션이 진행 중 일때
-  beforeChange: (next) => {
-    setId(next);
-    setIsAnimating(true);
-  },
-  // 애니메이션이 끝났을때
-  afterChange: () => setIsAnimating(false),
-  nextArrow: (
-    <NextButton
-      disabled={isAnimating} // 애니메이션 동작중일때는 클릭 비활성화
-      onClick={() => {
-        if (!isAnimating) {
-          //..
-        }
-      }}
-    ></NextButton>
-  ),
-  prevArrow: (
-    <BackButton
-      disabled={isAnimating} // 애니메이션 동작중일때는 클릭 비활성화
-      onClick={() => {
-        if (!isAnimating) {
-          // ..
-        }
-      }}
-    ></BackButton>
-  ),
-};
-```
-
-애니메이션이 동작중일때는 클릭을 비활성화 하여 동작을 제어하였다.
 
 `setId`는 `useState` 변경 함수 답게 상태 변경이 즉시 발생하는 것이 아니라 비동기적으로 처리된다. 즉, 상태 변경 요청을 한 후, 리액트가 상태를 업데이트하고 리렌더링을 수행하는 데에는 약간의 시간이 걸린다.
 

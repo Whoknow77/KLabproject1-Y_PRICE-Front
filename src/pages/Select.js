@@ -30,7 +30,6 @@ const StyledSlider = styled(Slider)`
 export default function Select() {
   const navigate = useNavigate();
   const [id, setId] = useState(0);
-  const sliderRef = React.useRef(null); // 슬라이더에 사용할 ref를 생성합니다.
 
   const settings = {
     infinite: true,
@@ -59,7 +58,7 @@ export default function Select() {
 
   return (
     <Wrapper>
-      <StyledSlider ref={sliderRef} {...settings}>
+      <StyledSlider {...settings}>
         {[1, 2, 3, 4, 5, 6].map((item, idx) => {
           return (
             <div key={idx}>
