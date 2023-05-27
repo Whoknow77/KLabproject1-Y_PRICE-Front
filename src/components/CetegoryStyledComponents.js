@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const FoodRecommend = styled.div`
-  display: ${({ input, flag }) => (input && !flag ? "block" : "none")};
+  display: ${({ input, flag, target }) =>
+    input && !flag && !target ? "block" : "none"};
   width: 85%;
   margin: 30px auto;
 `;

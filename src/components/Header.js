@@ -14,8 +14,6 @@ function Header({ input, setInput, setSearch, id }) {
       >
         <span className="city">{region[Number(id)].city}</span>
         <span className="area">{region[Number(id)].area}</span>
-        <img src="/img/exchange_down.png" alt="exchange_down" />
-        <img src="" alt="" />
       </Select>
       <Search>
         <img src="/img/searchbutton.png" alt="search" />

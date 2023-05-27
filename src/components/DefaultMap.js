@@ -1,6 +1,6 @@
 import React from "react";
 
-import Foodmap from "./Foodmap";
+import Foodmap from "../Foodmap";
 import { region } from "../region";
 import {
   MapWrapper,
@@ -33,9 +33,9 @@ function DefaultMap({ input, flag, expand, setExpand, id }) {
         <Title>Looking for this restaurant?</Title>
         <Card>
           {/* 음식점 정보 */}
-          {Restaurant.map((res) => {
+          {Restaurant.map((res, index) => {
             return (
-              <Restuarant>
+              <Restuarant key={index}>
                 <img src="/img/res1.png" alt="res1" />
                 <div>
                   <ResName>{res.name}</ResName>

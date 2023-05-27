@@ -75,9 +75,10 @@ function FoodDetail({ flag }) {
               <span>{exchangesign}</span>
               <img src="/img/exchange_down.png" alt="exchange_down" />
               <MoneyList moneychange={moneychange + ""}>
-                {moneyitem.map((sign) => {
+                {moneyitem.map((sign, index) => {
                   return (
                     <MoneyItem
+                      key={index}
                       changeinfo={sign}
                       onClick={() => {
                         setExchangesign(sign);
@@ -109,9 +110,9 @@ function FoodDetail({ flag }) {
               [8, 8, "9000₩"],
               [2, 2, "10000₩"],
               [2, 2, "11000₩"],
-            ].map((item) => {
+            ].map((item, index) => {
               return (
-                <GraphItem>
+                <GraphItem key={index}>
                   <SoldNumber>{item[0]}</SoldNumber>
                   <SoldBar count={item[1]}></SoldBar>
                   <SoldPrice>{item[2]}</SoldPrice>
@@ -128,70 +129,18 @@ function FoodDetail({ flag }) {
           <Title2>Lamb Skewers</Title2>
         </ResTitle>
         <Restuarants>
-          <Restuarant>
-            <img src="/img/res1.png" alt="res1" />
-            <div>
-              <ResName>Junwoo's Lamb</ResName>
-              <br />
-              <Price>3000₩</Price>
-            </div>
-          </Restuarant>
-          <Restuarant>
-            <img src="/img/res1.png" alt="res1" />
-            <div>
-              <ResName>Junwoo's Lamb</ResName>
-              <br />
-              <Price>3000₩</Price>
-            </div>
-          </Restuarant>
-          <Restuarant>
-            <img src="/img/res1.png" alt="res1" />
-            <div>
-              <ResName>Junwoo's Lamb</ResName>
-              <br />
-              <Price>3000₩</Price>
-            </div>
-          </Restuarant>
-          <Restuarant>
-            <img src="/img/res1.png" alt="res1" />
-            <div>
-              <ResName>Junwoo's Lamb</ResName>
-              <br />
-              <Price>3000₩</Price>
-            </div>
-          </Restuarant>
-          <Restuarant>
-            <img src="/img/res1.png" alt="res1" />
-            <div>
-              <ResName>Junwoo's Lamb</ResName>
-              <br />
-              <Price>3000₩</Price>
-            </div>
-          </Restuarant>
-          <Restuarant>
-            <img src="/img/res1.png" alt="res1" />
-            <div>
-              <ResName>Junwoo's Lamb</ResName>
-              <br />
-              <Price>3000₩</Price>
-            </div>
-          </Restuarant>
-          <Restuarant>
-            <img src="/img/res1.png" alt="res1" />
-            <div>
-              <ResName>Junwoo's Lamb</ResName>
-              <br />
-              <Price>3000₩</Price>
-            </div>
-          </Restuarant>
-          <Restuarant>
-            <img src="/img/res1.png" alt="res1" />
-            <div>
-              <ResName>Junwoo's Lamb</ResName>
-              <br />
-              <Price>3000₩</Price>
-            </div>
-          </Restuarant>
+          {[0, 0, 0, 0, 0, 0, 0].map((item, index) => {
+            return (
+              <Restuarant key={index}>
+                <img src="/img/res1.png" alt="res1" />
+                <div>
+                  <ResName>Junwoo's Lamb</ResName>
+                  <br />
+                  <Price>3000₩</Price>
+                </div>
+              </Restuarant>
+            );
+          })}
         </Restuarants>
       </ReswithFood>
     </FoodSearch>

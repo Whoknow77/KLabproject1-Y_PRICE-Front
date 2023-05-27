@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 export const FoodSearch = styled.div`
   display: ${({ flag }) => (flag !== undefined ? "flex" : "none")};
   width: 90%;

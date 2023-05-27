@@ -17,26 +17,28 @@ export const food = [
 // 음식점
 export const Res = [
   {
-    city: "Seoul",
-    area: "Gyeongbokgung",
     name: "Xihongshi",
     menu: [
       "Tomato Egg Fried Rice",
-      "Tomato Egg Fried Rice",
-      "Tomato Egg Fried Rice",
+      "Tomato Egg Fried Rice2",
+      "Tomato Egg Fried Rice3",
     ],
-    location: "서울 광진구 능동로 17길 5 1층 (우)05010",
-    info: [
-      "월 - 금 11:30 ~ 21:00",
-      "월 - 금 휴게시간 14:30 - 17:00",
-      "월 - 금 라스트오더1 ~ 13:50",
-      "월 - 금 라스트오더2 ~ 20:20",
-      "토 라스트오더3 ~ 16:20",
-      "월 ~ 금 휴게시간 14:30 ~ 17:00",
-      "휴무일",
-      "마지막 토요일",
-    ],
+    category: "Asian food",
+    location: "1F, 5, Neungdongro 17-gil, Gwangjingu, Seoul",
+    info: ["Mon - Fri 11:30 ~ 21:00", "Breaktime 14:30 ~ 17:00"],
   },
-  { city: "Seoul", name: "냉면" },
-  { city: "Seoul", name: "떡볶이" },
+  {
+    name: "Trata",
+    menu: ["치미창가", "부리또", "퀘사디아"],
+    category: "Mexican food",
+    location: "3F, 5, Neungdongro 17-gil, Gwangjingu, Seoul",
+    info: ["Mon - Fri 13:30 ~ 21:00", "Breaktime 14:30 ~ 17:00"],
+  },
+  {
+    name: "하이디라오",
+    menu: ["맑은 탕", "토마토 탕", "버섯 탕"],
+    category: "Chinese food",
+    location: "2F, 5, Neungdongro 17-gil, Gwangjingu, Seoul",
+    info: ["Mon - Fri 12:30 ~ 21:00", "Breaktime 14:30 ~ 17:00"],
+  },
 ];
