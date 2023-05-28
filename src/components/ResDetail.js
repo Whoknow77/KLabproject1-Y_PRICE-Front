@@ -1,6 +1,7 @@
 import React from "react";
-import { Clock, Info, Location, Menu } from "./MapStyledComponents";
 import {
+  Menu,
+  AverageItem,
   Category,
   Clockitem,
   EmotionBox,
@@ -8,20 +9,27 @@ import {
   EmotionNumber,
   EmotionType,
   ImageBox,
+  Index,
+  Infoindex,
   MenuAverageContainer,
   MenuAveragePrice,
   MenuInfoContainer,
   MenuPrice,
+  MenuTitle,
+  MenuTotalContainer,
+  Menuindex,
   ResDetailContainer,
   ResTitle,
   ResTitleContainer,
   TitleBox,
   Titlename,
+  Clock,
+  Info,
+  Location,
 } from "./ResDetailStyledComponents";
 import { Res } from "../region";
 
 function ResDetail({ target }) {
-  console.log(target);
   return (
     <ResDetailContainer target={target}>
       <ResTitleContainer>
@@ -57,20 +65,36 @@ function ResDetail({ target }) {
           </EmotionContainer>
         </ResTitle>
       </ResTitleContainer>
-      <Menu>
-        <MenuInfoContainer></MenuInfoContainer>
-        <MenuPrice></MenuPrice>
-        <MenuAverageContainer>
-          <span>Average Price</span>
-          <MenuAveragePrice></MenuAveragePrice>
-          <img src="" alt="" />
-        </MenuAverageContainer>
-        <img src="" alt="" />
-      </Menu>
+      <Index>
+        <Menuindex>Menu</Menuindex>
+        <Infoindex>Info</Infoindex>
+      </Index>
+
+      {[1, 1, 1, 1, 1].map((item) => {
+        return (
+          <Menu>
+            <MenuTotalContainer>
+              <MenuInfoContainer>
+                <MenuTitle>Tomato Egg Fried Rice</MenuTitle>
+                <MenuPrice>10000₩</MenuPrice>
+              </MenuInfoContainer>
+              <MenuAverageContainer>
+                <AverageItem>
+                  <span>Average Price</span>
+                  <MenuAveragePrice>10000₩</MenuAveragePrice>
+                </AverageItem>
+                <img src="/img/right.png" alt="right" />
+              </MenuAverageContainer>
+            </MenuTotalContainer>
+            <img src="/img/gaji.png" alt="" />
+          </Menu>
+        );
+      })}
+
       <Info>
         <Location>
           <img src="/img/map_pin.png" alt="map_pin" />
-          <span>{Res.location}</span>
+          <span>1F, 5, Neungdong-ro 17-gil, Gwangjin-gu, Seoul</span>
         </Location>
         <Clock>
           <img src="/img/clock_pin.png" alt="clock_pin" />
