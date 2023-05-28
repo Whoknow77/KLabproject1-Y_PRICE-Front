@@ -47,7 +47,7 @@ function DefaultMap({ input, flag, expand, setExpand, id }) {
           })}
         </Card>
       </ResInfo>
-      <ButtonBox>
+      <ButtonBox expand={expand}>
         <Button expand={expand}>
           <img
             src="/img/toggle_down.png"

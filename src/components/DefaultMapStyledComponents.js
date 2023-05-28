@@ -7,13 +7,13 @@ export const MapWrapper = styled.div`
 
 export const ResInfo = styled.div`
   background: white;
-  top: 726px;
+  top: ${({ expand }) => (expand ? "600px" : "726px")};
   position: absolute;
   z-index: 2;
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease-in-out;
-  height: ${({ expand }) => (expand ? "294px" : "74px")};
+  height: ${({ expand }) => (expand ? "500px" : "74px")};
   overflow: scroll;
   &::-webkit-scrollbar {
     display: none;
@@ -27,7 +27,8 @@ export const ResInfo = styled.div`
 export const ButtonBox = styled.div`
   position: absolute;
   width: 100%;
-  top: 730px;
+  transition: all 0.3s ease-in-out;
+  top: ${({ expand }) => (expand ? "604px" : "730px")};
 `;
 
 export const Button = styled.button`
@@ -54,7 +55,7 @@ export const Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px;
+  margin-top: 30px;
   height: 18px;
   font-weight: 600;
   font-size: 20px;
