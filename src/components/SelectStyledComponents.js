@@ -55,17 +55,19 @@ export const BackButton = styled.button`
 export const NextButton = styled.button`
   border: none;
   cursor: pointer;
-  right: 8%;
+  right: 10%;
   z-index: 3;
 `;
 
 export const GoButton = styled.button`
   position: absolute;
   bottom: 64px;
-  margin: 0 30px;
+  left: 1.5%;
+  right: 1.5%;
+  width: 85%;
+  margin: 0 auto;
   background: #ffc300;
   border-radius: 27px;
-  width: 89%;
   height: 54px;
   font-size: 20px;
   font-weight: 600;
