@@ -5,8 +5,6 @@ export const Wrapper = styled.div`
   min-width: 360px;
   margin: 0 auto;
   position: relative;
-  width: 100%;
-  height: 100%;
 `;
 
 export const Title = styled.div`
@@ -14,9 +12,9 @@ export const Title = styled.div`
   position: absolute;
   width: 100%;
   top: 120px;
+  justify-content: center;
+  display: flex;
   span {
-    justify-content: center;
-    display: flex;
     color: #fff;
     font-weight: 700;
     font-size: 32px;
@@ -26,10 +24,7 @@ export const Title = styled.div`
 
 export const SelectBox = styled.div`
   position: absolute;
-  top: 49%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  top: 380px;
   width: 100%;
   font-weight: 300;
   font-size: 15px;
@@ -47,15 +42,19 @@ export const SelectBox = styled.div`
 `;
 
 export const BackButton = styled.button`
+  width: 48px;
+  height: 48px;
   border: none;
   cursor: pointer;
-  left: 4%;
+  left: 5%;
   z-index: 3;
 `;
 export const NextButton = styled.button`
+  width: 48px;
+  height: 48px;
   border: none;
   cursor: pointer;
-  right: 10%;
+  right: 5%;
   z-index: 3;
 `;
 

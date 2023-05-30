@@ -10,7 +10,6 @@ export const Wrapper = styled.div`
 export const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
 `;
 
 export const Logo = styled.div`
@@ -58,7 +57,4 @@ export const Button = styled.button`
   height: 61px;
   background: #ffc300;
   border-radius: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import {
   Title,
@@ -9,7 +9,7 @@ import {
   SelectBox,
 } from "../components/SelectStyledComponents";
 import { region } from "../region";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -22,14 +22,14 @@ const StyledSlider = styled(Slider)`
   position: relative;
   .slick-prev::before,
   .slick-next::before {
-    opacity: 0;
+    opacity: 1;
     display: none;
   }
 `;
 
 export default function Select() {
   const navigate = useNavigate();
-  const [id, setId] = useState(0);
+  const [id, setId] = useState(0); // 현재 보고 있는 페이지 number
 
   const settings = {
     infinite: true,
@@ -38,9 +38,12 @@ export default function Select() {
     slidesToScroll: 1,
     // 애니메이션이 진행 중 일때
     beforeChange: (current, next) => {
+      // next
       if (current - next === -5 || current - next === 1) {
         setId((prevId) => (prevId === 0 ? 5 : prevId - 1));
-      } else {
+      }
+      // back
+      else {
         setId((prevId) => (prevId + 1) % 6);
       }
     },
@@ -59,13 +62,15 @@ export default function Select() {
   return (
     <Wrapper>
       <StyledSlider {...settings}>
-        {[1, 2, 3, 4, 5, 6].map((item, idx) => {
-          return (
-            <div key={idx}>
-              <Image img={`/img/selectbackground${item}.jpg`} />
-            </div>
-          );
-        })}
+        {["gung", "gangnam", "hongdae", "itaewon", "haeundae", "aewol-eup"].map(
+          (item) => {
+            return (
+              <div key={item}>
+                <Image img={`/img/${item}.jpg`} />
+              </div>
+            );
+          }
+        )}
       </StyledSlider>
       <Title>
         <span>
