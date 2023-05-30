@@ -3,7 +3,7 @@ import { region } from "../region";
 
 import { HeaderWrapper, Select, Search } from "./HeaderStyledComponents";
 
-function Header({ input, setInput, setSearch, id, flag, setFlag }) {
+function Header({ input, setInput, setSearch, id }) {
   const navigate = useNavigate();
   return (
     <HeaderWrapper input={input}>
@@ -21,7 +21,6 @@ function Header({ input, setInput, setSearch, id, flag, setFlag }) {
         <input
           type="text"
           className="searchinput"
-          placeholder="Search food or restaurant"
           value={input}
           onChange={(e) => {
             setInput(e.target.value);
@@ -38,7 +37,7 @@ function Header({ input, setInput, setSearch, id, flag, setFlag }) {
           alt="x"
           onClick={() => {
             setInput("");
-            setFlag(false);
+            setSearch("");
           }}
         />
       </Search>

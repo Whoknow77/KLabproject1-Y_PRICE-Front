@@ -13,13 +13,17 @@ function Map() {
   let { id } = useParams();
   let [search, setSearch] = useState(""); // 헤더 검색
   let [input, setInput] = useState(""); // 헤더 선택
-  let flag = food.find((item) => {
+
+  // 음식 검색
+  const flag = food.find((item) => {
+    return item.name === search;
+  });
+  // 음식점 검색
+  const target = Res.find((item) => {
     return item.name === search;
   });
 
-  let target = Res.find((item) => {
-    return item.name === search;
-  });
+  console.log(flag, target);
 
   const [expand, setExpand] = useState(0);
 
