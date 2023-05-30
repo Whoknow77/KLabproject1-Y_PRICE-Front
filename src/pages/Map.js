@@ -23,8 +23,6 @@ function Map() {
     return item.name === search;
   });
 
-  console.log(flag, target);
-
   const [expand, setExpand] = useState(0);
 
   return (

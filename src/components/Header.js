@@ -22,6 +22,7 @@ function Header({ input, setInput, setSearch, id }) {
           type="text"
           className="searchinput"
           value={input}
+          placeholder="Search food or restaurant"
           onChange={(e) => {
             setInput(e.target.value);
             setSearch("");

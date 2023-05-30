@@ -73,6 +73,7 @@ function ResDetail({ target }) {
       {[1, 1, 1, 1, 1].map((item) => {
         return (
           <Menu>
+            <img src="/img/gaji.png" alt="" />
             <MenuTotalContainer>
               <MenuInfoContainer>
                 <MenuTitle>Tomato Egg Fried Rice</MenuTitle>
@@ -86,7 +87,6 @@ function ResDetail({ target }) {
                 <img src="/img/right.png" alt="right" />
               </MenuAverageContainer>
             </MenuTotalContainer>
-            <img src="/img/gaji.png" alt="" />
           </Menu>
         );
       })}

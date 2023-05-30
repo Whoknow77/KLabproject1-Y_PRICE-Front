@@ -113,7 +113,7 @@ export const Infoindex = styled.button`
 export const Menu = styled.div`
   display: flex;
   gap: 20px;
-  justify-content: space-between;
+  justify-content: flex-start;
 `;
 
 export const MenuTotalContainer = styled.div`
@@ -141,7 +141,10 @@ export const MenuPrice = styled.div`
   line-height: 20px;
   color: #515151;
 `;
-export const MenuAverageContainer = styled.div`
+export const MenuAverageContainer = styled.button`
+  border: none;
+  outline: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   padding: 10px;
@@ -187,7 +190,7 @@ export const Info = styled.div`
 `;
 export const Location = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 10px;
 `;
 export const Clock = styled.div`
@@ -196,7 +199,7 @@ export const Clock = styled.div`
     height: 20px;
   }
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 10px;
   span {
     font-weight: 400;
