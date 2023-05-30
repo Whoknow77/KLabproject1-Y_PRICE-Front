@@ -3,7 +3,7 @@ import { region } from "../region";
 
 import { HeaderWrapper, Select, Search } from "./HeaderStyledComponents";
 
-function Header({ input, setInput, setSearch, id }) {
+function Header({ input, setInput, setSearch, id, flag, setFlag }) {
   const navigate = useNavigate();
   return (
     <HeaderWrapper input={input}>
@@ -38,6 +38,7 @@ function Header({ input, setInput, setSearch, id }) {
           alt="x"
           onClick={() => {
             setInput("");
+            setFlag(false);
           }}
         />
       </Search>

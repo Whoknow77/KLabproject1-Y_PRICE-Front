@@ -71,6 +71,7 @@ export const MoneyList = styled.div`
   transform: scaleY(
     ${({ moneychange }) => (moneychange === "true" ? "1" : "0")}
   );
+  margin-top: 10px;
   transform-origin: top;
   transition: transform 0.3s ease-in-out;
   display: flex;

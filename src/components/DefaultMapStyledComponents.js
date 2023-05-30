@@ -7,7 +7,7 @@ export const MapWrapper = styled.div`
 
 export const ResInfo = styled.div`
   background: white;
-  top: ${({ expand }) => (expand ? "600px" : "726px")};
+  top: ${({ expand }) => (expand ? "400px" : "726px")};
   position: absolute;
   z-index: 2;
   display: flex;
@@ -28,7 +28,7 @@ export const ButtonBox = styled.div`
   position: absolute;
   width: 100%;
   transition: all 0.3s ease-in-out;
-  top: ${({ expand }) => (expand ? "604px" : "730px")};
+  top: ${({ expand }) => (expand ? "404px" : "730px")};
 `;
 
 export const Button = styled.button`

@@ -14,7 +14,7 @@ import {
   Button,
 } from "./DefaultMapStyledComponents";
 
-function DefaultMap({ input, flag, expand, setExpand, id }) {
+function DefaultMap({ input, expand, setExpand, id }) {
   let Restaurant = [
     { name: "Junwoo's Lamb", price: "3000₩" },
     { name: "Junwoo's Lamb", price: "3000₩" },
