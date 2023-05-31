@@ -53,14 +53,14 @@ function Exchange({ beginrpice, exchangesign }) {
   return <FoodInfoPriceItem>{`${result}${exchangesign}`}</FoodInfoPriceItem>;
 }
 
-function FoodDetail({ flag }) {
+function FoodDetail({ foodsearch }) {
   const [moneychange, setMoneychange] = useState(false);
   const moneyitem = ["€", "£", "¥", "$", "₩"];
   const [exchangesign, setExchangesign] = useState("W");
   let beginprice = 3800;
 
   return (
-    <FoodSearch flag={flag}>
+    <FoodSearch foodsearch={foodsearch}>
       <FoodSection>
         <FoodInfo>
           <FoodInfoName>Lamb Skewers</FoodInfoName>

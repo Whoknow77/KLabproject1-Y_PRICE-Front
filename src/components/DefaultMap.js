@@ -4,7 +4,7 @@ import Foodmap from "../Foodmap";
 import { region } from "../region";
 import {
   MapWrapper,
-  ResInfo,
+  Respreivew,
   Title,
   Card,
   Restuarant,
@@ -15,7 +15,7 @@ import {
 } from "./DefaultMapStyledComponents";
 
 function DefaultMap({ input, expand, setExpand, id }) {
-  let Restaurant = [
+  const Restaurant = [
     { name: "Junwoo's Lamb", price: "3000₩" },
     { name: "Junwoo's Lamb", price: "3000₩" },
     { name: "Junwoo's Lamb", price: "3000₩" },
@@ -25,11 +25,8 @@ function DefaultMap({ input, expand, setExpand, id }) {
   ];
   return (
     <MapWrapper input={input}>
-      <Foodmap
-        searchPlace={region[id].search}
-        style={{ position: "absolute", width: "100%" }}
-      ></Foodmap>
-      <ResInfo expand={expand}>
+      <Foodmap searchPlace={region[id].search}></Foodmap>
+      <Respreivew expand={expand}>
         <Title>Looking for this restaurant?</Title>
         <Card>
           {/* 음식점 정보 */}
@@ -46,7 +43,7 @@ function DefaultMap({ input, expand, setExpand, id }) {
             );
           })}
         </Card>
-      </ResInfo>
+      </Respreivew>
       <ButtonBox expand={expand}>
         <Button expand={expand}>
           <img

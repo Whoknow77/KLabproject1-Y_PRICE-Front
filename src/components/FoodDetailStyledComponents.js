@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FoodSearch = styled.div`
-  display: ${({ flag }) => (flag !== undefined ? "flex" : "none")};
+  display: ${({ foodsearch }) => (foodsearch !== undefined ? "flex" : "none")};
   width: 90%;
   margin: 0 auto;
   flex-direction: column;

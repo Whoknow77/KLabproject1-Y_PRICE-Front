@@ -29,9 +29,9 @@ import {
 } from "./ResDetailStyledComponents";
 import { Res } from "../region";
 
-function ResDetail({ target }) {
+function ResDetail({ ressearch }) {
   return (
-    <ResDetailContainer target={target}>
+    <ResDetailContainer ressearch={ressearch}>
       <ResTitleContainer>
         <ImageBox>
           <img src="/img/Xihongshi.png" alt="Xihongshi" />
@@ -99,8 +99,8 @@ function ResDetail({ target }) {
         <Clock>
           <img src="/img/clock_pin.png" alt="clock_pin" />
           <Clockitem>
-            {target
-              ? target.info.map((item, index) => (
+            {ressearch
+              ? ressearch.info.map((item, index) => (
                   <span key={index}>{item}</span>
                 ))
               : null}

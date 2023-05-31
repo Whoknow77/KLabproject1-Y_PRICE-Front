@@ -2,18 +2,18 @@ import styled from "styled-components";
 
 export const MapWrapper = styled.div`
   display: ${({ input }) => (input ? "none" : "block")};
-  position: relative;
 `;
 
-export const ResInfo = styled.div`
+// 하단 토글 컴포넌트
+export const Respreivew = styled.div`
   background: white;
   top: ${({ expand }) => (expand ? "400px" : "726px")};
+  height: ${({ expand }) => (expand ? "500px" : "74px")};
   position: absolute;
   z-index: 2;
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease-in-out;
-  height: ${({ expand }) => (expand ? "500px" : "74px")};
   overflow: scroll;
   &::-webkit-scrollbar {
     display: none;
@@ -32,11 +32,8 @@ export const ButtonBox = styled.div`
 `;
 
 export const Button = styled.button`
-  top: -20px;
   background: #ffc300;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  top: -20px;
   border: none;
   outline: none;
   transition: all 0.3s ease-in-out;
@@ -44,10 +41,9 @@ export const Button = styled.button`
   width: 40px;
   height: 40px;
   position: absolute;
-  z-index: 9999;
-  left: 45%;
+  z-index: 3;
+  left: 47%;
   transform: ${({ expand }) => (expand ? "rotate(0deg)" : "rotate(180deg)")};
-  filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.1));
   border-radius: 20px;
 `;
 
@@ -55,15 +51,13 @@ export const Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 30px;
+  margin: 30px auto 5px auto;
   height: 18px;
   font-weight: 600;
   font-size: 20px;
 `;
 
 export const Card = styled.div`
-  margin-top: 5px;
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -81,7 +75,6 @@ export const Restuarant = styled.div`
   border-radius: 10px;
   width: 93%;
   div {
-    text-align: left;
     padding: 13.5px 5px;
   }
 `;

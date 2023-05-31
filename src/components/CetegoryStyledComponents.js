@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const FoodRecommend = styled.div`
-  display: ${({ input, flag, target }) =>
-    input && !flag && !target ? "block" : "none"};
-  width: 85%;
+export const CategoryWrapper = styled.div`
+  display: ${({ input, foodsearch, ressearch }) =>
+    input && !foodsearch && !ressearch ? "block" : "none"};
+  width: 90%;
   margin: 30px auto;
 `;
 
-export const RecommendTitle = styled.div`
+export const CategoryTitle = styled.div`
   font-weight: 600;
   font-size: 20px;
   line-height: 18px;
@@ -15,30 +15,46 @@ export const RecommendTitle = styled.div`
   margin-bottom: 20px;
 `;
 
-export const RecommendCard = styled.div`
+export const CategoryGroup = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  justify-content: space-between;
   gap: 10px;
   img {
     padding: 5px;
   }
 `;
 
-export const RecommendImg = styled.div`
-  border: 0.5px solid #d9d9d9;
-  border-radius: 5px;
-  cursor: pointer;
+export const CategoryBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  width: 155px;
+  height: 144px;
+  gap: 1px;
+  background: #fff1c5;
+  border-radius: 10px;
   img {
-    width: 90px;
-    height: 90px;
+    padding: 0;
+    width: 95px;
+    height: 95px;
   }
 `;
 
-export const RecommendName = styled.div`
-  font-weight: 500;
-  font-size: 13px;
-  text-align: center;
-  position: relative;
-  top: -5px;
+export const CategoryName = styled.button`
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  img {
+    width: 24px;
+    height: 24px;
+  }
 `;

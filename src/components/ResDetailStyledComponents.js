@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ResDetailContainer = styled.div`
-  display: ${({ target }) => (target !== undefined ? "flex" : "none")};
+  display: ${({ ressearch }) => (ressearch !== undefined ? "flex" : "none")};
   width: 90%;
   flex-direction: column;
   text-align: center;
