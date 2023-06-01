@@ -1,14 +1,10 @@
 import styled from "styled-components";
 
 export const HeaderWrapper = styled.div`
-  position: ${({ input }) => (input ? "static" : "absolute")};
   width: 100%;
-  height: 94px;
-  z-index: 2;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  margin-bottom: 15px;
   background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(15px);
 `;
@@ -16,7 +12,6 @@ export const HeaderWrapper = styled.div`
 export const Select = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
   margin: 10px auto;
   cursor: pointer;
 

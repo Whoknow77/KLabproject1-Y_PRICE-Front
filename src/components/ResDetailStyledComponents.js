@@ -1,25 +1,26 @@
 import styled from "styled-components";
 
-export const ResDetailContainer = styled.div`
+export const ResDetailWrapper = styled.div`
   display: ${({ ressearch }) => (ressearch !== undefined ? "flex" : "none")};
   width: 90%;
   flex-direction: column;
-  text-align: center;
-  gap: 20px;
   margin: 0 auto;
 `;
 
 export const ResTitleContainer = styled.div`
   display: flex;
-  gap: 32px;
-  padding-left: 18px;
+  gap: 20px;
+  margin-top: 16px;
+  margin-bottom: 17px;
 `;
 
-export const ImageBox = styled.div`
-  width: 70px;
-  height: 70px;
+export const ResImage = styled.div`
+  width: 90px;
+  height: 90px;
   border: 0.5px solid #d9d9d9;
   border-radius: 5px;
+  background: url(${process.env.PUBLIC_URL + "/img/Xihongshi.png"}) no-repeat;
+  background-size: cover;
 `;
 
 export const ResTitle = styled.div`
@@ -38,18 +39,16 @@ export const Titlename = styled.span`
   font-weight: 600;
   font-size: 20px;
   line-height: 20px;
-  text-align: left;
 `;
 
 export const Category = styled.span`
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  text-align: left;
   color: #ffc300;
 `;
 
-export const EmotionContainer = styled.div`
+export const EmotionGroup = styled.div`
   display: flex;
   gap: 7px;
   flex-wrap: wrap;
@@ -57,7 +56,6 @@ export const EmotionContainer = styled.div`
 export const EmotionBox = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 4px;
   padding: 4px 7px;
   height: 19px;
@@ -66,12 +64,6 @@ export const EmotionBox = styled.div`
   font-weight: 500;
   font-size: 11px;
   line-height: 11px;
-`;
-export const EmotionType = styled.div`
-  color: #ffffff;
-`;
-export const EmotionNumber = styled.div`
-  color: #ffffff;
 `;
 
 export const Index = styled.div`
@@ -112,6 +104,7 @@ export const Infoindex = styled.button`
 
 export const Menu = styled.div`
   display: flex;
+  padding: 20px 0px;
   gap: 20px;
   justify-content: flex-start;
 `;
@@ -201,10 +194,19 @@ export const Clock = styled.div`
   display: flex;
   justify-content: flex-start;
   gap: 10px;
+  div {
+    display: flex;
+    flex-direction: column;
+  }
   span {
     font-weight: 400;
     font-size: 13px;
     line-height: 17px;
   }
 `;
-export const Clockitem = styled.div``;
+
+export const MenuGroup = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+`;

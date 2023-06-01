@@ -1,7 +1,5 @@
 import React from "react";
 
-import Foodmap from "../Foodmap";
-import { region } from "../region";
 import {
   MapWrapper,
   Respreivew,
@@ -10,14 +8,11 @@ import {
   Restuarant,
   ResName,
   Price,
-  ButtonBox,
-  Button,
 } from "./DefaultMapStyledComponents";
+import Category from "./Category";
 
-function DefaultMap({ input, expand, setExpand, id }) {
+function DefaultMap({ input, foodsearch, ressearch }) {
   const Restaurant = [
-    { name: "Junwoo's Lamb", price: "3000₩" },
-    { name: "Junwoo's Lamb", price: "3000₩" },
     { name: "Junwoo's Lamb", price: "3000₩" },
     { name: "Junwoo's Lamb", price: "3000₩" },
     { name: "Junwoo's Lamb", price: "3000₩" },
@@ -25,8 +20,9 @@ function DefaultMap({ input, expand, setExpand, id }) {
   ];
   return (
     <MapWrapper input={input}>
-      <Foodmap searchPlace={region[id].search}></Foodmap>
-      <Respreivew expand={expand}>
+      {/* 카테고리 추천 */}
+      <Category input={input} foodsearch={foodsearch} ressearch={ressearch} />
+      <Respreivew>
         <Title>Looking for this restaurant?</Title>
         <Card>
           {/* 음식점 정보 */}
@@ -44,17 +40,6 @@ function DefaultMap({ input, expand, setExpand, id }) {
           })}
         </Card>
       </Respreivew>
-      <ButtonBox expand={expand}>
-        <Button expand={expand}>
-          <img
-            src="/img/toggle_down.png"
-            alt="toggle_down"
-            onClick={() => {
-              setExpand(!expand);
-            }}
-          />
-        </Button>
-      </ButtonBox>
     </MapWrapper>
   );
 }

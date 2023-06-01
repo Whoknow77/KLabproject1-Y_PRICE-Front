@@ -3,12 +3,11 @@ import {
   Menu,
   AverageItem,
   Category,
-  Clockitem,
   EmotionBox,
-  EmotionContainer,
+  EmotionGroup,
   EmotionNumber,
   EmotionType,
-  ImageBox,
+  ResImage,
   Index,
   Infoindex,
   MenuAverageContainer,
@@ -18,7 +17,7 @@ import {
   MenuTitle,
   MenuTotalContainer,
   Menuindex,
-  ResDetailContainer,
+  ResDetailWrapper,
   ResTitle,
   ResTitleContainer,
   TitleBox,
@@ -26,70 +25,62 @@ import {
   Clock,
   Info,
   Location,
+  MenuGroup,
 } from "./ResDetailStyledComponents";
-import { Res } from "../region";
+import Foodmap from "../Foodmap";
+import { region } from "../region";
 
-function ResDetail({ ressearch }) {
+function ResDetail({ ressearch, id }) {
   return (
-    <ResDetailContainer ressearch={ressearch}>
+    <ResDetailWrapper ressearch={ressearch}>
       <ResTitleContainer>
-        <ImageBox>
-          <img src="/img/Xihongshi.png" alt="Xihongshi" />
-        </ImageBox>
+        <ResImage />
         <ResTitle>
           <TitleBox>
             <Titlename>Xihongshi</Titlename>
             <Category>Asian food</Category>
           </TitleBox>
-          <EmotionContainer>
+          <EmotionGroup>
             <EmotionBox>
               <img src="/img/thumbs-up.png" alt="thumbs-up" />
-              <EmotionType>Taste</EmotionType>
-              <EmotionNumber>7</EmotionNumber>
+              <span style={{ color: "#fff" }}>Taste</span>
+              <span style={{ color: "#fff" }}>7</span>
             </EmotionBox>
-            <EmotionBox>
-              <img src="/img/thumbs-up.png" alt="thumbs-up" />
-              <EmotionType>Sanitary</EmotionType>
-              <EmotionNumber>4</EmotionNumber>
-            </EmotionBox>
-            <EmotionBox>
-              <img src="/img/thumbs-up.png" alt="thumbs-up" />
-              <EmotionType>Service</EmotionType>
-              <EmotionNumber>1</EmotionNumber>
-            </EmotionBox>
-            <EmotionBox>
-              <img src="/img/thumbs-up.png" alt="thumbs-up" />
-              <EmotionType>Taste</EmotionType>
-              <EmotionNumber>7</EmotionNumber>
-            </EmotionBox>
-          </EmotionContainer>
+          </EmotionGroup>
         </ResTitle>
       </ResTitleContainer>
+      {/* <Foodmap searchPlace={region[id].search}></Foodmap>  */}
       <Index>
         <Menuindex>Menu</Menuindex>
         <Infoindex>Info</Infoindex>
       </Index>
 
-      {[1, 1, 1, 1, 1].map((item) => {
-        return (
-          <Menu>
-            <img src="/img/gaji.png" alt="" />
-            <MenuTotalContainer>
-              <MenuInfoContainer>
-                <MenuTitle>Tomato Egg Fried Rice</MenuTitle>
-                <MenuPrice>10000₩</MenuPrice>
-              </MenuInfoContainer>
-              <MenuAverageContainer>
-                <AverageItem>
-                  <span>Average Price</span>
-                  <MenuAveragePrice>10000₩</MenuAveragePrice>
-                </AverageItem>
-                <img src="/img/right.png" alt="right" />
-              </MenuAverageContainer>
-            </MenuTotalContainer>
-          </Menu>
-        );
-      })}
+      <MenuGroup>
+        {[1, 1, 1, 1, 1].map((item) => {
+          return (
+            <Menu>
+              <img
+                src="/img/gaji.png"
+                alt=""
+                styled={{ width: "100px", height: "100px" }}
+              />
+              <MenuTotalContainer>
+                <MenuInfoContainer>
+                  <MenuTitle>Tomato Egg Fried Rice</MenuTitle>
+                  <MenuPrice>10000₩</MenuPrice>
+                </MenuInfoContainer>
+                <MenuAverageContainer>
+                  <AverageItem>
+                    <span>Average Price</span>
+                    <MenuAveragePrice>10000₩</MenuAveragePrice>
+                  </AverageItem>
+                  <img src="/img/right.png" alt="right" />
+                </MenuAverageContainer>
+              </MenuTotalContainer>
+            </Menu>
+          );
+        })}
+      </MenuGroup>
 
       <Info>
         <Location>
@@ -98,16 +89,16 @@ function ResDetail({ ressearch }) {
         </Location>
         <Clock>
           <img src="/img/clock_pin.png" alt="clock_pin" />
-          <Clockitem>
+          <div>
             {ressearch
               ? ressearch.info.map((item, index) => (
                   <span key={index}>{item}</span>
                 ))
               : null}
-          </Clockitem>
+          </div>
         </Clock>
       </Info>
-    </ResDetailContainer>
+    </ResDetailWrapper>
   );
 }
 

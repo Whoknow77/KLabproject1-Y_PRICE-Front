@@ -12,8 +12,8 @@ import { food, Res } from "../region";
 
 function Map() {
   const { id } = useParams();
-  const [search, setSearch] = useState(""); // 헤더 검색
-  const [input, setInput] = useState(""); // 헤더 선택
+  const [search, setSearch] = useState(""); // 완료된 검색어
+  const [input, setInput] = useState(""); // 검색어
 
   // 하단 토글 flag
   const [expand, setExpand] = useState(0);
@@ -31,19 +31,10 @@ function Map() {
   return (
     <Wrapper>
       {/* 검색 바 */}
-      <Header
-        input={input}
-        setInput={setInput}
-        q
-        setSearch={setSearch}
-        id={id}
-      />
+      <Header input={input} setInput={setInput} setSearch={setSearch} id={id} />
 
       {/* map 기본 페이지(지도 + 음식점 추천) */}
       <DefaultMap input={input} expand={expand} setExpand={setExpand} id={id} />
-
-      {/* 카테고리 추천 */}
-      <Category input={input} foodsearch={foodsearch} ressearch={ressearch} />
 
       {/* 음식정보 */}
       <FoodDetail foodsearch={foodsearch} />

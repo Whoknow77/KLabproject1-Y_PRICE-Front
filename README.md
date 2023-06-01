@@ -1,6 +1,12 @@
-# Trouble Shooting
+# Y-price
 
-## 1. 페이지를 부드럽게 넘기는 애니메이션
+이 서비스는 외국인 관광객을 위해 지역별로 음식/음식점의 정보와 가격대를 제공합니다.
+
+**데모페이지** --> https://k-labproject1-y-price-front.vercel.app/
+
+## Trouble Shooting
+
+### 1. 페이지를 부드럽게 넘기는 애니메이션
 
 페이지를 부드럽게 넘기는 애니메이션을 구현하는 데에는 수 많은 방법이 있다.
 

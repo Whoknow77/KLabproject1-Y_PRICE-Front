@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 export const CategoryWrapper = styled.div`
-  display: ${({ input, foodsearch, ressearch }) =>
-    input && !foodsearch && !ressearch ? "block" : "none"};
+  display: ${({ input }) => (input ? "none" : "block")};
   width: 90%;
-  margin: 30px auto;
+  margin: 30px auto 0 auto;
 `;
 
 export const CategoryTitle = styled.div`
@@ -26,35 +25,42 @@ export const CategoryGroup = styled.div`
 `;
 
 export const CategoryBox = styled.div`
+  border: none;
+  outline: none;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid #d9d9d9;
   padding: 12px;
   width: 155px;
-  height: 144px;
-  gap: 1px;
-  background: #fff1c5;
+  height: 236px;
   border-radius: 10px;
   img {
     padding: 0;
-    width: 95px;
-    height: 95px;
+    width: 130px;
+    height: 130px;
   }
 `;
 
-export const CategoryName = styled.button`
-  border: none;
-  outline: none;
-  background: none;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 18px;
+export const CategoryName = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1px;
+  gap: 5px;
   display: flex;
   align-items: center;
-  gap: 5px;
-  img {
-    width: 24px;
-    height: 24px;
+  text-align: center;
+  .categorytitle {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .categoryexplain {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #818181;
   }
 `;
