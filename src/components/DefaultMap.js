@@ -11,7 +11,7 @@ import {
 } from "./DefaultMapStyledComponents";
 import Category from "./Category";
 
-function DefaultMap({ input, foodsearch, ressearch }) {
+function DefaultMap({ input, search, onChangecategorynum, categorynum }) {
   const Restaurant = [
     { name: "Junwoo's Lamb", price: "3000₩" },
     { name: "Junwoo's Lamb", price: "3000₩" },
@@ -19,9 +19,9 @@ function DefaultMap({ input, foodsearch, ressearch }) {
     { name: "Junwoo's Lamb", price: "3000₩" },
   ];
   return (
-    <MapWrapper input={input}>
+    <MapWrapper input={input} search={search} categorynum={categorynum}>
       {/* 카테고리 추천 */}
-      <Category input={input} foodsearch={foodsearch} ressearch={ressearch} />
+      <Category input={input} onChangecategorynum={onChangecategorynum} />
       <Respreivew>
         <Title>Looking for this restaurant?</Title>
         <Card>

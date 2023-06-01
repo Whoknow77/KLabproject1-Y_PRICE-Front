@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const MapWrapper = styled.div`
-  display: ${({ input }) => (input ? "none" : "block")};
+  display: ${({ categorynum, search }) =>
+    categorynum < 0 && search === "" ? "block" : "none"};
 `;
 
-// 하단 토글 컴포넌트
+// 음식점 추천
 export const Respreivew = styled.div`
   background: white;
   height: 390px;

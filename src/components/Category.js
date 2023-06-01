@@ -7,33 +7,22 @@ import {
   CategoryName,
 } from "./CetegoryStyledComponents";
 
-function Category({ input, foodsearch, ressearch }) {
-  const category = [
-    { name: "TTeokbokki", explain: "Spicy rice cakes in a gochujang sauce." },
-    {
-      name: "Bulgogi",
-      explain: "Thinly sliced marinated beef, grilled or stir-fried.",
-    },
-    {
-      name: "Samgyeopsal",
-      explain: "Grilled pork belly wrapped in lettuce leaves.",
-    },
-    {
-      name: "Bibimbab",
-      explain: "Mixed rice bowl with veggies, meat, and a fried-egg.",
-    },
-  ];
+import { category } from "../region";
+
+function Category({ input, onChangecategorynum }) {
   return (
-    <CategoryWrapper
-      input={input}
-      foodsearch={foodsearch}
-      ressearch={ressearch}
-    >
+    <CategoryWrapper input={input}>
       <CategoryTitle>Categories</CategoryTitle>
       <CategoryGroup>
         {category.map((food, index) => {
           return (
-            <CategoryBox key={index}>
+            // 페이지 클릭 시 음식 정보 보여주기
+            <CategoryBox
+              key={index}
+              onClick={() => {
+                onChangecategorynum(index);
+              }}
+            >
               <img src={`/img/category${index + 1}.png`} alt="" />
               <CategoryName>
                 <span className="categorytitle">{food.name}</span>

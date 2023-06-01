@@ -27,8 +27,6 @@ import {
   Location,
   MenuGroup,
 } from "./ResDetailStyledComponents";
-import Foodmap from "../Foodmap";
-import { region } from "../region";
 
 function ResDetail({ ressearch, id }) {
   return (
@@ -56,9 +54,9 @@ function ResDetail({ ressearch, id }) {
       </Index>
 
       <MenuGroup>
-        {[1, 1, 1, 1, 1].map((item) => {
+        {[1, 1, 1, 1, 1].map((item, index) => {
           return (
-            <Menu>
+            <Menu key={index}>
               <img
                 src="/img/gaji.png"
                 alt=""

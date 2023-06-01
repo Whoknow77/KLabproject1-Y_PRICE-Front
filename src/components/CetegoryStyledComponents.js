@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CategoryWrapper = styled.div`
-  display: ${({ input }) => (input ? "none" : "block")};
+  display: block;
   width: 90%;
   margin: 30px auto 0 auto;
 `;
@@ -24,7 +24,11 @@ export const CategoryGroup = styled.div`
   }
 `;
 
-export const CategoryBox = styled.div`
+export const CategoryBox = styled.button`
+  background: none;
+  &:focus {
+    outline: none;
+  }
   border: none;
   outline: none;
   cursor: pointer;

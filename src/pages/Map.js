@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Wrapper } from "../components/MapStyledComponents";
-
 import DefaultMap from "../components/DefaultMap";
 import Header from "../components/Header";
-import Category from "../components/Category";
 import FoodDetail from "../components/FoodDetail";
 import ResDetail from "../components/ResDetail";
 
@@ -14,33 +12,58 @@ function Map() {
   const { id } = useParams();
   const [search, setSearch] = useState(""); // 완료된 검색어
   const [input, setInput] = useState(""); // 검색어
+  const [categorynum, setCategorynum] = useState(-1);
+  const [foodsearch, setFoodserach] = useState("");
+  const [ressearch, setResserach] = useState("");
 
-  // 하단 토글 flag
-  const [expand, setExpand] = useState(0);
+  // foodsearch와 ressearch는 saerch가 변할때만 바뀌어야한다.
+  useEffect(() => {
+    // 음식 검색
+    setFoodserach(
+      food.find((item) => {
+        return item.name === search;
+      })
+    );
 
-  // 음식 검색
-  const foodsearch = food.find((item) => {
-    return item.name === search;
-  });
+    // 음식점 검색
+    setResserach(
+      Res.find((item) => {
+        return item.name === search;
+      })
+    );
+  }, [search]);
 
-  // 음식점 검색
-  const ressearch = Res.find((item) => {
-    return item.name === search;
-  });
+  function onChangecategorynum(idx) {
+    setCategorynum(idx);
+  }
 
   return (
     <Wrapper>
       {/* 검색 바 */}
-      <Header input={input} setInput={setInput} setSearch={setSearch} id={id} />
+      <Header
+        input={input}
+        setInput={setInput}
+        setSearch={setSearch}
+        search={search}
+        id={id}
+        categorynum={categorynum}
+        onChangecategorynum={onChangecategorynum}
+      />
 
       {/* map 기본 페이지(지도 + 음식점 추천) */}
-      <DefaultMap input={input} expand={expand} setExpand={setExpand} id={id} />
+      <DefaultMap
+        input={input}
+        id={id}
+        categorynum={categorynum}
+        onChangecategorynum={onChangecategorynum}
+        search={search}
+      />
 
       {/* 음식정보 */}
-      <FoodDetail foodsearch={foodsearch} />
+      <FoodDetail foodsearch={foodsearch} categorynum={categorynum} />
 
       {/* 음식점 정보 */}
-      <ResDetail ressearch={ressearch} />
+      <ResDetail ressearch={ressearch} categorynum={categorynum} />
     </Wrapper>
   );
 }

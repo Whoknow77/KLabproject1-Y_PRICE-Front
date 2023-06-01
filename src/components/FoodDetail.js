@@ -27,6 +27,7 @@ import {
   Price,
   FoodInfoPriceItem,
 } from "./FoodDetailStyledComponents";
+import { category } from "../region";
 
 function Exchange({ beginrpice, exchangesign }) {
   let result = beginrpice;
@@ -53,22 +54,23 @@ function Exchange({ beginrpice, exchangesign }) {
   return <FoodInfoPriceItem>{`${result}${exchangesign}`}</FoodInfoPriceItem>;
 }
 
-function FoodDetail({ foodsearch }) {
+function FoodDetail({ foodsearch, categorynum }) {
   const [moneychange, setMoneychange] = useState(false);
   const moneyitem = ["€", "£", "¥", "$", "₩"];
   const [exchangesign, setExchangesign] = useState("W");
   let beginprice = 3800;
-
   return (
-    <FoodSearch foodsearch={foodsearch}>
+    <FoodSearch foodsearch={foodsearch} categorynum={categorynum}>
       <FoodSection>
         <FoodInfo>
-          <FoodInfoName>Lamb Skewers</FoodInfoName>
+          <FoodInfoName>
+            {categorynum < 0 ? category[0].name : category[categorynum].name}
+          </FoodInfoName>
           <FoodInfoNearby>Average Price Nearby</FoodInfoNearby>
           <FoodInfoPrice>
             <Exchange beginrpice={beginprice} exchangesign={exchangesign} />
             <FoodExchangeButton
-              onClick={(e) => {
+              onClick={() => {
                 setMoneychange(!moneychange);
               }}
             >
@@ -92,7 +94,7 @@ function FoodDetail({ foodsearch }) {
             </FoodExchangeButton>
           </FoodInfoPrice>
         </FoodInfo>
-        <img src="/img/foodinfo1.png" alt="foodinfo1" />
+        <img src={`/img/foodinfo1.png`} alt="category" />
       </FoodSection>
       <FoodTransition>
         <TransitionTitle>Now sold at this price!</TransitionTitle>
@@ -126,7 +128,9 @@ function FoodDetail({ foodsearch }) {
       <ReswithFood>
         <ResTitle>
           <Title1>These restaurants have</Title1>
-          <Title2>Lamb Skewers</Title2>
+          <Title2>
+            {categorynum < 0 ? category[0].name : category[categorynum].name}
+          </Title2>
         </ResTitle>
         <Restuarants>
           {[0, 0, 0, 0, 0, 0, 0].map((item, index) => {

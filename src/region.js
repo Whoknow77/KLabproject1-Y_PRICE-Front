@@ -42,3 +42,20 @@ export const Res = [
     info: ["Mon - Fri 12:30 ~ 21:00", "Breaktime 14:30 ~ 17:00"],
   },
 ];
+
+// 카테고리
+export const category = [
+  { name: "TTeokbokki", explain: "Spicy rice cakes in a gochujang sauce." },
+  {
+    name: "Bulgogi",
+    explain: "Thinly sliced marinated beef, grilled or stir-fried.",
+  },
+  {
+    name: "Samgyeopsal",
+    explain: "Grilled pork belly wrapped in lettuce leaves.",
+  },
+  {
+    name: "Bibimbab",
+    explain: "Mixed rice bowl with veggies, meat, and a fried-egg.",
+  },
+];

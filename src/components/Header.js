@@ -3,7 +3,15 @@ import { region } from "../region";
 
 import { HeaderWrapper, Select, Search } from "./HeaderStyledComponents";
 
-function Header({ input, setInput, setSearch, id }) {
+function Header({
+  input,
+  setInput,
+  setSearch,
+  search,
+  id,
+  categorynum,
+  onChangecategorynum,
+}) {
   const navigate = useNavigate();
   return (
     <HeaderWrapper input={input}>
@@ -17,7 +25,18 @@ function Header({ input, setInput, setSearch, id }) {
         <img src="/img/down.png" alt="down" />
       </Select>
       <Search>
-        <img src="/img/searchbutton.png" alt="search" />
+        <img
+          src={
+            categorynum < 0 && search === ""
+              ? "/img/searchbutton.png"
+              : "/img/leftbutton.png"
+          }
+          alt=""
+          onClick={() => {
+            onChangecategorynum(-1);
+            setSearch("");
+          }}
+        />
         <input
           type="text"
           className="searchinput"
@@ -25,7 +44,6 @@ function Header({ input, setInput, setSearch, id }) {
           placeholder="Search food or restaurant"
           onChange={(e) => {
             setInput(e.target.value);
-            setSearch("");
           }}
           onKeyDown={(e) => {
             if (e.code === "Enter") {
@@ -38,7 +56,6 @@ function Header({ input, setInput, setSearch, id }) {
           alt="x"
           onClick={() => {
             setInput("");
-            setSearch("");
           }}
         />
       </Search>
