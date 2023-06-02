@@ -11,16 +11,22 @@ export const FoodSearch = styled.div`
 `;
 
 export const FoodSection = styled.div`
+  height: 404px;
+  background: #fff1c5;
+  border-radius: 10px;
   img {
     width: 100%;
+    height: 230px;
   }
 `;
 
 export const FoodInfo = styled.div`
-  background: #fff1c5;
-  border-radius: 10px 10px 0px 0px;
-  padding: 20px 48.5px;
+  padding: 20px 51.5px;
   height: 126px;
+  img {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 export const FoodInfoName = styled.div`
@@ -222,4 +228,14 @@ export const ResName = styled.span`
   line-height: 18px;
   font-weight: 500;
   font-size: 15px;
+`;
+
+export const FoodExplain = styled.span`
+  height: 48px;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

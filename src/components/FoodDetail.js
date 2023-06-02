@@ -26,6 +26,7 @@ import {
   ResName,
   Price,
   FoodInfoPriceItem,
+  FoodExplain,
 } from "./FoodDetailStyledComponents";
 import { category } from "../region";
 
@@ -55,6 +56,7 @@ function Exchange({ beginrpice, exchangesign }) {
 }
 
 function FoodDetail({ foodsearch, categorynum }) {
+  console.log(categorynum);
   const [moneychange, setMoneychange] = useState(false);
   const moneyitem = ["€", "£", "¥", "$", "₩"];
   const [exchangesign, setExchangesign] = useState("W");
@@ -94,7 +96,12 @@ function FoodDetail({ foodsearch, categorynum }) {
             </FoodExchangeButton>
           </FoodInfoPrice>
         </FoodInfo>
-        <img src={`/img/foodinfo1.png`} alt="category" />
+        <img src={`/img/foodinfo${categorynum + 1}.png`} alt="category" />
+        <FoodExplain>
+          {categorynum < 0
+            ? category[0].explain
+            : category[categorynum].explain}
+        </FoodExplain>
       </FoodSection>
       <FoodTransition>
         <TransitionTitle>Now sold at this price!</TransitionTitle>
