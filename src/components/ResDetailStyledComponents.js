@@ -220,6 +220,7 @@ export const PhotoGroup = styled.div`
   margin-top: 15px;
   width: 90%;
   height: 529px;
+  justify-content: space-between;
   display: ${({ selected }) => (selected === 1 ? "flex" : "none")};
   flex-wrap: wrap;
   gap: 8px;
