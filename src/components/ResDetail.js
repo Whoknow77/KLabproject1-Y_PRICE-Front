@@ -71,7 +71,7 @@ function ResDetail({ ressearch, id, foodsearch, categorynum }) {
       </Index>
       {/* Menu */}
       <MenuGroup selected={selected}>
-        {[1, 1, 1, 1, 1].map((item, index) => {
+        {["3500₩", "3500₩", "3500₩", "3500₩", ""].map((item, index) => {
           return (
             <Menu key={index}>
               <MenuTotalContainer>
@@ -82,7 +82,7 @@ function ResDetail({ ressearch, id, foodsearch, categorynum }) {
                 <MenuAverageContainer>
                   <AverageItem>
                     <span>Average Price</span>
-                    <MenuAveragePrice>3800₩</MenuAveragePrice>
+                    <MenuAveragePrice>{item}</MenuAveragePrice>
                   </AverageItem>
                   <img src="/img/right.png" alt="right" />
                 </MenuAverageContainer>

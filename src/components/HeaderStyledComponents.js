@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 export const HeaderWrapper = styled.div`
-  width: 100%;
+  width: 90%;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(15px);
+  margin: 0 auto;
 `;
 
 export const Select = styled.div`
@@ -37,7 +36,7 @@ export const Search = styled.div`
   margin: 0 auto 10px auto;
   padding: 8px 15px;
   gap: 8px;
-  width: 90%;
+  width: 100%;
   height: 40px;
   background: #ffffff;
   border: 1.5px solid #ffc300;

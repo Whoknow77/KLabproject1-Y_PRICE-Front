@@ -22,18 +22,18 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 
 function App() {
-  const db = getDatabase();
-  get(ref(db, "/restaurants"))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        // console.log(snapshot.val());
-      } else {
-        console.log("No data available");
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  // const db = getDatabase();
+  // get(ref(db, "/restaurants"))
+  //   .then((snapshot) => {
+  //     if (snapshot.exists()) {
+  //       // console.log(snapshot.val());
+  //     } else {
+  //       console.log("No data available");
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
 
   return (
     <div className="App">

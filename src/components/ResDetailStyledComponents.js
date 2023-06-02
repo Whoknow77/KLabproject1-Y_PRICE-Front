@@ -5,7 +5,7 @@ export const ResDetailWrapper = styled.div`
     (foodsearch === undefined && ressearch !== undefined) || categorynum >= 0
       ? "flex"
       : "none"};
-  width: 90%;
+  width: 94%;
   flex-direction: column;
   margin: 0 auto;
 `;
@@ -99,18 +99,18 @@ export const IndexButton = styled.button`
 `;
 
 export const MenuGroup = styled.div`
+  margin-top: 15px;
   display: ${({ selected }) => (selected === 0 ? "flex" : "none")};
-  flex-direction: column;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 20px;
 `;
 
 // Menu
 export const Menu = styled.div`
   padding: 15px;
-  display: flex;
-  flex-direction: column;
   gap: 10px;
-  height: 84px;
+  width: 270px;
+  height: 137px;
 
   background: #ffffff;
   border: 1px solid #d9d9d9;
@@ -119,8 +119,9 @@ export const Menu = styled.div`
 
 export const MenuTotalContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 10px;
+  height: 107px;
 `;
 
 export const MenuInfoContainer = styled.div`
@@ -153,8 +154,8 @@ export const MenuAverageContainer = styled.button`
   padding: 10px;
   gap: 10px;
   justify-content: space-between;
-  width: 52%;
-  height: 63px;
+  width: 240px;
+  height: 54px;
   background: #fff1c5;
   border-radius: 5px;
 
