@@ -60,10 +60,20 @@ function Map() {
       />
 
       {/* 음식정보 */}
-      <FoodDetail foodsearch={foodsearch} categorynum={categorynum} />
+      <FoodDetail
+        foodsearch={foodsearch}
+        categorynum={categorynum}
+        ressearch={ressearch}
+      />
 
       {/* 음식점 정보 */}
-      <ResDetail ressearch={ressearch} categorynum={categorynum} />
+      <ResDetail
+        id={id}
+        ressearch={ressearch}
+        categorynum={categorynum}
+        foodsearch={foodsearch}
+        search={search}
+      />
     </Wrapper>
   );
 }

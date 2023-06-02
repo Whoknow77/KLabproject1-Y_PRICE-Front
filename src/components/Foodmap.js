@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 function Foodmap({ searchPlace }) {
+  const [mapLoaded, setMapLoaded] = useState(false);
+
   useEffect(() => {
     const script = document.createElement("script");
     script.async = true;
@@ -9,13 +11,19 @@ function Foodmap({ searchPlace }) {
     document.head.appendChild(script);
 
     script.onload = () => {
+      setMapLoaded(true);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (mapLoaded) {
       const { kakao } = window;
 
       var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
       const container = document.getElementById("map");
       const options = {
         center: new kakao.maps.LatLng(33.450701, 126.570667),
-        level: 3,
+        level: 3, // 지도 초기 확대레벨
       };
 
       const map = new kakao.maps.Map(container, options);
@@ -25,14 +33,17 @@ function Foodmap({ searchPlace }) {
 
       function placesSearchCB(data, status, pagination) {
         if (status === kakao.maps.services.Status.OK) {
-          let bounds = new kakao.maps.LatLngBounds();
+          // 첫 번째 검색 결과를 중심으로 지도 이동
+          let firstPlace = data[0];
+          map.setCenter(new kakao.maps.LatLng(firstPlace.y, firstPlace.x));
 
           for (let i = 0; i < data.length; i++) {
             displayMarker(data[i]);
-            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
           }
 
-          map.setBounds(bounds);
+          setTimeout(() => {
+            map.relayout();
+          }, 2000);
         }
       }
 
@@ -53,15 +64,15 @@ function Foodmap({ searchPlace }) {
           infowindow.open(map, marker);
         });
       }
-    };
-  }, [searchPlace]);
+    }
+  }, [mapLoaded, searchPlace]);
 
   return (
     <div
       id="map"
       style={{
         width: "100%",
-        height: "800px",
+        height: "230px",
       }}
     ></div>
   );

@@ -1,17 +1,18 @@
 export const region = [
-  { city: "Seoul", area: "Gyeongbokgung", search: "경복궁 한식 맛집" },
-  { city: "Seoul", area: "Gangnam", search: "강남 한식 맛집" },
-  { city: "Seoul", area: "Hongdae", search: "홍대 한식 맛집" },
-  { city: "Seoul", area: "Itaewon", search: "이태원 한식 맛집" },
-  { city: "Busan", area: "Haeundae", search: "해운대 한식 맛집" },
-  { city: "Jeju", area: "Aewol-eup", search: "애월읍 한식 맛집" },
+  { city: "Seoul", area: "Gyeongbokgung", search: "경복궁 떡볶이 맛집" },
+  { city: "Seoul", area: "Gangnam", search: "강남 고씨떡볶이" },
+  { city: "Seoul", area: "Hongdae", search: "홍대 떡볶이 맛집" },
+  { city: "Seoul", area: "Itaewon", search: "이태원 떡볶이 맛집" },
+  { city: "Busan", area: "Haeundae", search: "해운대 떡볶이 맛집" },
+  { city: "Jeju", area: "Aewol-eup", search: "애월읍 떡볶이 맛집" },
 ];
 
 // 음식추천
 export const food = [
-  { city: "Seoul", name: "maratang" },
-  { city: "Seoul", name: "냉면" },
-  { city: "Seoul", name: "떡볶이" },
+  { city: "Seoul", name: "Tteokbokki" },
+  { city: "Seoul", name: "Bulgogi" },
+  { city: "Seoul", name: "Samgyeopsal" },
+  { city: "Seoul", name: "Bibimbab" },
 ];
 
 // 음식점

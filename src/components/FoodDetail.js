@@ -55,14 +55,17 @@ function Exchange({ beginrpice, exchangesign }) {
   return <FoodInfoPriceItem>{`${result}${exchangesign}`}</FoodInfoPriceItem>;
 }
 
-function FoodDetail({ foodsearch, categorynum }) {
-  console.log(categorynum);
+function FoodDetail({ foodsearch, categorynum, ressearch }) {
   const [moneychange, setMoneychange] = useState(false);
   const moneyitem = ["€", "£", "¥", "$", "₩"];
   const [exchangesign, setExchangesign] = useState("W");
   let beginprice = 3800;
   return (
-    <FoodSearch foodsearch={foodsearch} categorynum={categorynum}>
+    <FoodSearch
+      foodsearch={foodsearch}
+      categorynum={categorynum}
+      ressearch={ressearch}
+    >
       <FoodSection>
         <FoodInfo>
           <FoodInfoName>
@@ -96,7 +99,11 @@ function FoodDetail({ foodsearch, categorynum }) {
             </FoodExchangeButton>
           </FoodInfoPrice>
         </FoodInfo>
-        <img src={`/img/foodinfo${categorynum + 1}.png`} alt="category" />
+        {categorynum < 0 ? (
+          <img src={`/img/foodinfo${1}.png`} alt="category" />
+        ) : (
+          <img src={`/img/foodinfo${categorynum + 1}.png`} alt="category" />
+        )}
         <FoodExplain>
           {categorynum < 0
             ? category[0].explain

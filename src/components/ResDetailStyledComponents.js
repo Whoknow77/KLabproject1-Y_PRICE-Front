@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 export const ResDetailWrapper = styled.div`
-  display: ${({ ressearch }) => (ressearch !== undefined ? "flex" : "none")};
+  display: ${({ foodsearch, categorynum, ressearch }) =>
+    (foodsearch === undefined && ressearch !== undefined) || categorynum >= 0
+      ? "flex"
+      : "none"};
   width: 90%;
   flex-direction: column;
   margin: 0 auto;
@@ -71,7 +74,7 @@ export const Index = styled.div`
   justify-content: center;
   align-items: center;
   padding: 15px 130px;
-  gap: 10px;
+  gap: 40px;
 
   width: 100%;
   height: 48px;
@@ -81,39 +84,43 @@ export const Index = styled.div`
   backdrop-filter: blur(15px);
 `;
 
-export const Menuindex = styled.button`
-  border: none;
+export const IndexButton = styled.button`
+  &:focus {
+    outline: none;
+  }
   cursor: pointer;
   outline: none;
   background: none;
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 18px;
-  border-bottom: 2px solid #515151;
-  padding: 0;
-`;
-export const Infoindex = styled.button`
+  font-weight: ${({ active }) => (active ? "700" : "500")};
   border: none;
-  cursor: pointer;
-  outline: none;
-  background: none;
-  font-weight: 500;
+  border-bottom: ${({ active }) => (active ? "2px solid #515151" : "")};
   font-size: 15px;
   line-height: 18px;
 `;
 
+export const MenuGroup = styled.div`
+  display: ${({ selected }) => (selected === 0 ? "flex" : "none")};
+  flex-direction: column;
+  gap: 10px;
+`;
+
+// Menu
 export const Menu = styled.div`
+  padding: 15px;
   display: flex;
-  padding: 20px 0px;
-  gap: 20px;
-  justify-content: flex-start;
+  flex-direction: column;
+  gap: 10px;
+  height: 84px;
+
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
 `;
 
 export const MenuTotalContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: space-between;
-  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const MenuInfoContainer = styled.div`
@@ -135,6 +142,9 @@ export const MenuPrice = styled.div`
   color: #515151;
 `;
 export const MenuAverageContainer = styled.button`
+  &:focus {
+    outline: none;
+  }
   border: none;
   outline: none;
   cursor: pointer;
@@ -143,7 +153,7 @@ export const MenuAverageContainer = styled.button`
   padding: 10px;
   gap: 10px;
   justify-content: space-between;
-  width: 180px;
+  width: 52%;
   height: 63px;
   background: #fff1c5;
   border-radius: 5px;
@@ -164,12 +174,13 @@ export const MenuAveragePrice = styled.div`
   font-weight: 700;
   font-size: 20px;
   line-height: 20px;
+  text-align: left;
   color: #ffc300;
 `;
 
+// Info
 export const Info = styled.div`
-  display: flex;
-  height: 64px;
+  display: ${({ selected }) => (selected === 2 ? "flex" : "none")};
   flex-direction: column;
   gap: 10px;
   span {
@@ -183,7 +194,6 @@ export const Info = styled.div`
 `;
 export const Location = styled.div`
   display: flex;
-  justify-content: flex-start;
   gap: 10px;
 `;
 export const Clock = styled.div`
@@ -192,7 +202,6 @@ export const Clock = styled.div`
     height: 20px;
   }
   display: flex;
-  justify-content: flex-start;
   gap: 10px;
   div {
     display: flex;
@@ -205,8 +214,19 @@ export const Clock = styled.div`
   }
 `;
 
-export const MenuGroup = styled.div`
-  display: flex;
+// Photo
+export const PhotoGroup = styled.div`
+  margin-top: 15px;
+  width: 90%;
+  height: 529px;
+  display: ${({ selected }) => (selected === 1 ? "flex" : "none")};
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  gap: 8px;
+`;
+
+export const Photo = styled.div`
+  background-image: url(${(props) => `/img/${props.url}.png`});
+  width: 140px;
+  height: 211px;
+  border-radius: 10px;
 `;

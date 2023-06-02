@@ -1,22 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Menu,
   AverageItem,
   Category,
   EmotionBox,
   EmotionGroup,
-  EmotionNumber,
-  EmotionType,
   ResImage,
   Index,
-  Infoindex,
   MenuAverageContainer,
   MenuAveragePrice,
   MenuInfoContainer,
   MenuPrice,
   MenuTitle,
   MenuTotalContainer,
-  Menuindex,
   ResDetailWrapper,
   ResTitle,
   ResTitleContainer,
@@ -26,11 +22,23 @@ import {
   Info,
   Location,
   MenuGroup,
+  IndexButton,
+  PhotoGroup,
+  Photo,
 } from "./ResDetailStyledComponents";
+import Foodmap from "./Foodmap";
+import { region } from "../region";
+const index = ["Menu", "Photo", "Info"];
 
-function ResDetail({ ressearch, id }) {
+function ResDetail({ ressearch, id, foodsearch, categorynum }) {
+  const [selected, setSelected] = useState(0);
+
   return (
-    <ResDetailWrapper ressearch={ressearch}>
+    <ResDetailWrapper
+      ressearch={ressearch}
+      foodsearch={foodsearch}
+      categorynum={categorynum}
+    >
       <ResTitleContainer>
         <ResImage />
         <ResTitle>
@@ -47,30 +55,34 @@ function ResDetail({ ressearch, id }) {
           </EmotionGroup>
         </ResTitle>
       </ResTitleContainer>
-      {/* <Foodmap searchPlace={region[id].search}></Foodmap>  */}
       <Index>
-        <Menuindex>Menu</Menuindex>
-        <Infoindex>Info</Infoindex>
+        {index.map((item, idx) => {
+          return (
+            <IndexButton
+              key={item}
+              // 클릭 시에만 active
+              active={idx === selected}
+              onClick={() => setSelected(idx)}
+            >
+              {item}
+            </IndexButton>
+          );
+        })}
       </Index>
-
-      <MenuGroup>
+      {/* Menu */}
+      <MenuGroup selected={selected}>
         {[1, 1, 1, 1, 1].map((item, index) => {
           return (
             <Menu key={index}>
-              <img
-                src="/img/gaji.png"
-                alt=""
-                styled={{ width: "100px", height: "100px" }}
-              />
               <MenuTotalContainer>
                 <MenuInfoContainer>
-                  <MenuTitle>Tomato Egg Fried Rice</MenuTitle>
-                  <MenuPrice>10000₩</MenuPrice>
+                  <MenuTitle>Original Tteokbokki</MenuTitle>
+                  <MenuPrice>3000₩</MenuPrice>
                 </MenuInfoContainer>
                 <MenuAverageContainer>
                   <AverageItem>
                     <span>Average Price</span>
-                    <MenuAveragePrice>10000₩</MenuAveragePrice>
+                    <MenuAveragePrice>3800₩</MenuAveragePrice>
                   </AverageItem>
                   <img src="/img/right.png" alt="right" />
                 </MenuAverageContainer>
@@ -79,8 +91,11 @@ function ResDetail({ ressearch, id }) {
           );
         })}
       </MenuGroup>
+      {/* Info */}
+      <Info selected={selected}>
+        {/* 음식점 지도 */}
+        <Foodmap searchPlace={region[id].search} />
 
-      <Info>
         <Location>
           <img src="/img/map_pin.png" alt="map_pin" />
           <span>1F, 5, Neungdong-ro 17-gil, Gwangjin-gu, Seoul</span>
@@ -96,6 +111,14 @@ function ResDetail({ ressearch, id }) {
           </div>
         </Clock>
       </Info>
+      {/* Photo */}
+      <PhotoGroup selected={selected}>
+        {["photo1", "photo1", "photo1", "photo1", "photo1", "photo1"].map(
+          (item, index) => {
+            return <Photo key={index} url={item}></Photo>;
+          }
+        )}
+      </PhotoGroup>
     </ResDetailWrapper>
   );
 }
