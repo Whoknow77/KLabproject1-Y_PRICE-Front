@@ -8,13 +8,9 @@ export const MapWrapper = styled.div`
 // 음식점 추천
 export const Respreivew = styled.div`
   background: white;
-  height: 390px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
   gap: 10px;
   width: 100%;
 `;
@@ -33,6 +29,9 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 69px;
 `;
 
 export const Restuarant = styled.div`

@@ -31,20 +31,20 @@ function Home() {
             Korea?
           </MainTitle>
           <SubTitle>
-            <span>Discover local food costs in South Korea</span>
+            <span>Explore current local food costs and average</span>
             <br />
-            <span>with ease using our service.</span>
+            <span>prices in South Korea effortlessly!</span>
           </SubTitle>
-          <Button
-            type="button"
-            className="button"
-            onClick={() => {
-              navigate("/select/0");
-            }}
-          >
-            Start →
-          </Button>
         </Title>
+        <Button
+          type="button"
+          className="button"
+          onClick={() => {
+            navigate("/select/0");
+          }}
+        >
+          Start →
+        </Button>
       </HomeContainer>
     </Wrapper>
   );

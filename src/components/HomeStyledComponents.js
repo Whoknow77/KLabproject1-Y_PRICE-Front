@@ -1,31 +1,33 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  max-width: 600px;
-  min-width: 360px;
-  margin: 0 auto;
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 export const HomeContainer = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
+  gap: 44px;
 `;
 
 export const Logo = styled.div`
-  margin: 92px auto 44px auto;
+  margin: 92px auto 0 auto;
 `;
 
 export const Title = styled.div`
   margin: 0 auto;
-  width: 100%;
+  width: 320px;
   display: flex;
   flex-direction: column;
   gap: 30px;
-  margin-bottom: 442px;
 `;
 
 export const MainTitle = styled.div`
+  width: 100%;
   margin: 0 auto;
   line-height: 55px;
   font-size: 55px;
@@ -37,8 +39,7 @@ export const MainTitle = styled.div`
 `;
 
 export const SubTitle = styled.div`
-  position: relative;
-  left: -10px;
+  width: 100%;
   margin: 0 auto;
   font-weight: 500;
   font-size: 15px;
@@ -46,15 +47,18 @@ export const SubTitle = styled.div`
 `;
 
 export const Button = styled.button`
-  margin: 129px auto 0 auto;
+  margin-top: 85px;
+  width: 191px;
+  display: flex;
+  justify-content: center;
   border: none;
   cursor: pointer;
   padding: 20px 40px;
   font-weight: 600;
   font-size: 30px;
   line-height: 21px;
-  width: 191px;
-  height: 61px;
   background: #ffc300;
   border-radius: 32px;
+  outline: none;
+  align-self: center;
 `;

@@ -10,11 +10,12 @@ import {
   Price,
 } from "./DefaultMapStyledComponents";
 import Category from "./Category";
-import Foodmap from "./Foodmap";
-import { region } from "../region";
 
 function DefaultMap({ input, search, onChangecategorynum, categorynum, id }) {
   const Restaurant = [
+    { name: "Junwoo's Lamb", price: "3000₩" },
+    { name: "Junwoo's Lamb", price: "3000₩" },
+    { name: "Junwoo's Lamb", price: "3000₩" },
     { name: "Junwoo's Lamb", price: "3000₩" },
     { name: "Junwoo's Lamb", price: "3000₩" },
     { name: "Junwoo's Lamb", price: "3000₩" },

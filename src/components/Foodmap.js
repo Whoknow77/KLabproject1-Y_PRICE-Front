@@ -43,7 +43,7 @@ function Foodmap({ searchPlace }) {
 
           setTimeout(() => {
             map.relayout();
-          }, 2000);
+          }, 4000);
         }
       }
 

@@ -7,25 +7,14 @@ import {
   BackButton,
   GoButton,
   SelectBox,
+  StyledSlider,
 } from "../components/SelectStyledComponents";
 import { region } from "../region";
 import { useNavigate } from "react-router-dom";
 
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "./Image";
-
-const StyledSlider = styled(Slider)`
-  height: 100%;
-  width: 100%;
-  position: relative;
-  .slick-prev::before,
-  .slick-next::before {
-    opacity: 1;
-    display: none;
-  }
-`;
 
 export default function Select() {
   const navigate = useNavigate();

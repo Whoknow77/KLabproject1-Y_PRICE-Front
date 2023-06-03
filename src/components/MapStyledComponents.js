@@ -5,6 +5,5 @@ export const Wrapper = styled.div`
   min-width: 360px;
   margin: 0 auto;
   width: 100%;
-  height: 100%;
-  position: relative;
+  height: 100vh;
 `;

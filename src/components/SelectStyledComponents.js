@@ -1,10 +1,14 @@
+import Slider from "react-slick";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
   max-width: 600px;
   min-width: 360px;
   margin: 0 auto;
+  width: 100%;
+  height: 800px;
   position: relative;
+  overflow: hidden;
 `;
 
 export const Title = styled.div`
@@ -24,7 +28,7 @@ export const Title = styled.div`
 
 export const SelectBox = styled.div`
   position: absolute;
-  top: 380px;
+  top: 47%;
   width: 100%;
   font-weight: 300;
   font-size: 15px;
@@ -60,7 +64,7 @@ export const NextButton = styled.button`
 
 export const GoButton = styled.button`
   position: absolute;
-  bottom: 64px;
+  top: 85%;
   left: 1.5%;
   right: 1.5%;
   width: 85%;
@@ -72,4 +76,19 @@ export const GoButton = styled.button`
   font-weight: 600;
   border: none;
   cursor: pointer;
+  outline: none;
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const StyledSlider = styled(Slider)`
+  height: 100%;
+  width: 100%;
+  position: relative;
+  .slick-prev::before,
+  .slick-next::before {
+    opacity: 1;
+    display: none;
+  }
 `;
