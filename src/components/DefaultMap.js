@@ -58,9 +58,16 @@ function DefaultMap({ input, search, id }) {
         <Card>
           {/* 음식점 정보 */}
           {userData.map((res, index) => {
+            // 이미지 없을때 검사
+            const Imgflag = res.info.main_img.includes("None");
+
             return (
               <Restuarant key={index}>
-                <img src={`${res.info.main_img}`} alt="" />
+                {Imgflag ? (
+                  <img src={"/img/default.png"} alt="" />
+                ) : (
+                  <img src={`${res.info.main_img}`} alt="" />
+                )}
                 <div>
                   <ResName>{res.info.name}</ResName>
                 </div>
