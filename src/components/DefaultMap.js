@@ -27,6 +27,14 @@ initializeApp(firebaseConfig);
 function DefaultMap({ input, search, id }) {
   const [userData, setUserData] = useState([]);
 
+  // 지역 거름
+  let regex;
+  if (Number(id) === 0) {
+    regex = /0[0-9]|1[0-4]/;
+  } else if (Number(id) === 1) {
+    regex = /1[5-9]|2[0-9]/;
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -34,9 +42,11 @@ function DefaultMap({ input, search, id }) {
         const snapshot = await get(ref(db, "/restaurants"));
 
         if (snapshot.exists()) {
-          const data = snapshot.val();
-          const dataArray = Object.values(data); // 배열 변환
-          setUserData(dataArray);
+          const data = snapshot.val(); // 데이터 가져오기
+          // 지역에 해당하는 데이터만 뽑기
+
+          // const dataArray = Object.values(data); // 배열 변환
+          setUserData(data);
         } else {
           console.log("No data available");
         }
@@ -57,21 +67,30 @@ function DefaultMap({ input, search, id }) {
         <Title>Looking for this restaurant?</Title>
         <Card>
           {/* 음식점 정보 */}
-          {userData.map((res, index) => {
+          {Object.entries(userData).map(([resKey, res], index) => {
             // 이미지 없을때 검사
-            const Imgflag = res.info.main_img.includes("None");
+            const Imgurl = res.info.main_img;
+            const ImgFlag = res.info.main_img.includes("None");
+            const foodFlag = resKey.match(regex);
 
             return (
-              <Restuarant key={index}>
-                {Imgflag ? (
-                  <img src={"/img/default.png"} alt="" />
-                ) : (
-                  <img src={`${res.info.main_img}`} alt="" />
-                )}
-                <div>
-                  <ResName>{res.info.name}</ResName>
-                </div>
-              </Restuarant>
+              foodFlag && (
+                <Restuarant key={index}>
+                  {ImgFlag ? (
+                    <img src={"/img/default.png"} alt="" />
+                  ) : (
+                    <img src={`${Imgurl}`} alt="" />
+                  )}
+                  <div>
+                    <ResName>{res.info.name}</ResName>
+                    <br />
+                    <br />
+                    <Price>
+                      Rating <span>{res.info.rating}</span>
+                    </Price>
+                  </div>
+                </Restuarant>
+              )
             );
           })}
         </Card>

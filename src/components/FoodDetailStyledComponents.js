@@ -105,6 +105,9 @@ export const MoneyItem = styled.button`
   font-weight: 700;
   font-size: 24px;
   line-height: 24px;
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const FoodTransition = styled.div`
@@ -199,6 +202,8 @@ export const Restuarants = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+  margin-bottom: 69px;
+  height: 100%;
 `;
 
 export const Restuarant = styled.div`

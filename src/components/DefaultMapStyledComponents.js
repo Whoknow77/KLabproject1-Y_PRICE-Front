@@ -46,6 +46,7 @@ export const Restuarant = styled.div`
   div {
     height: 70px;
     padding: 13.5px 15px;
+    line-height: 5px;
   }
   img {
     width: 70px;
@@ -53,14 +54,17 @@ export const Restuarant = styled.div`
   }
 `;
 
-export const Price = styled.span`
-  line-height: 20px;
-  font-weight: 700;
-  font-size: 20px;
-`;
-
 export const ResName = styled.span`
   line-height: 18px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 15px;
+`;
+
+export const Price = styled.span`
+  line-height: 20px;
+  font-weight: 300;
+  font-size: 16px;
+  span {
+    color: #ffc300;
+  }
 `;

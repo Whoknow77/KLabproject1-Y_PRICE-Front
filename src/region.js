@@ -46,7 +46,7 @@ export const Res = [
 
 // 카테고리
 export const category = [
-  { name: "TTeokbokki", explain: "Spicy rice cakes in a gochujang sauce." },
+  { name: "Tteokbokki", explain: "Spicy rice cakes in a gochujang sauce." },
   {
     name: "Bulgogi",
     explain: "Thinly sliced marinated beef, grilled or stir-fried.",

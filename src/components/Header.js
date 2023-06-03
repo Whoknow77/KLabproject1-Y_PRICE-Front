@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { region } from "../region";
-
+import { useLocation } from "react-router-dom";
 import { HeaderWrapper, Select, Search } from "./HeaderStyledComponents";
 
 function Header({ input, setInput, setSearch, search, id }) {
   const navigate = useNavigate();
+  const location = useLocation();
+  // 음식과 음식점 정보를 보여줄때는 헤더의 뒤로가기 버튼을 생성
+  const buttonflag = !location.pathname.includes("food");
 
   return (
     <HeaderWrapper input={input}>
@@ -18,14 +21,27 @@ function Header({ input, setInput, setSearch, search, id }) {
         <img src="/img/down.png" alt="down" />
       </Select>
       <Search>
-        <img
-          src={"/img/searchbutton.png"}
-          alt=""
-          onClick={() => {
-            setSearch("");
-            setInput("");
-          }}
-        />
+        {buttonflag ? (
+          <img
+            src={"/img/searchbutton.png"}
+            alt=""
+            onClick={() => {
+              setSearch("");
+              setInput("");
+            }}
+          />
+        ) : (
+          <img
+            src={"/img/leftbutton.png"}
+            alt=""
+            onClick={() => {
+              setSearch("");
+              setInput("");
+              // 뒤로가기
+              navigate(-1);
+            }}
+          />
+        )}
         <input
           type="text"
           className="searchinput"
