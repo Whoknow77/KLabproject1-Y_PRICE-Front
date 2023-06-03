@@ -1,10 +1,5 @@
 import styled from "styled-components";
 
-export const MapWrapper = styled.div`
-  display: ${({ categorynum, search }) =>
-    categorynum < 0 && search === "" ? "block" : "none"};
-`;
-
 // 음식점 추천
 export const Respreivew = styled.div`
   background: white;
@@ -19,24 +14,28 @@ export const Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 30px auto 5px auto;
+  margin: 45px auto 5px auto;
   height: 18px;
   font-weight: 600;
   font-size: 20px;
 `;
 
 export const Card = styled.div`
-  display: flex;
+  height: 400px;
   flex-direction: column;
+  overflow: scroll;
   gap: 10px;
   align-items: center;
-  overflow: hidden;
   margin-bottom: 69px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const Restuarant = styled.div`
   cursor: pointer;
   margin: 0 auto;
+  margin-top: 10px;
   padding: 10px;
   display: flex;
   align-items: center;

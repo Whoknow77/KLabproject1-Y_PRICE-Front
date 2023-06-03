@@ -1,10 +1,7 @@
 import styled from "styled-components";
 
 export const ResDetailWrapper = styled.div`
-  display: ${({ foodsearch, categorynum, ressearch }) =>
-    (foodsearch === undefined && ressearch !== undefined) || categorynum >= 0
-      ? "flex"
-      : "none"};
+  display: flex;
   width: 94%;
   flex-direction: column;
   margin: 0 auto;
@@ -75,10 +72,8 @@ export const Index = styled.div`
   align-items: center;
   padding: 15px 130px;
   gap: 40px;
-
   width: 100%;
   height: 48px;
-
   background: rgba(255, 255, 255, 0.5);
   border-top: 0.5px solid #d9d9d9;
   backdrop-filter: blur(15px);

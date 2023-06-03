@@ -30,15 +30,11 @@ import Foodmap from "./Foodmap";
 import { region } from "../region";
 const index = ["Menu", "Photo", "Info"];
 
-function ResDetail({ ressearch, id, foodsearch, categorynum }) {
+function ResDetail({ ressearch, id, foodsearch }) {
   const [selected, setSelected] = useState(0);
 
   return (
-    <ResDetailWrapper
-      ressearch={ressearch}
-      foodsearch={foodsearch}
-      categorynum={categorynum}
-    >
+    <ResDetailWrapper ressearch={ressearch} foodsearch={foodsearch}>
       <ResTitleContainer>
         <ResImage />
         <ResTitle>
@@ -94,7 +90,7 @@ function ResDetail({ ressearch, id, foodsearch, categorynum }) {
       {/* Info */}
       <Info selected={selected}>
         {/* 음식점 지도 */}
-        <Foodmap searchPlace={region[id].search} />
+        <Foodmap searchPlace={region[0].search} />
 
         <Location>
           <img src="/img/map_pin.png" alt="map_pin" />

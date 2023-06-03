@@ -5,6 +5,7 @@ import DefaultMap from "../components/DefaultMap";
 import Header from "../components/Header";
 import FoodDetail from "../components/FoodDetail";
 import ResDetail from "../components/ResDetail";
+import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 
 import { food, Res } from "../region";
 
@@ -12,7 +13,6 @@ function Map() {
   const { id } = useParams();
   const [search, setSearch] = useState(""); // 완료된 검색어
   const [input, setInput] = useState(""); // 검색어
-  const [categorynum, setCategorynum] = useState(-1);
   const [foodsearch, setFoodserach] = useState("");
   const [ressearch, setResserach] = useState("");
 
@@ -33,10 +33,6 @@ function Map() {
     );
   }, [search]);
 
-  function onChangecategorynum(idx) {
-    setCategorynum(idx);
-  }
-
   return (
     <Wrapper>
       {/* 검색 바 */}
@@ -46,34 +42,30 @@ function Map() {
         setSearch={setSearch}
         search={search}
         id={id}
-        categorynum={categorynum}
-        onChangecategorynum={onChangecategorynum}
       />
 
-      {/* map 기본 페이지(지도 + 음식점 추천) */}
-      <DefaultMap
-        input={input}
-        id={id}
-        categorynum={categorynum}
-        onChangecategorynum={onChangecategorynum}
-        search={search}
-      />
-
-      {/* 음식정보 */}
-      <FoodDetail
-        foodsearch={foodsearch}
-        categorynum={categorynum}
-        ressearch={ressearch}
-      />
-
-      {/* 음식점 정보 */}
-      <ResDetail
-        id={id}
-        ressearch={ressearch}
-        categorynum={categorynum}
-        foodsearch={foodsearch}
-        search={search}
-      />
+      <Routes>
+        <Route
+          path="/"
+          element={<DefaultMap input={input} id={id} search={search} />}
+        />
+        <Route
+          path="/food/:foodId/"
+          element={<FoodDetail foodsearch={foodsearch} ressearch={ressearch} />}
+        ></Route>
+        <Route
+          path="/restaurant/:restaurantId"
+          element={
+            <ResDetail
+              id={id}
+              ressearch={ressearch}
+              foodsearch={foodsearch}
+              search={search}
+            />
+          }
+        ></Route>
+        <Route path="*" element={<div>없는페이지에요</div>}></Route>
+      </Routes>
     </Wrapper>
   );
 }

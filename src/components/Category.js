@@ -1,4 +1,3 @@
-import React from "react";
 import {
   CategoryWrapper,
   CategoryTitle,
@@ -8,8 +7,11 @@ import {
 } from "./CetegoryStyledComponents";
 
 import { category } from "../region";
+import { useNavigate } from "react-router-dom";
 
-function Category({ input, onChangecategorynum }) {
+function Category({ input, id }) {
+  const navigate = useNavigate();
+
   return (
     <CategoryWrapper input={input}>
       <CategoryTitle>Categories</CategoryTitle>
@@ -20,7 +22,7 @@ function Category({ input, onChangecategorynum }) {
             <CategoryBox
               key={index}
               onClick={() => {
-                onChangecategorynum(index);
+                navigate(`/map/${id}/food/${index}`);
               }}
             >
               <img src={`/img/category${index + 1}.png`} alt="" />

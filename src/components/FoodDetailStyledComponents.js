@@ -1,10 +1,7 @@
 import styled from "styled-components";
 
 export const FoodSearch = styled.div`
-  display: ${({ foodsearch, categorynum, ressearch }) =>
-    (foodsearch !== undefined && ressearch === undefined) || categorynum >= 0
-      ? "flex"
-      : "none"};
+  display: flex;
   width: 90%;
   margin: 0 auto;
   margin-top: 8px;

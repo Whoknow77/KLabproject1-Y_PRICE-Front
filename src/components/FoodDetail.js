@@ -29,8 +29,9 @@ import {
   FoodExplain,
 } from "./FoodDetailStyledComponents";
 import { category } from "../region";
+import { useParams } from "react-router-dom";
 
-function Exchange({ beginrpice, exchangesign }) {
+function Exchange({ beginrpice, exchangesign, foodId }) {
   let result = beginrpice;
   switch (exchangesign) {
     case "€":
@@ -55,22 +56,18 @@ function Exchange({ beginrpice, exchangesign }) {
   return <FoodInfoPriceItem>{`${result}${exchangesign}`}</FoodInfoPriceItem>;
 }
 
-function FoodDetail({ foodsearch, categorynum, ressearch }) {
+function FoodDetail({ foodsearch, ressearch, location }) {
+  const { foodId } = useParams();
+
   const [moneychange, setMoneychange] = useState(false);
   const moneyitem = ["€", "£", "¥", "$", "₩"];
   const [exchangesign, setExchangesign] = useState("W");
   let beginprice = 3800;
   return (
-    <FoodSearch
-      foodsearch={foodsearch}
-      categorynum={categorynum}
-      ressearch={ressearch}
-    >
+    <FoodSearch foodsearch={foodsearch} ressearch={ressearch}>
       <FoodSection>
         <FoodInfo>
-          <FoodInfoName>
-            {categorynum < 0 ? category[0].name : category[categorynum].name}
-          </FoodInfoName>
+          <FoodInfoName>{category[foodId].name}</FoodInfoName>
           <FoodInfoNearby>Average Price Nearby</FoodInfoNearby>
           <FoodInfoPrice>
             <Exchange beginrpice={beginprice} exchangesign={exchangesign} />
@@ -99,16 +96,8 @@ function FoodDetail({ foodsearch, categorynum, ressearch }) {
             </FoodExchangeButton>
           </FoodInfoPrice>
         </FoodInfo>
-        {categorynum < 0 ? (
-          <img src={`/img/foodinfo${1}.png`} alt="category" />
-        ) : (
-          <img src={`/img/foodinfo${categorynum + 1}.png`} alt="category" />
-        )}
-        <FoodExplain>
-          {categorynum < 0
-            ? category[0].explain
-            : category[categorynum].explain}
-        </FoodExplain>
+        {<img src={`/img/foodinfo${Number(foodId) + 1}.png`} alt="category" />}
+        <FoodExplain>{category[foodId].explain}</FoodExplain>
       </FoodSection>
       <FoodTransition>
         <TransitionTitle>Now sold at this price!</TransitionTitle>
@@ -142,9 +131,7 @@ function FoodDetail({ foodsearch, categorynum, ressearch }) {
       <ReswithFood>
         <ResTitle>
           <Title1>These restaurants have</Title1>
-          <Title2>
-            {categorynum < 0 ? category[0].name : category[categorynum].name}
-          </Title2>
+          <Title2>{category[0].name}</Title2>
         </ResTitle>
         <Restuarants>
           {[0, 0, 0, 0, 0, 0, 0].map((item, index) => {

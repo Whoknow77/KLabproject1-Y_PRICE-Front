@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import {
-  MapWrapper,
   Respreivew,
   Title,
   Card,
@@ -10,40 +9,67 @@ import {
   Price,
 } from "./DefaultMapStyledComponents";
 import Category from "./Category";
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, get } from "firebase/database";
 
-function DefaultMap({ input, search, onChangecategorynum, categorynum, id }) {
-  const Restaurant = [
-    { name: "Junwoo's Lamb", price: "3000₩" },
-    { name: "Junwoo's Lamb", price: "3000₩" },
-    { name: "Junwoo's Lamb", price: "3000₩" },
-    { name: "Junwoo's Lamb", price: "3000₩" },
-    { name: "Junwoo's Lamb", price: "3000₩" },
-    { name: "Junwoo's Lamb", price: "3000₩" },
-    { name: "Junwoo's Lamb", price: "3000₩" },
-  ];
+const firebaseConfig = {
+  apiKey: "AIzaSyAlaS2RB7V3YmLAzMV5TKVsHJT8eckYNFE",
+  authDomain: "yprice-e94af.firebaseapp.com",
+  projectId: "yprice-e94af",
+  storageBucket: "yprice-e94af.appspot.com",
+  messagingSenderId: "196673935529",
+  appId: "1:196673935529:web:d99b393272e3e5e65231b8",
+  measurementId: "G-QZ2SL0REKC",
+};
+
+initializeApp(firebaseConfig);
+
+function DefaultMap({ input, search, id }) {
+  const [userData, setUserData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const db = getDatabase();
+        const snapshot = await get(ref(db, "/restaurants"));
+
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          const dataArray = Object.values(data); // 배열 변환
+          setUserData(dataArray);
+        } else {
+          console.log("No data available");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <MapWrapper input={input} search={search} categorynum={categorynum}>
+    <>
       {/* 카테고리 추천 */}
-      <Category input={input} onChangecategorynum={onChangecategorynum} />
+
+      <Category input={input} id={id} />
       <Respreivew>
         <Title>Looking for this restaurant?</Title>
         <Card>
           {/* 음식점 정보 */}
-          {Restaurant.map((res, index) => {
+          {userData.map((res, index) => {
             return (
               <Restuarant key={index}>
-                <img src="/img/res1.png" alt="res1" />
+                <img src={`${res.info.main_img}`} alt="" />
                 <div>
-                  <ResName>{res.name}</ResName>
-                  <br />
-                  <Price>{res.price}</Price>
+                  <ResName>{res.info.name}</ResName>
                 </div>
               </Restuarant>
             );
           })}
         </Card>
       </Respreivew>
-    </MapWrapper>
+    </>
   );
 }
 
