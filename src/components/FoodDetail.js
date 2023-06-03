@@ -71,9 +71,13 @@ function Exchange({ beginrpice, exchangesign }) {
 }
 
 function FoodDetail({ foodsearch, ressearch, location }) {
+  const regex = /0[0-9]|1[0-4]/;
   let numberPattern = /\d+[,]*\d*/g; // 숫자와 콤마에 해당하는 정규 표현식
 
-  const barArray = [1, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+  const barArray = [
+    1, 3, 2, 1, 1, 2, 1, 2, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1,
+  ];
   const { foodId } = useParams();
   let foodtarget;
   if (Number(foodId) === 0) {
@@ -88,7 +92,7 @@ function FoodDetail({ foodsearch, ressearch, location }) {
   const [moneychange, setMoneychange] = useState(false);
   const moneyitem = ["€", "£", "¥", "$", "₩"];
   const [exchangesign, setExchangesign] = useState("₩");
-  let beginprice = 3800;
+  let beginprice = 9000;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -156,7 +160,7 @@ function FoodDetail({ foodsearch, ressearch, location }) {
             {Object.entries(userData)
               .filter(
                 ([resKey, res]) =>
-                  res.info.category === foodtarget && res.menu !== undefined
+                  res.info.category === foodtarget && res.menu && res.menu.menu1
               )
               .sort((a, b) => {
                 // 문자열에서 숫자만 추출
@@ -182,18 +186,23 @@ function FoodDetail({ foodsearch, ressearch, location }) {
                     (t) => t[1].menu.menu1.price === item[1].menu.menu1.price
                   )
               )
-              .map(([resKey, res], index) => (
-                <GraphItem key={index}>
-                  <SoldNumber>{barArray[index]}</SoldNumber>
-                  <SoldBar count={barArray[index]}></SoldBar>
-                  <SoldPrice>
-                    {res.menu.menu1.price
-                      .match(numberPattern)
-                      .join("")
-                      .replace(/,/g, "")}
-                  </SoldPrice>
-                </GraphItem>
-              ))}
+              .map(
+                ([resKey, res], index) =>
+                  resKey.match(regex) && (
+                    <GraphItem key={index}>
+                      <SoldNumber>{barArray[index]}</SoldNumber>
+                      <SoldBar count={barArray[index]}></SoldBar>
+                      <SoldPrice>
+                        {Number(
+                          res.menu.menu1.price
+                            .match(numberPattern)
+                            .join("")
+                            .replace(/,/g, "")
+                        ).toLocaleString("en")}
+                      </SoldPrice>
+                    </GraphItem>
+                  )
+              )}
           </TransitionGraph>
         </TransitionGraphBox>
       </FoodTransition>
