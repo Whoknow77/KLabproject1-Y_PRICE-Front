@@ -7,7 +7,8 @@ function Header({ input, setInput, setSearch, search, id }) {
   const navigate = useNavigate();
   const location = useLocation();
   // 음식과 음식점 정보를 보여줄때는 헤더의 뒤로가기 버튼을 생성
-  const buttonflag = !location.pathname.includes("food");
+  const foodflag = !location.pathname.includes("food");
+  const resflag = !location.pathname.includes("res");
 
   return (
     <HeaderWrapper input={input}>
@@ -21,7 +22,7 @@ function Header({ input, setInput, setSearch, search, id }) {
         <img src="/img/down.png" alt="down" />
       </Select>
       <Search>
-        {buttonflag ? (
+        {foodflag && resflag ? (
           <img
             src={"/img/searchbutton.png"}
             alt=""

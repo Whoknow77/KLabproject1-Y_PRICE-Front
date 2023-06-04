@@ -1,71 +1,66 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 function Foodmap({ searchPlace }) {
-  const [mapLoaded, setMapLoaded] = useState(false);
+  const mapRef = useRef(null);
+  const infowindowRef = useRef(null);
 
   useEffect(() => {
-    const script = document.createElement("script");
-    script.async = true;
-    script.src =
-      "https://dapi.kakao.com/v2/maps/sdk.js?appkey=356b31118b5a1505ace3d54067de4a4e&libraries=services";
-    document.head.appendChild(script);
+    const { kakao } = window;
 
-    script.onload = () => {
-      setMapLoaded(true);
+    const container = document.getElementById("map");
+    const options = {
+      center: new kakao.maps.LatLng(33.450701, 126.570667),
+      level: 3, // 지도 초기 확대레벨
     };
-  }, []);
 
-  useEffect(() => {
-    if (mapLoaded) {
-      const { kakao } = window;
+    const map = new kakao.maps.Map(container, options);
+    mapRef.current = map;
+    infowindowRef.current = new kakao.maps.InfoWindow({ zIndex: 1 });
 
-      var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
-      const container = document.getElementById("map");
-      const options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
-        level: 3, // 지도 초기 확대레벨
-      };
+    const ps = new kakao.maps.services.Places();
 
-      const map = new kakao.maps.Map(container, options);
-      const ps = new kakao.maps.services.Places();
+    ps.keywordSearch(searchPlace, placesSearchCB);
 
-      ps.keywordSearch(searchPlace, placesSearchCB);
+    function placesSearchCB(data, status, pagination) {
+      if (status === kakao.maps.services.Status.OK) {
+        const firstPlace = data[0];
+        map.setCenter(new kakao.maps.LatLng(firstPlace.y, firstPlace.x));
 
-      function placesSearchCB(data, status, pagination) {
-        if (status === kakao.maps.services.Status.OK) {
-          // 첫 번째 검색 결과를 중심으로 지도 이동
-          let firstPlace = data[0];
-          map.setCenter(new kakao.maps.LatLng(firstPlace.y, firstPlace.x));
-
-          for (let i = 0; i < data.length; i++) {
-            displayMarker(data[i]);
-          }
-
-          setTimeout(() => {
-            map.relayout();
-          }, 4000);
-        }
-      }
-
-      function displayMarker(place) {
-        let marker = new kakao.maps.Marker({
-          map: map,
-          position: new kakao.maps.LatLng(place.y, place.x),
-        });
-
-        // 마커에 클릭이벤트를 등록합니다
-        kakao.maps.event.addListener(marker, "click", function () {
-          // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-          infowindow.setContent(
-            '<div style="padding:5px;font-size:12px;">' +
-              place.place_name +
-              "</div>"
-          );
-          infowindow.open(map, marker);
-        });
+        setTimeout(() => {
+          map.relayout();
+          displayMarker(firstPlace); // 수정된 코드: displayMarker 함수 호출
+        }, 1000);
       }
     }
-  }, [mapLoaded, searchPlace]);
+
+    function displayMarker(place) {
+      const marker = new kakao.maps.Marker({
+        map: map,
+        position: new kakao.maps.LatLng(place.y, place.x),
+      });
+
+      kakao.maps.event.addListener(marker, "click", function () {
+        infowindowRef.current.setContent(
+          '<div style="padding:5px;font-size:12px;">' +
+            place.place_name +
+            "</div>"
+        );
+        infowindowRef.current.open(map, marker);
+      });
+
+      const bounds = new kakao.maps.LatLngBounds();
+      bounds.extend(new kakao.maps.LatLng(place.y, place.x));
+      map.setBounds(bounds);
+    }
+  }, [searchPlace]);
+
+  useEffect(() => {
+    if (mapRef.current) {
+      setTimeout(() => {
+        mapRef.current.relayout();
+      }, 0);
+    }
+  }, [searchPlace]);
 
   return (
     <div

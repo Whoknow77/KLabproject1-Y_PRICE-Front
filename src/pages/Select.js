@@ -50,7 +50,7 @@ export default function Select() {
   return (
     <Wrapper>
       <StyledSlider {...settings}>
-        {["gung", "gangnam", "hongdae", "itaewon", "haeundae", "aewol-eup"].map(
+        {["gung", "itaewon", "gangnam", "haeundae", "aewol-eup", "hongdae"].map(
           (item) => {
             return (
               <div key={item}>

@@ -23,7 +23,6 @@ import {
   MenuGroup,
   IndexButton,
   PhotoGroup,
-  Photo,
 } from "./ResDetailStyledComponents";
 import Foodmap from "./Foodmap";
 import { region } from "../region";
@@ -48,9 +47,10 @@ const index = ["Menu", "Photo", "Info"];
 // 음식은 어디서..?
 function ResDetail({ ressearch, id, foodsearch }) {
   const [selected, setSelected] = useState(0);
-  const { resId } = useParams();
+  const { resId } = useParams(); // 떡볶이00, 삼겹살00, ... 등등
   const [userData, setUserData] = useState([]);
   const [target, setTarget] = useState(null);
+  const [searchPlace, setSearchPlace] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -73,25 +73,28 @@ function ResDetail({ ressearch, id, foodsearch }) {
     const updateTarget = (data) => {
       const target = Object.entries(data).filter(([resKey, res], index) => {
         // 문자열을 뒤에서 두개 자르기 (역방향은 안되는듯)
-        return resId === resKey.slice(-2, resKey.length);
+        return resId === resKey.slice(-5, resKey.length);
       });
       setTarget(target);
+      // searchPlace 값 설정
+      setSearchPlace(region[0].search);
     };
 
     fetchData();
   }, []);
-
-  if (target === null) {
+  if (!target || target.length === 0) {
     return <div>로딩중..</div>;
   }
   return (
     <ResDetailWrapper ressearch={ressearch} foodsearch={foodsearch}>
       <ResTitleContainer>
-        <img
-          src={target[0][1].info.main_img}
-          className="Restitleimg"
-          alt="음식점 대표 이미지"
-        />
+        {target[0][1].info.main_img && (
+          <img
+            src={target[0][1].info.main_img}
+            className="Restitleimg"
+            alt="음식점 대표 이미지"
+          />
+        )}
         <ResTitle>
           <TitleBox>
             <Titlename>{target[0][1].info.name}</Titlename>
@@ -127,37 +130,39 @@ function ResDetail({ ressearch, id, foodsearch }) {
       </Index>
       {/* Menu */}
       <MenuGroup selected={selected}>
-        {Object.entries(target[0][1].menu).map(([key, value], index) => {
-          let priceflag = value.name.toLowerCase().includes("tteokbokki");
-          return (
-            <Menu key={index}>
-              <MenuTotalContainer>
-                <MenuInfoContainer>
-                  <MenuTitle>{value.name}</MenuTitle>
-                  <MenuPrice>{value.price}₩</MenuPrice>
-                </MenuInfoContainer>
-                <MenuAverageContainer>
-                  <AverageItem>
-                    <span>Average Price</span>
-                    <MenuAveragePrice>
-                      {priceflag
-                        ? Number(
-                            value.price.split(": ")[1].replace(/,/g, "")
-                          ).toLocaleString("en") + "₩"
-                        : "---"}
-                    </MenuAveragePrice>
-                  </AverageItem>
-                  <img src="/img/right.png" alt="right" />
-                </MenuAverageContainer>
-              </MenuTotalContainer>
-            </Menu>
-          );
-        })}
+        {target[0][1].menu &&
+          Object.entries(target[0][1].menu).map(([key, value], index) => {
+            let priceflag = value.name.toLowerCase().includes("tteokbokki");
+            return (
+              <Menu key={index}>
+                <MenuTotalContainer>
+                  <MenuInfoContainer>
+                    <MenuTitle>{value.name}</MenuTitle>
+                    <MenuPrice>{value.price}₩</MenuPrice>
+                  </MenuInfoContainer>
+                  <MenuAverageContainer>
+                    <AverageItem>
+                      <span>Average Price</span>
+                      <MenuAveragePrice>
+                        {priceflag
+                          ? Number(
+                              value.price.split(": ")[1].replace(/,/g, "")
+                            ).toLocaleString("en") + "₩"
+                          : "---"}
+                      </MenuAveragePrice>
+                    </AverageItem>
+                    <img src="/img/right.png" alt="right" />
+                  </MenuAverageContainer>
+                </MenuTotalContainer>
+              </Menu>
+            );
+          })}
       </MenuGroup>
       {/* Info */}
       <Info selected={selected}>
         {/* 음식점 지도 */}
-        <Foodmap searchPlace={region[0].search} />
+        {searchPlace && <Foodmap searchPlace={target[0][1].info.name} />}
+        {/* searchPlace 값이 있을때만 Foodmap 컴포넌트 렌더링 */}
 
         {/* 음식점 위치 정보 */}
         <Location>

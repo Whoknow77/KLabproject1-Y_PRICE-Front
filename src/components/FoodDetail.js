@@ -86,28 +86,28 @@ function FoodDetail({ foodsearch, ressearch, id }) {
     case "0":
       regex = /0[0-9]|1[0-4]/;
       break;
-    // 강남
-    case "1":
-      regex = /3[0-9]|4[0-4]/;
-      break;
-    // 홍대
-    case "2":
-      regex = /7[5-9]|8[0-9]/;
-      break;
     // 이태원
-    case "3":
+    case "1":
       regex = /1[5-9]|2[0-9]/;
       break;
+    // 강남
+    case "2":
+      regex = /3[0-9]|4[0-4]/;
+      break;
     // 해운대
-    case "4":
+    case "3":
       regex = /4[5-9]|5[0-9]/;
       break;
     // 제주
-    case "5":
+    case "4":
       regex = /6[0-9]|7[0-4]/;
       break;
+    // 홍대
+    case "5":
+      regex = /7[5-9]|8[0-9]/;
+      break;
     default:
-      regex = /3[0-9]|4[0-4]/;
+      regex = 0;
   }
 
   const { foodId } = useParams();
@@ -240,11 +240,11 @@ function FoodDetail({ foodsearch, ressearch, id }) {
             const ImgFlag = res.info.main_img.includes("None");
             const foodFlag = resKey.match(regex);
             const menuFlag = res.info.category === foodtarget;
-            const resId = resKey.slice(-2, resKey.length);
+            const resId = resKey.slice(-5, resKey.length);
 
             return (
-              foodFlag &&
-              menuFlag && (
+              menuFlag &&
+              foodFlag && (
                 <Restuarant
                   key={index}
                   onClick={() => {
