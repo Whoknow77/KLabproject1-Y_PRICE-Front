@@ -93,6 +93,7 @@ function ResDetail({ ressearch, id, foodsearch }) {
             src={target[0][1].info.main_img}
             className="Restitleimg"
             alt="음식점 대표 이미지"
+            loading="lazy"
           />
         )}
         <ResTitle>

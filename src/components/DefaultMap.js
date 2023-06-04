@@ -11,6 +11,7 @@ import {
 import Category from "./Category";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
+import { useNavigate } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlaS2RB7V3YmLAzMV5TKVsHJT8eckYNFE",
@@ -25,6 +26,7 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 
 function DefaultMap({ input, search, id }) {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState([]);
 
   // 지역
@@ -59,6 +61,7 @@ function DefaultMap({ input, search, id }) {
       break;
     // 홍대
     case "5":
+      regex = /7[5-9]|8[0-9]/;
       break;
     default:
       regex = /7[5-9]|8[0-9]/;
@@ -101,10 +104,16 @@ function DefaultMap({ input, search, id }) {
             const Imgurl = res.info.main_img;
             const ImgFlag = res.info.main_img.includes("None");
             const foodFlag = resKey.match(regex);
+            const resId = resKey.slice(-5, resKey.length);
 
             return (
               foodFlag && (
-                <Restuarant key={index}>
+                <Restuarant
+                  key={index}
+                  onClick={() => {
+                    navigate(`/map/${id}/res/${resId}`);
+                  }}
+                >
                   {ImgFlag ? (
                     <img src={"/img/default.png"} alt="" />
                   ) : (

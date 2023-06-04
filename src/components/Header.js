@@ -54,6 +54,18 @@ function Header({ input, setInput, setSearch, search, id }) {
           onKeyDown={(e) => {
             if (e.code === "Enter") {
               setSearch(e.target.value);
+              if (input.toLowerCase() === "tteokbokki") {
+                navigate(`/map/${id}/food/0`);
+              }
+              if (input.toLowerCase() === "bulgogi") {
+                navigate(`/map/${id}/food/1`);
+              }
+              if (input.toLowerCase() === "samgyeopsal") {
+                navigate(`/map/${id}/food/2`);
+              }
+              if (input.toLowerCase() === "bibimbab") {
+                navigate(`/map/${id}/food/3`);
+              }
             }
           }}
         />

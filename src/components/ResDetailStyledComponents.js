@@ -224,5 +224,6 @@ export const PhotoGroup = styled.div`
     border-radius: 10px;
     backface-visibility: hidden;
     image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 `;
