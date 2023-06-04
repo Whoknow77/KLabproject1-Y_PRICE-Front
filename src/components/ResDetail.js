@@ -26,7 +26,7 @@ import {
 } from "./ResDetailStyledComponents";
 import Foodmap from "./Foodmap";
 import { region } from "../region";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 import Loading from "./Loading";
@@ -50,6 +50,7 @@ function ResDetail({ ressearch, id }) {
   const [searchPlace, setSearchPlace] = useState("");
   const [averageprice, setAverageprice] = useState(0);
   const [frequencyPrice, setFrequencyPrice] = useState({});
+  const location = useLocation();
 
   // 지역
   // 경복궁 00 ~ 14
@@ -96,7 +97,6 @@ function ResDetail({ ressearch, id }) {
   if (resId.includes("삼겹살")) {
     foodtarget = "삼겹살";
   }
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -143,7 +143,7 @@ function ResDetail({ ressearch, id }) {
     };
 
     fetchData();
-  }, []);
+  }, [location.pathname]);
 
   // 음식점(target)을 찾기 전까지 로딩창 표시
   if (!target || target.length === 0) {

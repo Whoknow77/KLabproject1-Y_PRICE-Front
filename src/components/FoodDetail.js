@@ -29,7 +29,7 @@ import {
   FoodExplain,
 } from "./FoodDetailStyledComponents";
 import { category } from "../region";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 
@@ -126,6 +126,7 @@ function FoodDetail({ ressearch, id }) {
   const [moneychange, setMoneychange] = useState(false);
   const moneyitem = ["€", "£", "¥", "$", "₩"];
   const [exchangesign, setExchangesign] = useState("₩");
+  const location = useLocation();
 
   const [averageprice, setAverageprice] = useState(0);
   // 가격 빈도 수
@@ -173,7 +174,7 @@ function FoodDetail({ ressearch, id }) {
     };
 
     fetchData();
-  }, []);
+  }, [location.pathname]);
 
   return (
     <FoodSearch ressearch={ressearch}>
