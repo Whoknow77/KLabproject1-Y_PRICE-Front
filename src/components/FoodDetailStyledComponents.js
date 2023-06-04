@@ -136,7 +136,7 @@ export const TransitionGraphBox = styled.div`
 
 export const TransitionGraph = styled.div`
   padding: 15px;
-  height: 100%;
+  height: 283px;
   display: flex;
   align-items: flex-end;
   overflow: scroll;

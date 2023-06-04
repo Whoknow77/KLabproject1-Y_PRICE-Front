@@ -231,7 +231,7 @@ function FoodDetail({ foodsearch, ressearch, id }) {
       <ReswithFood>
         <ResTitle>
           <Title1>These restaurants have</Title1>
-          <Title2>{category[0].name}</Title2>
+          <Title2>{category[foodId].name}</Title2>
         </ResTitle>
         <Restuarants>
           {Object.entries(userData).map(([resKey, res], index) => {

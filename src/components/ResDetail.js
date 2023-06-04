@@ -5,7 +5,6 @@ import {
   Category,
   EmotionBox,
   EmotionGroup,
-  ResImage,
   Index,
   MenuAverageContainer,
   MenuAveragePrice,
@@ -88,7 +87,11 @@ function ResDetail({ ressearch, id, foodsearch }) {
   return (
     <ResDetailWrapper ressearch={ressearch} foodsearch={foodsearch}>
       <ResTitleContainer>
-        <ResImage />
+        <img
+          src={target[0][1].info.main_img}
+          className="Restitleimg"
+          alt="음식점 대표 이미지"
+        />
         <ResTitle>
           <TitleBox>
             <Titlename>{target[0][1].info.name}</Titlename>
@@ -125,6 +128,7 @@ function ResDetail({ ressearch, id, foodsearch }) {
       {/* Menu */}
       <MenuGroup selected={selected}>
         {Object.entries(target[0][1].menu).map(([key, value], index) => {
+          let priceflag = value.name.toLowerCase().includes("tteokbokki");
           return (
             <Menu key={index}>
               <MenuTotalContainer>
@@ -135,7 +139,13 @@ function ResDetail({ ressearch, id, foodsearch }) {
                 <MenuAverageContainer>
                   <AverageItem>
                     <span>Average Price</span>
-                    <MenuAveragePrice>{value.price}₩</MenuAveragePrice>
+                    <MenuAveragePrice>
+                      {priceflag
+                        ? Number(
+                            value.price.split(": ")[1].replace(/,/g, "")
+                          ).toLocaleString("en") + "₩"
+                        : "---"}
+                    </MenuAveragePrice>
                   </AverageItem>
                   <img src="/img/right.png" alt="right" />
                 </MenuAverageContainer>
@@ -149,6 +159,7 @@ function ResDetail({ ressearch, id, foodsearch }) {
         {/* 음식점 지도 */}
         <Foodmap searchPlace={region[0].search} />
 
+        {/* 음식점 위치 정보 */}
         <Location>
           <img src="/img/map_pin.png" alt="map_pin" />
           <span>{target[0][1].info.location}</span>
@@ -158,13 +169,11 @@ function ResDetail({ ressearch, id, foodsearch }) {
           <span>{target[0][1].info.working_hour}</span>
         </Clock>
       </Info>
-      {/* Photo */}
+      {/* 리뷰사진 */}
       <PhotoGroup selected={selected}>
-        {["photo1", "photo1", "photo1", "photo1", "photo1", "photo1"].map(
-          (item, index) => {
-            return <Photo key={index} url={item}></Photo>;
-          }
-        )}
+        {Object.entries(target[0][1].photo).map(([key, value], index) => {
+          return <img src={value.url} alt="리뷰 사진" />;
+        })}
       </PhotoGroup>
     </ResDetailWrapper>
   );

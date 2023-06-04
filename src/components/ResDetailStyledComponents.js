@@ -12,15 +12,12 @@ export const ResTitleContainer = styled.div`
   gap: 20px;
   margin-top: 16px;
   margin-bottom: 17px;
-`;
-
-export const ResImage = styled.div`
-  width: 90px;
-  height: 90px;
-  border: 0.5px solid #d9d9d9;
-  border-radius: 5px;
-  background: url(${process.env.PUBLIC_URL + "/img/Xihongshi.png"}) no-repeat;
-  background-size: cover;
+  .Restitleimg {
+    width: 90px;
+    height: 90px;
+    border: 0.5px solid #d9d9d9;
+    border-radius: 5px;
+  }
 `;
 
 export const ResTitle = styled.div`
@@ -216,15 +213,16 @@ export const PhotoGroup = styled.div`
   margin-top: 15px;
   width: 90%;
   height: 529px;
-  justify-content: space-between;
+  justify-content: space-evenly;
   display: ${({ selected }) => (selected === 1 ? "flex" : "none")};
   flex-wrap: wrap;
   gap: 8px;
-`;
-
-export const Photo = styled.div`
-  background-image: url(${(props) => `/img/${props.url}.png`});
-  width: 140px;
-  height: 211px;
-  border-radius: 10px;
+  img {
+    transform: translateZ(0);
+    width: 140px;
+    height: 211px;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    image-rendering: -webkit-optimize-contrast;
+  }
 `;
