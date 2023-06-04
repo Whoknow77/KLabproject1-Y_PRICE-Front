@@ -45,7 +45,7 @@ const index = ["Menu", "Photo", "Info"];
 // 음식과 음식점에 대한 번호를 가지고 있어야함
 // 음식점은 resId라우터 번호로 가져옴
 // 음식은 어디서..?
-function ResDetail({ ressearch, id, foodsearch }) {
+function ResDetail({ ressearch, id }) {
   const [selected, setSelected] = useState(0);
   const { resId } = useParams(); // 떡볶이00, 삼겹살00, ... 등등
   const [userData, setUserData] = useState([]);
@@ -86,7 +86,7 @@ function ResDetail({ ressearch, id, foodsearch }) {
     return <div>로딩중..</div>;
   }
   return (
-    <ResDetailWrapper ressearch={ressearch} foodsearch={foodsearch}>
+    <ResDetailWrapper ressearch={ressearch}>
       <ResTitleContainer>
         {target[0][1].info.main_img && (
           <img

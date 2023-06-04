@@ -13,25 +13,8 @@ function Map() {
   const { id } = useParams();
   const [search, setSearch] = useState(""); // 완료된 검색어
   const [input, setInput] = useState(""); // 검색어
-  const [foodsearch, setFoodserach] = useState("");
-  const [ressearch, setResserach] = useState("");
 
   // foodsearch와 ressearch는 saerch가 변할때만 바뀌어야한다.
-  useEffect(() => {
-    // 음식 검색
-    setFoodserach(
-      food.find((item) => {
-        return item.name === search;
-      })
-    );
-
-    // 음식점 검색
-    setResserach(
-      Res.find((item) => {
-        return item.name === search;
-      })
-    );
-  }, [search]);
 
   return (
     <Wrapper>
@@ -49,22 +32,10 @@ function Map() {
           path="/"
           element={<DefaultMap input={input} id={id} search={search} />}
         />
-        <Route
-          path="/food/:foodId/"
-          element={
-            <FoodDetail foodsearch={foodsearch} ressearch={ressearch} id={id} />
-          }
-        ></Route>
+        <Route path="/food/:foodId/" element={<FoodDetail id={id} />}></Route>
         <Route
           path="/res/:resId"
-          element={
-            <ResDetail
-              id={id}
-              ressearch={ressearch}
-              foodsearch={foodsearch}
-              search={search}
-            />
-          }
+          element={<ResDetail id={id} search={search} />}
         ></Route>
         <Route path="*" element={<div>없는페이지에요</div>}></Route>
       </Routes>

@@ -70,7 +70,7 @@ function Exchange({ averageprice, exchangesign }) {
   return <FoodInfoPriceItem>{`${result}${exchangesign}`}</FoodInfoPriceItem>;
 }
 
-function FoodDetail({ foodsearch, ressearch, id }) {
+function FoodDetail({ ressearch, id }) {
   const navigate = useNavigate();
 
   // 지역
@@ -176,7 +176,7 @@ function FoodDetail({ foodsearch, ressearch, id }) {
   }, []);
 
   return (
-    <FoodSearch foodsearch={foodsearch} ressearch={ressearch}>
+    <FoodSearch ressearch={ressearch}>
       <FoodSection>
         <FoodInfo>
           <FoodInfoName>{category[foodId].name}</FoodInfoName>
