@@ -8,6 +8,7 @@ import ResDetail from "../components/ResDetail";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 
 import { food, Res } from "../region";
+import Error from "../components/Error";
 
 function Map() {
   const { id } = useParams();
@@ -37,7 +38,7 @@ function Map() {
           path="/res/:resId"
           element={<ResDetail id={id} search={search} />}
         ></Route>
-        <Route path="*" element={<div>없는페이지에요</div>}></Route>
+        <Route path="*" element={<Error id={id} />}></Route>
       </Routes>
     </Wrapper>
   );
