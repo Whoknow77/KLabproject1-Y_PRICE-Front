@@ -14,9 +14,9 @@ function Loading() {
       </div>
       <LoadingTitle>Looking for Prices</LoadingTitle>
       <LoadingExplain>
-        <Dot color="#fff1c5" animation="bounce1" delay="0s" />
-        <Dot color="#ffc300" animation="bounce2" delay="0.3s" />
-        <Dot color="#818181" animation="bounce3" delay="0.6s" />
+        <Dot color="#fff1c5" animation="bounce1" />
+        <Dot color="#ffc300" animation="bounce2" />
+        <Dot color="#818181" animation="bounce3" />
       </LoadingExplain>
     </LoadingWrapper>
   );

@@ -48,6 +48,54 @@ function ResDetail({ ressearch, id }) {
   const [userData, setUserData] = useState([]);
   const [target, setTarget] = useState(null);
   const [searchPlace, setSearchPlace] = useState("");
+  const [averageprice, setAverageprice] = useState(0);
+  const [frequencyPrice, setFrequencyPrice] = useState({});
+
+  // 지역
+  // 경복궁 00 ~ 14
+  // 이태원 15 ~ 29
+  // 강남 30 ~ 44
+  // 부산 45 ~ 59
+  // 제주 60 ~ 74
+  // 홍대 75 ~ 89
+  let regex;
+  switch (id) {
+    // 경복궁
+    case "0":
+      regex = /0[0-9]|1[0-4]/;
+      break;
+    // 이태원
+    case "1":
+      regex = /1[5-9]|2[0-9]/;
+      break;
+    // 강남
+    case "2":
+      regex = /3[0-9]|4[0-4]/;
+      break;
+    // 해운대
+    case "3":
+      regex = /4[5-9]|5[0-9]/;
+      break;
+    // 제주
+    case "4":
+      regex = /6[0-9]|7[0-4]/;
+      break;
+    // 홍대
+    case "5":
+      regex = /7[5-9]|8[0-9]/;
+      break;
+    default:
+      regex = 0;
+  }
+
+  // 라우터 foodid에 따른 음식
+  let foodtarget;
+  if (resId.includes("떡볶이")) {
+    foodtarget = "떡볶이";
+  }
+  if (resId.includes("삼겹살")) {
+    foodtarget = "삼겹살";
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,6 +107,7 @@ function ResDetail({ ressearch, id }) {
           const data = snapshot.val();
           setUserData(data);
           updateTarget(data);
+          updateAvergaePrice(data);
         } else {
           console.log("No data available");
         }
@@ -74,9 +123,29 @@ function ResDetail({ ressearch, id }) {
       setSearchPlace(region[0].search);
     };
 
+    const updateAvergaePrice = (data) => {
+      let totalprice = 0;
+      let count = 0;
+      Object.entries(data).forEach(([resKey, res], index) => {
+        // 지역과 음식 채택
+        const foodFlag = resKey.match(regex);
+        const flag =
+          res.info.category === foodtarget && res.menu && res.menu.menu1;
+        if (flag && foodFlag) {
+          const price = parseInt(
+            res.menu.menu1.price.split(": ")[1].replace(/,/g, "")
+          ); // 문자열에서 콤마 제거하고 숫자로 변환
+          totalprice += price;
+          count++;
+        }
+      });
+      setAverageprice(parseInt(totalprice / count));
+    };
+
     fetchData();
   }, []);
 
+  // 음식점(target)을 찾기 전까지 로딩창 표시
   if (!target || target.length === 0) {
     return <Loading />;
   }
@@ -146,7 +215,7 @@ function ResDetail({ ressearch, id }) {
                       <span>Average Price</span>
                       <MenuAveragePrice>
                         {priceflag
-                          ? Number(18000).toLocaleString("en") + "₩"
+                          ? averageprice.toLocaleString("en") + "₩"
                           : "---"}
                       </MenuAveragePrice>
                     </AverageItem>

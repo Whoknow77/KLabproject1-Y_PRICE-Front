@@ -28,7 +28,7 @@ function Foodmap({ searchPlace }) {
 
         setTimeout(() => {
           map.relayout();
-          displayMarker(firstPlace); // 수정된 코드: displayMarker 함수 호출
+          displayMarker(firstPlace);
         }, 1000);
       }
     }
@@ -55,12 +55,18 @@ function Foodmap({ searchPlace }) {
   }, [searchPlace]);
 
   useEffect(() => {
-    if (mapRef.current) {
-      setTimeout(() => {
+    const onResize = () => {
+      if (mapRef.current) {
         mapRef.current.relayout();
-      }, 1500);
-    }
-  }, [searchPlace]);
+      }
+    };
+
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
 
   return (
     <div
