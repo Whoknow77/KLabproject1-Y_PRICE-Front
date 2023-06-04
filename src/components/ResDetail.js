@@ -104,10 +104,10 @@ function ResDetail({ ressearch, id }) {
         const snapshot = await get(ref(db, "/restaurants"));
 
         if (snapshot.exists()) {
-          const data = snapshot.val();
+          const data = snapshot.val(); // realtime 데이터베이스에서 데이터 받아오기
           setUserData(data);
-          updateTarget(data);
-          updateAvergaePrice(data);
+          updateTarget(data); // 음식점 target 찾기
+          updateAvergaePrice(data); // 카테고리 음식 평균값 계산
         } else {
           console.log("No data available");
         }

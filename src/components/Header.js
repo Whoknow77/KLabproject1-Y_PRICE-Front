@@ -94,14 +94,11 @@ function Header({ input, setInput, setSearch, search, id }) {
               setSearch(e.target.value);
               if (input.toLowerCase() === "tteokbokki") {
                 navigate(`/map/${id}/food/0`);
-              }
-              if (input.toLowerCase() === "bulgogi") {
+              } else if (input.toLowerCase() === "bulgogi") {
                 navigate(`/map/${id}/food/1`);
-              }
-              if (input.toLowerCase() === "samgyeopsal") {
+              } else if (input.toLowerCase() === "samgyeopsal") {
                 navigate(`/map/${id}/food/2`);
-              }
-              if (input.toLowerCase() === "bibimbab") {
+              } else if (input.toLowerCase() === "bibimbab") {
                 navigate(`/map/${id}/food/3`);
               } else {
                 const target = Object.entries(userData).filter(
