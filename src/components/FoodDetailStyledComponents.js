@@ -173,7 +173,7 @@ export const SoldPrice = styled.div`
 
 export const ReswithFood = styled.div`
   overflow: scroll;
-  height: 353px;
+  height: 100%;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -196,14 +196,16 @@ export const Title2 = styled.div`
 
 export const Restuarants = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  overflow: scroll;
   &::-webkit-scrollbar {
     display: none;
   }
+
+  height: 400px;
+  flex-direction: column;
+  overflow: scroll;
+  gap: 10px;
+  align-items: center;
   margin-bottom: 69px;
-  height: 100%;
 `;
 
 export const Restuarant = styled.div`
@@ -221,18 +223,25 @@ export const Restuarant = styled.div`
     text-align: left;
     padding: 13.5px 5px;
   }
-`;
-
-export const Price = styled.span`
-  line-height: 20px;
-  font-weight: 700;
-  font-size: 20px;
+  img {
+    width: 70px;
+    height: 70px;
+  }
 `;
 
 export const ResName = styled.span`
   line-height: 18px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 15px;
+`;
+
+export const Price = styled.span`
+  line-height: 20px;
+  font-weight: 300;
+  font-size: 16px;
+  span {
+    color: #ffc300;
+  }
 `;
 
 export const FoodExplain = styled.span`

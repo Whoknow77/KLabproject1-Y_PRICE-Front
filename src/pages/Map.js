@@ -51,10 +51,12 @@ function Map() {
         />
         <Route
           path="/food/:foodId/"
-          element={<FoodDetail foodsearch={foodsearch} ressearch={ressearch} />}
+          element={
+            <FoodDetail foodsearch={foodsearch} ressearch={ressearch} id={id} />
+          }
         ></Route>
         <Route
-          path="/restaurant/:restaurantId"
+          path="/res/:resId"
           element={
             <ResDetail
               id={id}

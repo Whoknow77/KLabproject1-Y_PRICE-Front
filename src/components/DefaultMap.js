@@ -27,12 +27,41 @@ initializeApp(firebaseConfig);
 function DefaultMap({ input, search, id }) {
   const [userData, setUserData] = useState([]);
 
-  // 지역 거름
+  // 지역
+  // 경복궁 00 ~ 14
+  // 이태원 15 ~ 29
+  // 강남 30 ~ 44
+  // 부산 45 ~ 59
+  // 제주 60 ~ 74
+  // 홍대 75 ~ 89
   let regex;
-  if (Number(id) === 0) {
-    regex = /0[0-9]|1[0-4]/;
-  } else if (Number(id) === 1) {
-    regex = /1[5-9]|2[0-9]/;
+  switch (id) {
+    // 경복궁
+    case "0":
+      regex = /0[0-9]|1[0-4]/;
+      break;
+    // 강남
+    case "1":
+      regex = /3[0-9]|4[0-4]/;
+      break;
+    // 홍대
+    case "2":
+      regex = /7[5-9]|8[0-9]/;
+      break;
+    // 이태원
+    case "3":
+      regex = /1[5-9]|2[0-9]/;
+      break;
+    // 해운대
+    case "4":
+      regex = /4[5-9]|5[0-9]/;
+      break;
+    // 제주
+    case "5":
+      regex = /6[0-9]|7[0-4]/;
+      break;
+    default:
+      regex = /3[0-9]|4[0-4]/;
   }
 
   useEffect(() => {

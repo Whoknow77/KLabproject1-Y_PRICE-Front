@@ -165,6 +165,7 @@ export const AverageItem = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
+  text-align: left;
 `;
 export const MenuAveragePrice = styled.div`
   font-weight: 700;

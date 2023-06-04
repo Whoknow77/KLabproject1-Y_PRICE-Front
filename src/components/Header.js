@@ -53,7 +53,6 @@ function Header({ input, setInput, setSearch, search, id }) {
           onKeyDown={(e) => {
             if (e.code === "Enter") {
               setSearch(e.target.value);
-              // navigate(`/food?q=${input}`);
             }
           }}
         />
