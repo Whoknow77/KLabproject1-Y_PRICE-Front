@@ -58,7 +58,7 @@ function Foodmap({ searchPlace }) {
     if (mapRef.current) {
       setTimeout(() => {
         mapRef.current.relayout();
-      }, 0);
+      }, 1500);
     }
   }, [searchPlace]);
 

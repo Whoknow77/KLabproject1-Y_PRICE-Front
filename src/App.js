@@ -6,6 +6,7 @@ import Select from "./pages/Select";
 import Map from "./pages/Map";
 import { Reset } from "styled-reset";
 import Error from "./components/Error";
+import Loading from "./components/Loading";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/select/:id" element={<Select />} />
         <Route path="/map/:id/*" element={<Map />} />
         <Route path="*" element={<Error />} />
+        <Route path="/loading" element={<Loading />} />
       </Routes>
     </div>
   );

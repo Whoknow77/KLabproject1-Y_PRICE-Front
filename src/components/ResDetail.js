@@ -29,6 +29,7 @@ import { region } from "../region";
 import { useParams } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
+import Loading from "./Loading";
 const firebaseConfig = {
   apiKey: "AIzaSyAlaS2RB7V3YmLAzMV5TKVsHJT8eckYNFE",
   authDomain: "yprice-e94af.firebaseapp.com",
@@ -77,7 +78,7 @@ function ResDetail({ ressearch, id }) {
   }, []);
 
   if (!target || target.length === 0) {
-    return <div>로딩중..</div>;
+    return <Loading />;
   }
 
   return (

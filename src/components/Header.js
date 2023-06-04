@@ -113,6 +113,7 @@ function Header({ input, setInput, setSearch, search, id }) {
                   const resId = target[0][0].slice(-5, target[0][0].length);
                   navigate(`/map/${id}/res/${resId}`);
                 } else {
+                  setInput("");
                   navigate(`/map/${id}/searcherror`);
                 }
               }
