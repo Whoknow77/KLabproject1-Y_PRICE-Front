@@ -24,6 +24,7 @@ function Header({ input, setInput, setSearch, search, id }) {
   // 음식과 음식점 정보를 보여줄때는 헤더의 뒤로가기 버튼을 생성
   const foodflag = !location.pathname.includes("food");
   const resflag = !location.pathname.includes("res");
+  const errorflag = !location.pathname.includes("error");
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
@@ -59,7 +60,7 @@ function Header({ input, setInput, setSearch, search, id }) {
         <img src="/img/down.png" alt="down" />
       </Select>
       <Search>
-        {foodflag && resflag ? (
+        {foodflag && resflag && errorflag ? (
           <img
             src={"/img/searchbutton.png"}
             alt=""
@@ -108,8 +109,12 @@ function Header({ input, setInput, setSearch, search, id }) {
                     return res.info.name === input;
                   }
                 );
-                const resId = target[0][0].slice(-5, target[0][0].length);
-                navigate(`/map/${id}/res/${resId}`);
+                if (target.length > 0) {
+                  const resId = target[0][0].slice(-5, target[0][0].length);
+                  navigate(`/map/${id}/res/${resId}`);
+                } else {
+                  navigate(`/map/${id}/searcherror`);
+                }
               }
             }
           }}

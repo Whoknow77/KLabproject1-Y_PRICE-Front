@@ -95,6 +95,10 @@ export const MenuGroup = styled.div`
   display: ${({ selected }) => (selected === 0 ? "flex" : "none")};
   flex-wrap: wrap;
   gap: 20px;
+  @media (max-width: 595px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 // Menu
@@ -107,6 +111,11 @@ export const Menu = styled.div`
   background: #ffffff;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
+
+  @media (max-width: 595px) {
+    width: 100%;
+    height: 84px;
+  }
 `;
 
 export const MenuTotalContainer = styled.div`
@@ -114,6 +123,11 @@ export const MenuTotalContainer = styled.div`
   flex-direction: column;
   gap: 10px;
   height: 107px;
+  @media (max-width: 595px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 export const MenuInfoContainer = styled.div`
@@ -146,7 +160,6 @@ export const MenuAverageContainer = styled.button`
   padding: 10px;
   gap: 10px;
   justify-content: space-between;
-  width: 240px;
   height: 54px;
   background: #fff1c5;
   border-radius: 5px;
@@ -218,12 +231,10 @@ export const PhotoGroup = styled.div`
   flex-wrap: wrap;
   gap: 8px;
   img {
-    transform: translateZ(0);
+    object-fit: contain;
     width: 140px;
     height: 211px;
     border-radius: 10px;
-    backface-visibility: hidden;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
+    image-rendering: pixelated;
   }
 `;

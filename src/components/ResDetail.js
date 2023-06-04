@@ -29,7 +29,6 @@ import { region } from "../region";
 import { useParams } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
-
 const firebaseConfig = {
   apiKey: "AIzaSyAlaS2RB7V3YmLAzMV5TKVsHJT8eckYNFE",
   authDomain: "yprice-e94af.firebaseapp.com",
@@ -42,12 +41,9 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 const index = ["Menu", "Photo", "Info"];
 
-// 음식과 음식점에 대한 번호를 가지고 있어야함
-// 음식점은 resId라우터 번호로 가져옴
-// 음식은 어디서..?
 function ResDetail({ ressearch, id }) {
   const [selected, setSelected] = useState(0);
-  const { resId } = useParams(); // 떡볶이00, 삼겹살00, ... 등등
+  const { resId } = useParams();
   const [userData, setUserData] = useState([]);
   const [target, setTarget] = useState(null);
   const [searchPlace, setSearchPlace] = useState("");
@@ -55,12 +51,11 @@ function ResDetail({ ressearch, id }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 데이터베이스 가져오기
         const db = getDatabase();
         const snapshot = await get(ref(db, "/restaurants"));
 
         if (snapshot.exists()) {
-          const data = snapshot.val(); // 데이터 가져오기
+          const data = snapshot.val();
           setUserData(data);
           updateTarget(data);
         } else {
@@ -72,26 +67,26 @@ function ResDetail({ ressearch, id }) {
     };
     const updateTarget = (data) => {
       const target = Object.entries(data).filter(([resKey, res], index) => {
-        // 문자열을 뒤에서 두개 자르기 (역방향은 안되는듯)
         return resId === resKey.slice(-5, resKey.length);
       });
       setTarget(target);
-      // searchPlace 값 설정
       setSearchPlace(region[0].search);
     };
 
     fetchData();
   }, []);
+
   if (!target || target.length === 0) {
     return <div>로딩중..</div>;
   }
+
   return (
     <ResDetailWrapper ressearch={ressearch}>
       <ResTitleContainer>
         {target[0][1].info.main_img && (
           <img
             src={target[0][1].info.main_img}
-            className="Restitleimg"
+            className="Restitleimg pixelated"
             alt="음식점 대표 이미지"
             loading="lazy"
           />
@@ -120,7 +115,6 @@ function ResDetail({ ressearch, id }) {
           return (
             <IndexButton
               key={item}
-              // 클릭 시에만 active
               active={idx === selected}
               onClick={() => setSelected(idx)}
             >
@@ -129,26 +123,29 @@ function ResDetail({ ressearch, id }) {
           );
         })}
       </Index>
-      {/* Menu */}
       <MenuGroup selected={selected}>
         {target[0][1].menu &&
           Object.entries(target[0][1].menu).map(([key, value], index) => {
-            let priceflag = value.name.toLowerCase().includes("tteokbokki");
+            const foodregex = /(tteokbokki|pork)/gi;
+            let priceflag = foodregex.test(value.name.toLowerCase());
             return (
               <Menu key={index}>
                 <MenuTotalContainer>
                   <MenuInfoContainer>
                     <MenuTitle>{value.name}</MenuTitle>
-                    <MenuPrice>{value.price}₩</MenuPrice>
+                    <MenuPrice>
+                      {Number(
+                        value.price.split(": ")[1].replace(/,/g, "")
+                      ).toLocaleString("en")}
+                      ₩
+                    </MenuPrice>
                   </MenuInfoContainer>
                   <MenuAverageContainer>
                     <AverageItem>
                       <span>Average Price</span>
                       <MenuAveragePrice>
                         {priceflag
-                          ? Number(
-                              value.price.split(": ")[1].replace(/,/g, "")
-                            ).toLocaleString("en") + "₩"
+                          ? Number(18000).toLocaleString("en") + "₩"
                           : "---"}
                       </MenuAveragePrice>
                     </AverageItem>
@@ -159,13 +156,8 @@ function ResDetail({ ressearch, id }) {
             );
           })}
       </MenuGroup>
-      {/* Info */}
       <Info selected={selected}>
-        {/* 음식점 지도 */}
         {searchPlace && <Foodmap searchPlace={target[0][1].info.name} />}
-        {/* searchPlace 값이 있을때만 Foodmap 컴포넌트 렌더링 */}
-
-        {/* 음식점 위치 정보 */}
         <Location>
           <img src="/img/map_pin.png" alt="map_pin" />
           <span>{target[0][1].info.location}</span>
@@ -175,10 +167,9 @@ function ResDetail({ ressearch, id }) {
           <span>{target[0][1].info.working_hour}</span>
         </Clock>
       </Info>
-      {/* 리뷰사진 */}
       <PhotoGroup selected={selected}>
         {Object.entries(target[0][1].photo).map(([key, value], index) => {
-          return <img src={value.url} alt="리뷰 사진" />;
+          return <img src={value.url} alt="리뷰 사진" className="pixelated" />;
         })}
       </PhotoGroup>
     </ResDetailWrapper>
