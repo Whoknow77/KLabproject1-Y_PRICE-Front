@@ -90,6 +90,8 @@ export const IndexButton = styled.button`
   line-height: 18px;
 `;
 
+// Menu
+
 export const MenuGroup = styled.div`
   margin-top: 15px;
   display: ${({ selected }) => (selected === 0 ? "flex" : "none")};
@@ -101,7 +103,6 @@ export const MenuGroup = styled.div`
   }
 `;
 
-// Menu
 export const Menu = styled.div`
   padding: 15px;
   gap: 10px;

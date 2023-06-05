@@ -29,7 +29,7 @@ function Foodmap({ searchPlace }) {
         setTimeout(() => {
           map.relayout();
           displayMarker(firstPlace);
-        }, 1000);
+        }, 1500);
       }
     }
 

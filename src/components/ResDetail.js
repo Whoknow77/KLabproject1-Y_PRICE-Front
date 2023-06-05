@@ -26,7 +26,7 @@ import {
 } from "./ResDetailStyledComponents";
 import Foodmap from "./Foodmap";
 import { region } from "../region";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 import Loading from "./Loading";
@@ -50,6 +50,7 @@ function ResDetail({ ressearch, id }) {
   const [searchPlace, setSearchPlace] = useState("");
   const [averageprice, setAverageprice] = useState(0);
   const [frequencyPrice, setFrequencyPrice] = useState({});
+  const navigate = useNavigate();
   const location = useLocation();
 
   // 지역
@@ -91,11 +92,14 @@ function ResDetail({ ressearch, id }) {
 
   // 라우터 foodid에 따른 음식
   let foodtarget;
+  let foodtarget2; // 음식점 내에서 평균가격 이동
   if (resId.includes("떡볶이")) {
     foodtarget = "떡볶이";
+    foodtarget2 = 0;
   }
   if (resId.includes("삼겹살")) {
     foodtarget = "삼겹살";
+    foodtarget2 = 2;
   }
   useEffect(() => {
     const fetchData = async () => {
@@ -210,7 +214,11 @@ function ResDetail({ ressearch, id }) {
                       ₩
                     </MenuPrice>
                   </MenuInfoContainer>
-                  <MenuAverageContainer>
+                  <MenuAverageContainer
+                    onClick={() => {
+                      navigate(`/map/${id}/food/${foodtarget2}`);
+                    }}
+                  >
                     <AverageItem>
                       <span>Average Price</span>
                       <MenuAveragePrice>
@@ -239,7 +247,7 @@ function ResDetail({ ressearch, id }) {
       </Info>
       <PhotoGroup selected={selected}>
         {Object.entries(target[0][1].photo).map(([key, value], index) => {
-          return <img src={value.url} alt="리뷰 사진" className="pixelated" />;
+          return <img src={value.url} alt="리뷰 사진" />;
         })}
       </PhotoGroup>
     </ResDetailWrapper>
