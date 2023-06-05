@@ -10,7 +10,7 @@ export const PhotoGroup = styled.div`
   img {
     object-fit: contain;
     width: 140px;
-    height: 211px;
+    height: 100%;
     border-radius: 10px;
     image-rendering: pixelated;
   }
