@@ -94,7 +94,7 @@ export const IndexButton = styled.button`
 
 export const MenuGroup = styled.div`
   margin-top: 15px;
-  display: ${({ selected }) => (selected === 0 ? "flex" : "none")};
+  display: flex;
   flex-wrap: wrap;
   gap: 20px;
   @media (max-width: 595px) {
@@ -188,7 +188,7 @@ export const MenuAveragePrice = styled.div`
 
 // Info
 export const Info = styled.div`
-  display: ${({ selected }) => (selected === 2 ? "flex" : "none")};
+  display: flex;
   flex-direction: column;
   gap: 10px;
   span {
@@ -228,7 +228,7 @@ export const PhotoGroup = styled.div`
   width: 90%;
   height: 529px;
   justify-content: space-evenly;
-  display: ${({ selected }) => (selected === 1 ? "flex" : "none")};
+  display: flex;
   flex-wrap: wrap;
   gap: 8px;
   img {

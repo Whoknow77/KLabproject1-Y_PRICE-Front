@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import {
   Menu,
   AverageItem,
@@ -49,7 +49,6 @@ function ResDetail({ ressearch, id }) {
   const [target, setTarget] = useState(null);
   const [searchPlace, setSearchPlace] = useState("");
   const [averageprice, setAverageprice] = useState(0);
-  const [frequencyPrice, setFrequencyPrice] = useState({});
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -154,6 +153,76 @@ function ResDetail({ ressearch, id }) {
     return <Loading />;
   }
 
+  let ComponentToRender;
+  switch (selected) {
+    case 0:
+      ComponentToRender = (
+        <MenuGroup selected={selected}>
+          {target[0][1].menu &&
+            Object.entries(target[0][1].menu).map(([key, value], index) => {
+              const foodregex = /(tteokbokki|pork)/gi;
+              let priceflag = foodregex.test(value.name.toLowerCase());
+              return (
+                <Menu key={index}>
+                  <MenuTotalContainer>
+                    <MenuInfoContainer>
+                      <MenuTitle>{value.name}</MenuTitle>
+                      <MenuPrice>
+                        {Number(
+                          value.price.split(": ")[1].replace(/,/g, "")
+                        ).toLocaleString("en")}
+                        ₩
+                      </MenuPrice>
+                    </MenuInfoContainer>
+                    <MenuAverageContainer
+                      onClick={() => {
+                        navigate(`/map/${id}/food/${foodtarget2}`);
+                      }}
+                    >
+                      <AverageItem>
+                        <span>Average Price</span>
+                        <MenuAveragePrice>
+                          {priceflag
+                            ? averageprice.toLocaleString("en") + "₩"
+                            : "---"}
+                        </MenuAveragePrice>
+                      </AverageItem>
+                      <img src="/img/right.png" alt="right" />
+                    </MenuAverageContainer>
+                  </MenuTotalContainer>
+                </Menu>
+              );
+            })}
+        </MenuGroup>
+      );
+      break;
+    case 1:
+      ComponentToRender = (
+        <PhotoGroup selected={selected}>
+          {Object.entries(target[0][1].photo).map(([key, value], index) => {
+            return <img src={value.url} alt="리뷰 사진" />;
+          })}
+        </PhotoGroup>
+      );
+      break;
+    case 2:
+      ComponentToRender = (
+        <Info selected={selected}>
+          {searchPlace && <Foodmap searchPlace={target[0][1].info.name} />}
+          <Location>
+            <img src="/img/map_pin.png" alt="map_pin" />
+            <span>{target[0][1].info.location}</span>
+          </Location>
+          <Clock>
+            <img src="/img/clock_pin.png" alt="clock_pin" />
+            <span>{target[0][1].info.working_hour}</span>
+          </Clock>
+        </Info>
+      );
+      break;
+    default:
+  }
+
   return (
     <ResDetailWrapper ressearch={ressearch}>
       <ResTitleContainer>
@@ -197,59 +266,7 @@ function ResDetail({ ressearch, id }) {
           );
         })}
       </Index>
-      <MenuGroup selected={selected}>
-        {target[0][1].menu &&
-          Object.entries(target[0][1].menu).map(([key, value], index) => {
-            const foodregex = /(tteokbokki|pork)/gi;
-            let priceflag = foodregex.test(value.name.toLowerCase());
-            return (
-              <Menu key={index}>
-                <MenuTotalContainer>
-                  <MenuInfoContainer>
-                    <MenuTitle>{value.name}</MenuTitle>
-                    <MenuPrice>
-                      {Number(
-                        value.price.split(": ")[1].replace(/,/g, "")
-                      ).toLocaleString("en")}
-                      ₩
-                    </MenuPrice>
-                  </MenuInfoContainer>
-                  <MenuAverageContainer
-                    onClick={() => {
-                      navigate(`/map/${id}/food/${foodtarget2}`);
-                    }}
-                  >
-                    <AverageItem>
-                      <span>Average Price</span>
-                      <MenuAveragePrice>
-                        {priceflag
-                          ? averageprice.toLocaleString("en") + "₩"
-                          : "---"}
-                      </MenuAveragePrice>
-                    </AverageItem>
-                    <img src="/img/right.png" alt="right" />
-                  </MenuAverageContainer>
-                </MenuTotalContainer>
-              </Menu>
-            );
-          })}
-      </MenuGroup>
-      <Info selected={selected}>
-        {searchPlace && <Foodmap searchPlace={target[0][1].info.name} />}
-        <Location>
-          <img src="/img/map_pin.png" alt="map_pin" />
-          <span>{target[0][1].info.location}</span>
-        </Location>
-        <Clock>
-          <img src="/img/clock_pin.png" alt="clock_pin" />
-          <span>{target[0][1].info.working_hour}</span>
-        </Clock>
-      </Info>
-      <PhotoGroup selected={selected}>
-        {Object.entries(target[0][1].photo).map(([key, value], index) => {
-          return <img src={value.url} alt="리뷰 사진" />;
-        })}
-      </PhotoGroup>
+      <> {ComponentToRender}</>
     </ResDetailWrapper>
   );
 }

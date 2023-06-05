@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Wrapper } from "../components/MapStyledComponents";
 import DefaultMap from "../components/DefaultMap";
@@ -7,7 +8,6 @@ import FoodDetail from "../components/FoodDetail";
 import ResDetail from "../components/ResDetail";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 
-import { food, Res } from "../region";
 import Error from "../components/Error";
 
 function Map() {
@@ -43,5 +43,4 @@ function Map() {
     </Wrapper>
   );
 }
-
 export default Map;
