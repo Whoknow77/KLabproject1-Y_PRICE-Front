@@ -239,8 +239,14 @@ export const Price = styled.span`
   line-height: 20px;
   font-weight: 300;
   font-size: 16px;
+  display: flex;
+  gap: 5px;
   span {
     color: #ffc300;
+  }
+  img {
+    width: 16px;
+    height: 18px;
   }
 `;
 

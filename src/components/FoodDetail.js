@@ -267,7 +267,8 @@ function FoodDetail({ ressearch, id }) {
                     <ResName>{res.info.name}</ResName>
                     <br />
                     <Price>
-                      Rating <span>{res.info.rating}</span>
+                      <img src="/img/star.png" alt="별점 이미지" />
+                      <span>{res.info.rating}</span>
                     </Price>
                   </div>
                 </Restuarant>

@@ -64,6 +64,13 @@ export const Price = styled.span`
   line-height: 20px;
   font-weight: 300;
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  img {
+    width: 16px;
+    height: 18px;
+  }
   span {
     color: #ffc300;
   }
