@@ -16,6 +16,10 @@ export const HomeContainer = styled.div`
 
 export const Logo = styled.div`
   margin: 92px auto 0 auto;
+  img {
+    transition: opacity 1s ease-in-out;
+    opacity: ${(props) => (props.showcount ? "1" : "0")};
+  }
 `;
 
 export const Title = styled.div`
@@ -24,6 +28,29 @@ export const Title = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
+  transition: opacity 1s ease-in-out;
+  opacity: ${(props) => (props.showcount ? "1" : "0")};
+`;
+export const Button = styled.button`
+  margin-top: 85px;
+  width: 191px;
+  display: flex;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  padding: 20px 40px;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 21px;
+  background: #ffc300;
+  border-radius: 32px;
+  outline: none;
+  align-self: center;
+  &:focus {
+    outline: none;
+  }
+  transition: opacity 1s ease-in-out;
+  opacity: ${(props) => (props.showcount ? "1" : "0")};
 `;
 
 export const MainTitle = styled.div`
@@ -44,24 +71,4 @@ export const SubTitle = styled.div`
   font-weight: 500;
   font-size: 15px;
   line-height: 21px;
-`;
-
-export const Button = styled.button`
-  margin-top: 85px;
-  width: 191px;
-  display: flex;
-  justify-content: center;
-  border: none;
-  cursor: pointer;
-  padding: 20px 40px;
-  font-weight: 600;
-  font-size: 30px;
-  line-height: 21px;
-  background: #ffc300;
-  border-radius: 32px;
-  outline: none;
-  align-self: center;
-  &:focus {
-    outline: none;
-  }
 `;

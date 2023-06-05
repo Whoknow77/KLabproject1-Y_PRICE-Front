@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   HomeContainer,
@@ -12,13 +12,30 @@ import {
 
 function Home() {
   const navigate = useNavigate();
+  const [count, setCount] = useState(0);
+  const [showcount, setShowcount] = useState([0, 0, 0]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (showcount[showcount.length - 1] === 1) {
+        clearTimeout(timer);
+      } else {
+        // showcount[count]의 값을 1로 바꾼다.
+        // [0,0,0], [1,0,0], [1,1,0], [1,1,1]
+        const copy = [...showcount];
+        copy[count] = 1;
+        setShowcount(copy);
+        setCount((prev) => prev + 1);
+      }
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [count]);
   return (
     <Wrapper>
       <HomeContainer>
-        <Logo>
+        <Logo showcount={showcount[0]}>
           <img src="/img/homelogo.png" alt="homelogo" />
         </Logo>
-        <Title>
+        <Title showcount={showcount[1]}>
           <MainTitle>
             Looking for
             <br />
@@ -42,6 +59,7 @@ function Home() {
           onClick={() => {
             navigate("/select/0");
           }}
+          showcount={showcount[2]}
         >
           Start →
         </Button>
