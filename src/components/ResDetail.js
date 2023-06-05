@@ -1,8 +1,6 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  Menu,
-  AverageItem,
-  Category,
+  Rating,
   EmotionBox,
   EmotionGroup,
   Index,
@@ -11,15 +9,10 @@ import {
   ResTitleContainer,
   TitleBox,
   Titlename,
-  Clock,
-  Info,
-  Location,
   IndexButton,
-  PhotoGroup,
 } from "./ResDetailStyledComponents";
-import Foodmap from "./Foodmap";
 import { region } from "../region";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 import Loading from "./Loading";
@@ -45,7 +38,6 @@ function ResDetail({ ressearch, id }) {
   const [target, setTarget] = useState(null);
   const [searchPlace, setSearchPlace] = useState("");
   const [averageprice, setAverageprice] = useState(0);
-  const navigate = useNavigate();
   const location = useLocation();
 
   // 지역
@@ -148,6 +140,8 @@ function ResDetail({ ressearch, id }) {
   if (!target || target.length === 0) {
     return <Loading />;
   }
+
+  // Menu Photo Info
   let ComponentToRender;
   switch (selected) {
     case 0:
@@ -192,13 +186,16 @@ function ResDetail({ ressearch, id }) {
         <ResTitle>
           <TitleBox>
             <Titlename>{target[0][1].info.name}</Titlename>
-            <Category>{target[0][1].info.rating}</Category>
+            <Rating>
+              <img src="/img/star.png" alt="thumbs-up" />
+              <span>{target[0][1].info.rating}</span>
+            </Rating>
           </TitleBox>
           <EmotionGroup>
             {target[0][1].review !== undefined &&
               Object.entries(target[0][1].review).map((reivewKey, review) => {
                 return (
-                  <EmotionBox>
+                  <EmotionBox key={review}>
                     <img src="/img/thumbs-up.png" alt="thumbs-up" />
                     <span style={{ color: "#fff" }}>{reivewKey[1].name}</span>
                     <span style={{ color: "#fff" }}>{reivewKey[1].count}</span>
@@ -221,7 +218,7 @@ function ResDetail({ ressearch, id }) {
           );
         })}
       </Index>
-      <> {ComponentToRender}</>
+      {ComponentToRender}
     </ResDetailWrapper>
   );
 }

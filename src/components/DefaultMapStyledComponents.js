@@ -3,7 +3,6 @@ import styled from "styled-components";
 // 음식점 추천
 export const Respreivew = styled.div`
   background: white;
-  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;

@@ -12,6 +12,7 @@ export const Info = styled.div`
     align-items: center;
     color: #515151;
   }
+  margin-bottom: 23px;
 `;
 export const Location = styled.div`
   display: flex;

@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const PhotoGroup = styled.div`
   margin-top: 15px;
   width: 90%;
-  height: 529px;
   justify-content: space-evenly;
   display: flex;
   flex-wrap: wrap;

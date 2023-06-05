@@ -38,11 +38,18 @@ export const Titlename = styled.span`
   line-height: 20px;
 `;
 
-export const Category = styled.span`
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
+export const Rating = styled.span`
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
   color: #ffc300;
+  img {
+    width: 16px;
+    height: 18px;
+  }
 `;
 
 export const EmotionGroup = styled.div`

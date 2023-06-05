@@ -187,6 +187,71 @@ const IMG = styled.img`
 
 `beforeChange` 함수는 (current,next)인자를 가지고 current : 이전 슬라이드의 인덱스, next : 다음 슬라이드의 인덱스를 나타내므로 beforeChange 내부에서 setId를 호출하면, 슬라이드가 실제로 바뀌기 전에 id 상태가 업데이트되는 것을 보장할 수 있다.
 
+### 2. 이벤트 처리 방식과 클로저 함수
+
+```js
+import { useState } from "react";
+
+function ResMenuGroup({ selected, target, id, foodtarget2, averageprice }) {
+  let priceflag;
+  return (
+    <ResMenuWrapper>
+      {Object.entries(target[0][1].menu).map(([key, value], index) => {
+        const foodregex = /(tteokbokki|pork)/gi;
+        priceflag = foodregex.test(value.name.toLowerCase());
+        return (
+          <MenuAverageContainer
+            onClick={() => {
+              if (priceflag) {
+                //
+              } else {
+                //
+              }
+            }}
+          ></MenuAverageContainer>
+        );
+      })}
+    </ResMenuWrapper>
+  );
+}
+export default ResMenuGroup;
+```
+
+반복문안에서 변하는 `priceflag`를 전역적으로 선언하였다.
+
+하지만 원하는 결과값이 나오지 않았고 확인해보니 항상 false값을 가지는 것을 발견하였다.
+
+```js
+import { useState } from "react";
+
+function ResMenuGroup({ selected, target, id, foodtarget2, averageprice }) {
+  return (
+    <ResMenuWrapper>
+      {Object.entries(target[0][1].menu).map(([key, value], index) => {
+        const foodregex = /(tteokbokki|pork)/gi;
+        let priceflag = foodregex.test(value.name.toLowerCase());
+        return (
+          <MenuAverageContainer
+            onClick={() => {
+              if (priceflag) {
+                //
+              } else {
+                //
+              }
+            }}
+          ></MenuAverageContainer>
+        );
+      })}
+    </ResMenuWrapper>
+  );
+}
+export default ResMenuGroup;
+```
+
+그리고 `priceflag`를 전역적으로 선언하지 않고 안에서 선언해봤더니 값이 조건에 맞게 true or false에 맞게 이벤트가 잘 동작되었다.
+
+이유가 뭘까?
+
 ## 참고자료
 
 https://velog.io/@owlsuri/React-slick-Custom

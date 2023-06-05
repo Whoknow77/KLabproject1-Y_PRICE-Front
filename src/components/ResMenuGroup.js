@@ -10,11 +10,21 @@ import {
   AverageItem,
   MenuAveragePrice,
 } from "./ResMenuGroupStyledComponets";
+import Modal from "./Modal";
+import { useState } from "react";
 
 function ResMenuGroup({ selected, target, id, foodtarget2, averageprice }) {
   const navigate = useNavigate();
+  const [showModal, setShowmodal] = useState(false);
+
   return (
     <ResMenuWrapper selected={selected}>
+      {showModal && (
+        <Modal
+          onClose={() => setShowmodal(false)}
+          setShowmodal={setShowmodal}
+        />
+      )}
       {target[0][1].menu &&
         Object.entries(target[0][1].menu).map(([key, value], index) => {
           const foodregex = /(tteokbokki|pork)/gi;
@@ -33,7 +43,11 @@ function ResMenuGroup({ selected, target, id, foodtarget2, averageprice }) {
                 </MenuInfoContainer>
                 <MenuAverageContainer
                   onClick={() => {
-                    navigate(`/map/${id}/food/${foodtarget2}`);
+                    if (priceflag) {
+                      navigate(`/map/${id}/food/${foodtarget2}`);
+                    } else {
+                      setShowmodal(true);
+                    }
                   }}
                 >
                   <AverageItem>
