@@ -88,71 +88,6 @@ function ResDetail({ ressearch, id }) {
     default:
       regex = 0;
   }
-
-  // 라우터 foodid에 따른 음식
-  let foodtarget;
-  let foodtarget2; // 음식점 내에서 평균가격 이동
-  if (resId.includes("떡볶이")) {
-    foodtarget = "떡볶이";
-    foodtarget2 = 0;
-  }
-  if (resId.includes("삼겹살")) {
-    foodtarget = "삼겹살";
-    foodtarget2 = 2;
-  }
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const db = getDatabase();
-        const snapshot = await get(ref(db, "/restaurants"));
-
-        if (snapshot.exists()) {
-          const data = snapshot.val(); // realtime 데이터베이스에서 데이터 받아오기
-          setUserData(data);
-          updateTarget(data); // 음식점 target 찾기
-          updateAvergaePrice(data); // 카테고리 음식 평균값 계산
-        } else {
-          console.log("No data available");
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    const updateTarget = (data) => {
-      const target = Object.entries(data).filter(([resKey, res], index) => {
-        return resId === resKey.slice(-5, resKey.length);
-      });
-      setTarget(target);
-      setSearchPlace(region[0].search);
-    };
-
-    const updateAvergaePrice = (data) => {
-      let totalprice = 0;
-      let count = 0;
-      Object.entries(data).forEach(([resKey, res], index) => {
-        // 지역과 음식 채택
-        const foodFlag = resKey.match(regex);
-        const flag =
-          res.info.category === foodtarget && res.menu && res.menu.menu1;
-        if (flag && foodFlag) {
-          const price = parseInt(
-            res.menu.menu1.price.split(": ")[1].replace(/,/g, "")
-          ); // 문자열에서 콤마 제거하고 숫자로 변환
-          totalprice += price;
-          count++;
-        }
-      });
-      setAverageprice(parseInt(totalprice / count));
-    };
-
-    fetchData();
-  }, [location.pathname]);
-
-  // 음식점(target)을 찾기 전까지 로딩창 표시
-  if (!target || target.length === 0) {
-    return <Loading />;
-  }
-
   let ComponentToRender;
   switch (selected) {
     case 0:
@@ -221,6 +156,70 @@ function ResDetail({ ressearch, id }) {
       );
       break;
     default:
+  }
+
+  // 라우터 foodid에 따른 음식
+  let foodtarget;
+  let foodtarget2; // 음식점 내에서 평균가격 이동
+  if (resId.includes("떡볶이")) {
+    foodtarget = "떡볶이";
+    foodtarget2 = 0;
+  }
+  if (resId.includes("삼겹살")) {
+    foodtarget = "삼겹살";
+    foodtarget2 = 2;
+  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const db = getDatabase();
+        const snapshot = await get(ref(db, "/restaurants"));
+
+        if (snapshot.exists()) {
+          const data = snapshot.val(); // realtime 데이터베이스에서 데이터 받아오기
+          setUserData(data);
+          updateTarget(data); // 음식점 target 찾기
+          updateAvergaePrice(data); // 카테고리 음식 평균값 계산
+        } else {
+          console.log("No data available");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    const updateTarget = (data) => {
+      const target = Object.entries(data).filter(([resKey, res], index) => {
+        return resId === resKey.slice(-5, resKey.length);
+      });
+      setTarget(target);
+      setSearchPlace(region[0].search);
+    };
+
+    const updateAvergaePrice = (data) => {
+      let totalprice = 0;
+      let count = 0;
+      Object.entries(data).forEach(([resKey, res], index) => {
+        // 지역과 음식 채택
+        const foodFlag = resKey.match(regex);
+        const flag =
+          res.info.category === foodtarget && res.menu && res.menu.menu1;
+        if (flag && foodFlag) {
+          const price = parseInt(
+            res.menu.menu1.price.split(": ")[1].replace(/,/g, "")
+          ); // 문자열에서 콤마 제거하고 숫자로 변환
+          totalprice += price;
+          count++;
+        }
+      });
+      setAverageprice(parseInt(totalprice / count));
+    };
+
+    fetchData();
+  }, [location.pathname]);
+
+  // 음식점(target)을 찾기 전까지 로딩창 표시
+  if (!target || target.length === 0) {
+    return <Loading />;
   }
 
   return (

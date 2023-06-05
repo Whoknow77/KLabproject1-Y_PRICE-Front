@@ -32,6 +32,7 @@ import { category } from "../region";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
+import Loading from "./Loading";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlaS2RB7V3YmLAzMV5TKVsHJT8eckYNFE",
@@ -175,6 +176,11 @@ function FoodDetail({ ressearch, id }) {
 
     fetchData();
   }, [location.pathname]);
+
+  // 음식점(target)을 찾기 전까지 로딩창 표시
+  if (!averageprice) {
+    return <Loading />;
+  }
 
   return (
     <FoodSearch ressearch={ressearch}>
