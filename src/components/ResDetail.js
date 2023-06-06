@@ -10,7 +10,7 @@ import {
   TitleBox,
   Titlename,
   IndexButton,
-} from "./ResDetailStyledComponents";
+} from "../styles/ResDetailStyledComponents";
 import { category, region } from "../region";
 import { useLocation, useParams } from "react-router-dom";
 import { initializeApp } from "firebase/app";

@@ -1,4 +1,4 @@
-import { PhotoGroup } from "./ResPhotogroupStyledComponents";
+import { PhotoGroup } from "../styles/ResPhotogroupStyledComponents";
 
 function ResPhotoGroup({ target }) {
   return (

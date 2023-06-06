@@ -9,7 +9,7 @@ import {
   MenuAverageContainer,
   AverageItem,
   MenuAveragePrice,
-} from "./ResMenuGroupStyledComponets";
+} from "../styles/ResMenuGroupStyledComponets";
 import Modal from "./Modal";
 import { useState } from "react";
 

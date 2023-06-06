@@ -4,8 +4,7 @@ import {
   CategoryGroup,
   CategoryBox,
   CategoryName,
-} from "./CetegoryStyledComponents";
-
+} from "../styles/CetegoryStyledComponents";
 import { category } from "../region";
 import { useNavigate } from "react-router-dom";
 

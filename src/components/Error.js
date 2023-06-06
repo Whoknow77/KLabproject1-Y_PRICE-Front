@@ -4,7 +4,7 @@ import {
   ErrorTitle,
   ErrorWrapper,
   GotoCategoryButton,
-} from "./ErrorStyledComoponents";
+} from "../styles/ErrorStyledComoponents";
 
 function Error({ input, id }) {
   const navigate = useNavigate();

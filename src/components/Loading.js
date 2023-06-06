@@ -4,7 +4,7 @@ import {
   LoadingTitle,
   LoadingExplain,
   Dot,
-} from "./LoadingStyledComponents";
+} from "../styles/LoadingStyledComponents";
 
 function Loading() {
   return (

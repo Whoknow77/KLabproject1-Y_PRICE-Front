@@ -7,7 +7,7 @@ import {
   GoButton,
   SelectBox,
   StyledSlider,
-} from "../components/SelectStyledComponents";
+} from "../styles/SelectStyledComponents";
 import { region } from "../region";
 import { useNavigate } from "react-router-dom";
 

@@ -27,12 +27,13 @@ import {
   Price,
   FoodInfoPriceItem,
   FoodExplain,
-} from "./FoodDetailStyledComponents";
+} from "../styles/FoodDetailStyledComponents";
 import { category } from "../region";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 import Loading from "./Loading";
+import regionexp from "../utils/regionexp";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlaS2RB7V3YmLAzMV5TKVsHJT8eckYNFE",
@@ -74,36 +75,7 @@ function Exchange({ averageprice, exchangesign }) {
 function FoodDetail({ ressearch, id }) {
   const navigate = useNavigate();
 
-  let regex;
-  switch (id) {
-    // 경복궁
-    case "0":
-      regex = /0[0-9]|1[0-4]/;
-      break;
-    // 이태원
-    case "1":
-      regex = /1[5-9]|2[0-9]/;
-      break;
-    // 강남
-    case "2":
-      regex = /3[0-9]|4[0-4]/;
-      break;
-    // 해운대
-    case "3":
-      regex = /4[5-9]|5[0-9]/;
-      break;
-    // 제주
-    case "4":
-      regex = /6[0-9]|7[0-4]/;
-      break;
-    // 홍대
-    case "5":
-      regex = /7[5-9]|8[0-9]/;
-      break;
-    default:
-      regex = 0;
-  }
-
+  const regex = regionexp(id); // map 구별
   const { foodId } = useParams();
   const [userData, setUserData] = useState([]);
   const [frequencyPrice, setFrequencyPrice] = useState({}); // 가격 정보 담는 객체

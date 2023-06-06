@@ -1,4 +1,8 @@
-import { Description, ModalWrapper, Warn } from "./ModalStyledComponents";
+import {
+  Description,
+  ModalWrapper,
+  Warn,
+} from "../styles/ModalStyledComponents";
 
 function Modal({ setShowmodal }) {
   return (

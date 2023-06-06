@@ -14,7 +14,7 @@ export const category = [
     enname: "Tteokbokki",
     encategory: "tteokbokki",
     korname: "떡볶이",
-    category: ["떡볶이", "분식"],
+    category: ["떡볶이"],
     explain: "Spicy rice cakes in a gochujang sauce.",
   },
   {

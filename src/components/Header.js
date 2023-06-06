@@ -1,7 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { region } from "../region";
 import { useLocation } from "react-router-dom";
-import { HeaderWrapper, Select, Search } from "./HeaderStyledComponents";
+import {
+  HeaderWrapper,
+  Select,
+  Search,
+} from "../styles/HeaderStyledComponents";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 import { useEffect, useState } from "react";

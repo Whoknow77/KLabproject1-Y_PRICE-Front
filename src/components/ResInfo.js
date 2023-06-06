@@ -1,5 +1,5 @@
 import Foodmap from "./Foodmap";
-import { Clock, Info, Location } from "./ResInfoStyledComponents";
+import { Clock, Info, Location } from "../styles/ResInfoStyledComponents";
 
 function RseInfo({ selected, target }) {
   return (
