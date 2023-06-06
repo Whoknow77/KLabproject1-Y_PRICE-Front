@@ -74,13 +74,6 @@ function Exchange({ averageprice, exchangesign }) {
 function FoodDetail({ ressearch, id }) {
   const navigate = useNavigate();
 
-  // 지역
-  // 경복궁 00 ~ 14
-  // 이태원 15 ~ 29
-  // 강남 30 ~ 44
-  // 부산 45 ~ 59
-  // 제주 60 ~ 74
-  // 홍대 75 ~ 89
   let regex;
   switch (id) {
     // 경복궁
@@ -112,25 +105,13 @@ function FoodDetail({ ressearch, id }) {
   }
 
   const { foodId } = useParams();
-
-  // 라우터 foodid에 따른 음식
-  let foodtarget;
-  if (Number(foodId) === 0) {
-    foodtarget = "떡볶이";
-  }
-  if (Number(foodId) === 2) {
-    foodtarget = "삼겹살";
-  }
-
   const [userData, setUserData] = useState([]);
-  const [frequencyPrice, setFrequencyPrice] = useState({});
-  const [moneychange, setMoneychange] = useState(false);
-  const moneyitem = ["€", "£", "¥", "$", "₩"];
-  const [exchangesign, setExchangesign] = useState("₩");
-  const location = useLocation();
-
+  const [frequencyPrice, setFrequencyPrice] = useState({}); // 가격 정보 담는 객체
+  const moneyitem = ["€", "£", "¥", "$", "₩"]; // 화폐들
+  const [moneychange, setMoneychange] = useState(false); // 환전
+  const [exchangesign, setExchangesign] = useState("₩"); // 현재 화폐
   const [averageprice, setAverageprice] = useState(0);
-  // 가격 빈도 수
+  const location = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -156,26 +137,45 @@ function FoodDetail({ ressearch, id }) {
       let totalprice = 0;
       let count = 0;
       Object.entries(data).forEach(([resKey, res], index) => {
-        // 지역과 음식 채택
-        const foodFlag = resKey.match(regex);
-        const flag =
-          res.info.category === foodtarget && res.menu && res.menu.menu1;
-        if (flag && foodFlag) {
-          const price = parseInt(
-            res.menu.menu1.price.split(": ")[1].replace(/,/g, "")
+        const isregion = resKey.match(regex); // 지역
+        const iscategory = category[foodId].category.includes(
+          res.info.category
+        ); // 카테고리
+        const isMenu = res.menu; // 메뉴
+        let isPrice = false;
+        if (isMenu) {
+          isPrice = Object.values(res.menu).find((menu) => {
+            console.log(menu.name.toLowerCase("bibimbab"));
+            return menu.name
+              .toLowerCase()
+              .includes(category[foodId].encategory.toLowerCase());
+          });
+        }
+        if (isregion && iscategory && isMenu && isPrice) {
+          const menuprice = Number(
+            Object.values(res.menu)
+              .find((menu) => {
+                return menu.name
+                  .toLowerCase()
+                  .includes(category[foodId].encategory.toLowerCase());
+              })
+              .price.split(": ")[1]
+              .replace(/,/g, "")
           ); // 문자열에서 콤마 제거하고 숫자로 변환
-          totalprice += price;
+          totalprice += menuprice;
           count++;
-          newFrequencyPrice[price.toString()] =
-            (newFrequencyPrice[price] || 0) + 1;
+
+          // 가격 빈도수 계산
+          newFrequencyPrice[menuprice.toString()] =
+            (newFrequencyPrice[menuprice] || 0) + 1;
         }
       });
       setAverageprice(parseInt(totalprice / count));
       setFrequencyPrice(newFrequencyPrice);
     };
-
     fetchData();
   }, [location.pathname]);
+  // 경로가 바뀔때마다 새로계산
 
   // 음식점(target)을 찾기 전까지 로딩창 표시
   if (!averageprice) {
@@ -186,7 +186,7 @@ function FoodDetail({ ressearch, id }) {
     <FoodSearch ressearch={ressearch}>
       <FoodSection>
         <FoodInfo>
-          <FoodInfoName>{category[foodId].name}</FoodInfoName>
+          <FoodInfoName>{category[foodId].enname}</FoodInfoName>
           <FoodInfoNearby>Average Price Nearby</FoodInfoNearby>
           <FoodInfoPrice>
             <Exchange averageprice={averageprice} exchangesign={exchangesign} />
@@ -233,8 +233,7 @@ function FoodDetail({ ressearch, id }) {
         </TransitionGraphBox>
       </FoodTransition>
 
-      {/* 빈도수 빈도수 가격 */}
-
+      {/* 가격 */}
       <ReswithFood>
         <ResTitle>
           <Title1>These restaurants have</Title1>
@@ -242,23 +241,26 @@ function FoodDetail({ ressearch, id }) {
         </ResTitle>
         <Restuarants>
           {Object.entries(userData).map(([resKey, res], index) => {
+            // 가격은 useEffect에서 구한 객체로 검사하면 연산을 줄일 수 있음
             // 이미지 없을때 검사
             const Imgurl = res.info.main_img;
-            const ImgFlag = res.info.main_img.includes("None");
-            const foodFlag = resKey.match(regex);
-            const menuFlag = res.info.category === foodtarget;
-            const resId = resKey.slice(-5, resKey.length);
+            const isImg = res.info.main_img.includes("None");
+            const isregion = resKey.match(regex);
+            const iscategory = category[foodId].category.includes(
+              res.info.category
+            ); // 카테고리
+            const resId = resKey.slice(-5, resKey.length); // 떡볶이00, 떡볶이 01, ...
 
             return (
-              menuFlag &&
-              foodFlag && (
+              isregion &&
+              iscategory && (
                 <Restuarant
                   key={index}
                   onClick={() => {
                     navigate(`/map/${id}/res/${resId}`);
                   }}
                 >
-                  {ImgFlag ? (
+                  {isImg ? (
                     <img src={"/img/default.png"} alt="" />
                   ) : (
                     <img src={`${Imgurl}`} alt="" />

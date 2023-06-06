@@ -25,17 +25,10 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-function DefaultMap({ input, search, id }) {
+function DefaultMap({ input, id }) {
   const navigate = useNavigate();
   const [userData, setUserData] = useState([]);
 
-  // 지역
-  // 경복궁 00 ~ 14
-  // 이태원 15 ~ 29
-  // 강남 30 ~ 44
-  // 부산 45 ~ 59
-  // 제주 60 ~ 74
-  // 홍대 75 ~ 89
   let regex;
   switch (id) {
     // 경복궁
@@ -74,10 +67,7 @@ function DefaultMap({ input, search, id }) {
         const snapshot = await get(ref(db, "/restaurants"));
 
         if (snapshot.exists()) {
-          const data = snapshot.val(); // 데이터 가져오기
-          // 지역에 해당하는 데이터만 뽑기
-
-          // const dataArray = Object.values(data); // 배열 변환
+          const data = snapshot.val();
           setUserData(data);
         } else {
           console.log("No data available");
@@ -103,6 +93,7 @@ function DefaultMap({ input, search, id }) {
             // 이미지 없을때 검사
             const Imgurl = res.info.main_img;
             const ImgFlag = res.info.main_img.includes("None");
+            // 지역별로 음식점 거르기
             const foodFlag = resKey.match(regex);
             const resId = resKey.slice(-5, resKey.length);
 

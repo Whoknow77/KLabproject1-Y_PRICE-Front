@@ -11,7 +11,7 @@ import {
   Titlename,
   IndexButton,
 } from "./ResDetailStyledComponents";
-import { region } from "../region";
+import { category, region } from "../region";
 import { useLocation, useParams } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
@@ -35,18 +35,10 @@ function ResDetail({ ressearch, id }) {
   const [selected, setSelected] = useState(0);
   const { resId } = useParams();
   const [userData, setUserData] = useState([]);
-  const [target, setTarget] = useState(null);
-  const [searchPlace, setSearchPlace] = useState("");
+  const [target, setTarget] = useState(null); // 식당
   const [averageprice, setAverageprice] = useState(0);
   const location = useLocation();
 
-  // 지역
-  // 경복궁 00 ~ 14
-  // 이태원 15 ~ 29
-  // 강남 30 ~ 44
-  // 부산 45 ~ 59
-  // 제주 60 ~ 74
-  // 홍대 75 ~ 89
   let regex;
   switch (id) {
     // 경복궁
@@ -77,17 +69,13 @@ function ResDetail({ ressearch, id }) {
       regex = 0;
   }
 
-  // 라우터 foodid에 따른 음식
-  let foodtarget;
-  let foodtarget2; // 음식점 내에서 평균가격 이동
-  if (resId.includes("떡볶이")) {
-    foodtarget = "떡볶이";
-    foodtarget2 = 0;
-  }
-  if (resId.includes("삼겹살")) {
-    foodtarget = "삼겹살";
-    foodtarget2 = 2;
-  }
+  let foodId;
+  category.forEach((item, index) => {
+    if (resId.includes(item.korname)) {
+      foodId = index;
+    }
+  });
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -111,22 +99,37 @@ function ResDetail({ ressearch, id }) {
         return resId === resKey.slice(-5, resKey.length);
       });
       setTarget(target);
-      setSearchPlace(region[0].search);
     };
 
     const updateAvergaePrice = (data) => {
       let totalprice = 0;
       let count = 0;
       Object.entries(data).forEach(([resKey, res], index) => {
-        // 지역과 음식 채택
-        const foodFlag = resKey.match(regex);
-        const flag =
-          res.info.category === foodtarget && res.menu && res.menu.menu1;
-        if (flag && foodFlag) {
-          const price = parseInt(
-            res.menu.menu1.price.split(": ")[1].replace(/,/g, "")
+        const isregion = resKey.match(regex); // 지역
+        const iscategory = category[foodId].category.includes(
+          res.info.category
+        ); // 카테고리
+        const isMenu = res.menu; // 메뉴
+        let isPrice = false;
+        if (isMenu) {
+          isPrice = Object.values(res.menu).find((menu) => {
+            return menu.name
+              .toLowerCase()
+              .includes(category[foodId].encategory.toLowerCase());
+          });
+        }
+        if (isregion && iscategory && isMenu && isPrice) {
+          const menuprice = Number(
+            Object.values(res.menu)
+              .find((menu) => {
+                return menu.name
+                  .toLowerCase()
+                  .includes(category[foodId].encategory.toLowerCase());
+              })
+              .price.split(": ")[1]
+              .replace(/,/g, "")
           ); // 문자열에서 콤마 제거하고 숫자로 변환
-          totalprice += price;
+          totalprice += menuprice;
           count++;
         }
       });
@@ -150,7 +153,7 @@ function ResDetail({ ressearch, id }) {
           selected={selected}
           target={target}
           id={id}
-          foodtarget2={foodtarget2}
+          foodtarget2={foodId}
           averageprice={averageprice}
         />
       );
@@ -161,13 +164,7 @@ function ResDetail({ ressearch, id }) {
       );
       break;
     case 2:
-      ComponentToRender = (
-        <ResInfo
-          selected={selected}
-          target={target}
-          searchPlace={searchPlace}
-        />
-      );
+      ComponentToRender = <ResInfo selected={selected} target={target} />;
       break;
     default:
   }

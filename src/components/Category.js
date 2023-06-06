@@ -27,7 +27,7 @@ function Category({ input, id }) {
             >
               <img src={`/img/category${index + 1}.png`} alt="" />
               <CategoryName>
-                <span className="categorytitle">{food.name}</span>
+                <span className="categorytitle">{food.enname}</span>
                 <span className="categoryexplain">{food.explain}</span>
               </CategoryName>
             </CategoryBox>

@@ -12,6 +12,10 @@ export const Info = styled.div`
     align-items: center;
     color: #515151;
   }
+  img {
+    width: 20px;
+    height: 20px;
+  }
   margin-bottom: 23px;
 `;
 export const Location = styled.div`
@@ -19,10 +23,6 @@ export const Location = styled.div`
   gap: 10px;
 `;
 export const Clock = styled.div`
-  img {
-    width: 20px;
-    height: 20px;
-  }
   display: flex;
   gap: 10px;
   div {

@@ -27,8 +27,10 @@ function ResMenuGroup({ selected, target, id, foodtarget2, averageprice }) {
       )}
       {target[0][1].menu &&
         Object.entries(target[0][1].menu).map(([key, value], index) => {
-          const foodregex = /(tteokbokki|pork)/gi;
+          const foodregex = /(tteokbokki|pork|bulgogi|bibimbap)/gi;
+          console.log(value.name);
           let priceflag = foodregex.test(value.name.toLowerCase());
+          console.log(priceflag);
           return (
             <Menu key={index}>
               <MenuTotalContainer>

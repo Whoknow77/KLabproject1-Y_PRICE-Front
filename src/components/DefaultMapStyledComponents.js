@@ -50,6 +50,7 @@ export const Restuarant = styled.div`
   img {
     width: 70px;
     height: 70px;
+    border-radius: 5px;
   }
 `;
 

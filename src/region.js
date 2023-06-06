@@ -1,26 +1,41 @@
 // 지역
 export const region = [
-  { city: "Seoul", area: "Gyeongbokgung", search: "경복궁 떡볶이 맛집" },
-  { city: "Seoul", area: "Itaewon", search: "이태원 떡볶이 맛집" },
-  { city: "Seoul", area: "Gangnam", search: "강남 떡볶이 맛집" },
-  { city: "Busan", area: "Haeundae", search: "해운대 떡볶이 맛집" },
-  { city: "Jeju", area: "Aewol-eup", search: "애월읍 떡볶이 맛집" },
-  { city: "Seoul", area: "Hongdae", search: "홍대 떡볶이 맛집" },
+  { city: "Seoul", area: "Gyeongbokgung" },
+  { city: "Seoul", area: "Itaewon" },
+  { city: "Seoul", area: "Gangnam" },
+  { city: "Busan", area: "Haeundae" },
+  { city: "Jeju", area: "Aewol-eup" },
+  { city: "Seoul", area: "Hongdae" },
 ];
 
 // 카테고리
 export const category = [
-  { name: "Tteokbokki", explain: "Spicy rice cakes in a gochujang sauce." },
   {
-    name: "Bulgogi",
+    enname: "Tteokbokki",
+    encategory: "tteokbokki",
+    korname: "떡볶이",
+    category: ["떡볶이", "분식"],
+    explain: "Spicy rice cakes in a gochujang sauce.",
+  },
+  {
+    enname: "Bulgogi",
+    encategory: "bulgogi",
+    korname: "불고기",
+    category: ["불고기,두루치기"],
     explain: "Thinly sliced marinated beef, grilled or stir-fried.",
   },
   {
-    name: "Samgyeopsal",
-    explain: "Grilled pork belly wrapped in lettuce leaves.",
+    enname: "Bibimbap",
+    encategory: "bibimbap",
+    korname: "비빔밥",
+    category: ["한식", "한정식"],
+    explain: "Mixed rice bowl with veggies, meat, and a fried-egg.",
   },
   {
-    name: "Bibimbab",
-    explain: "Mixed rice bowl with veggies, meat, and a fried-egg.",
+    enname: "Samgyeopsal",
+    encategory: "pork",
+    korname: "삼겹살",
+    category: ["삼겹살", "육류,고기"],
+    explain: "Grilled pork belly wrapped in lettuce leaves.",
   },
 ];

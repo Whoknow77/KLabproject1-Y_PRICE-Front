@@ -11,6 +11,7 @@ export const ModalWrapper = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
+  transition: 1s all ease-in-out;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
@@ -21,6 +22,7 @@ export const ModalWrapper = styled.div`
     height: 24px;
     top: 12px;
     right: 12px;
+    cursor: pointer;
   }
 `;
 
