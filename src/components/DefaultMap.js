@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import {
   Respreivew,
   Title,
@@ -11,7 +10,6 @@ import {
 import Category from "./Category";
 import regionexp from "../utils/regionexp";
 import { useNavigate } from "react-router-dom";
-
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 import { firebaseConfig } from "../apis";
@@ -46,8 +44,8 @@ function DefaultMap({ input, id }) {
   return (
     <>
       {/* 카테고리 추천 */}
-
       <Category input={input} id={id} />
+      {/* 음식점 추천  */}
       <Respreivew>
         <Title>Looking for this restaurant?</Title>
         <Card>

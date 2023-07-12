@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import { Wrapper } from "../styles/MapStyledComponents";
-import { Routes, Route } from "react-router-dom";
+import { useParams, Routes, Route } from "react-router-dom";
 import {
   DefaultMap,
   Header,
@@ -12,10 +11,10 @@ import Error from "./Error";
 
 function Map() {
   const { id } = useParams();
-  const [search, setSearch] = useState(""); // 완료된 검색어
+  const [search, setSearch] = useState(""); // 엔터 후 검색어
   const [input, setInput] = useState(""); // 검색어
 
-  // foodsearch와 ressearch는 saerch가 변할때만 바뀌어야한다.
+  // ressearch는 saerch가 변할때만 바뀌어야한다.
 
   return (
     <Wrapper>
