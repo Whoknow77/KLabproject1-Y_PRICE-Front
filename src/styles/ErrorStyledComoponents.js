@@ -39,9 +39,6 @@ export const GotoCategoryButton = styled.button`
   background: #ffc300;
   width: 149px;
   height: 49px;
-  cursor: pointer;
-  border: none;
-  outline: none;
   &:focus {
     outline: none;
   }

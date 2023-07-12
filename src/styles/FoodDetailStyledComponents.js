@@ -56,8 +56,7 @@ export const FoodInfoPriceItem = styled.div`
   display: inline-block;
 `;
 
-export const FoodExchangeButton = styled.div`
-  cursor: pointer;
+export const FoodExchangeButton = styled.button`
   position: relative;
   padding: 4px 10px;
   background: #ffc300;
@@ -68,8 +67,7 @@ export const FoodExchangeButton = styled.div`
   font-weight: 700;
   font-size: 24px;
   line-height: 24px;
-  img {
-    border: none;
+  &:focus {
     outline: none;
   }
 `;
@@ -98,9 +96,6 @@ export const MoneyList = styled.div`
 `;
 
 export const MoneyItem = styled.button`
-  cursor: pointer;
-  border: none;
-  outline: none;
   background: none;
   font-weight: 700;
   font-size: 24px;

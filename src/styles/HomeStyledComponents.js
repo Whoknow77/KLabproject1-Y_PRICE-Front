@@ -36,15 +36,12 @@ export const Button = styled.button`
   width: 191px;
   display: flex;
   justify-content: center;
-  border: none;
-  cursor: pointer;
   padding: 20px 40px;
   font-weight: 600;
   font-size: 30px;
   line-height: 21px;
   background: #ffc300;
   border-radius: 32px;
-  outline: none;
   align-self: center;
   &:focus {
     outline: none;

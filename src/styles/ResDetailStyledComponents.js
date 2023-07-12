@@ -87,11 +87,7 @@ export const IndexButton = styled.button`
   &:focus {
     outline: none;
   }
-  cursor: pointer;
-  outline: none;
-  background: none;
   font-weight: ${({ active }) => (active ? "700" : "500")};
-  border: none;
   border-bottom: ${({ active }) => (active ? "2px solid #515151" : "")};
   font-size: 15px;
   line-height: 18px;

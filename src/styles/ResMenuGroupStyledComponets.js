@@ -63,9 +63,6 @@ export const MenuAverageContainer = styled.button`
   &:focus {
     outline: none;
   }
-  border: none;
-  outline: none;
-  cursor: pointer;
   display: flex;
   align-items: center;
   padding: 10px;

@@ -29,9 +29,6 @@ export const CategoryBox = styled.button`
   &:focus {
     outline: none;
   }
-  border: none;
-  outline: none;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;

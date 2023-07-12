@@ -178,6 +178,23 @@ export default function SelectBackgroundStyledComponents({ img }) {
 }
 ```
 
+추가적으로 캐러셀에서 제공하는 prev, next버튼을 지우고 싶다면
+
+```
+export const StyledSlider = styled(Slider)`
+  height: 100%;
+  width: 100%;
+  position: relative;
+  .slick-prev::before,
+  .slick-next::before {
+    opacity: 1;
+    display: none;
+  }
+`;
+```
+
+위와 같이 제거해 줘야 한다.
+
 ### 2. 이벤트 처리 방식과 클로저 함수
 
 ```js

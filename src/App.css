@@ -4,6 +4,13 @@
   color: #515151;
 }
 
+button {
+  outline: none;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
 input::placeholder {
   color: #ffc300;
   font-weight: 500;

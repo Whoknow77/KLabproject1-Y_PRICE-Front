@@ -48,16 +48,12 @@ export const SelectBox = styled.div`
 export const BackButton = styled.button`
   width: 48px;
   height: 48px;
-  border: none;
-  cursor: pointer;
   left: 5%;
   z-index: 3;
 `;
 export const NextButton = styled.button`
   width: 48px;
   height: 48px;
-  border: none;
-  cursor: pointer;
   right: 5%;
   z-index: 3;
 `;
@@ -66,8 +62,6 @@ export const GoButton = styled.button`
   position: absolute;
   bottom: 100px;
   top: 700px;
-  left: 1.5%;
-  right: 1.5%;
   width: 85%;
   margin: 0 auto;
   background: #ffc300;
@@ -75,9 +69,6 @@ export const GoButton = styled.button`
   height: 54px;
   font-size: 20px;
   font-weight: 600;
-  border: none;
-  cursor: pointer;
-  outline: none;
   &:focus {
     outline: none;
   }
