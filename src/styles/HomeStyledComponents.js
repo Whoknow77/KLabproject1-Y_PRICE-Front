@@ -59,7 +59,7 @@ export const MainTitle = styled.div`
   line-height: 55px;
   font-size: 55px;
   font-weight: 800;
-  span {
+  span {w
     font-weight: 700;
     color: #ffc300;
   }

@@ -14,21 +14,23 @@ function Home() {
   const navigate = useNavigate();
   const [count, setCount] = useState(0);
   const [showcount, setShowcount] = useState([0, 0, 0]);
+
+  // [0,0,0], [1,0,0], [1,1,0], [1,1,1]
   useEffect(() => {
     const timer = setTimeout(() => {
+      // 마지막 showcount값이 1일 경우 타이머 종료
       if (showcount[showcount.length - 1] === 1) {
         clearTimeout(timer);
       } else {
-        // showcount[count]의 값을 1로 바꾼다.
-        // [0,0,0], [1,0,0], [1,1,0], [1,1,1]
         const copy = [...showcount];
         copy[count] = 1;
         setShowcount(copy);
         setCount((prev) => prev + 1);
       }
-    }, 800);
+    }, 1000);
     return () => clearTimeout(timer);
   }, [count]);
+
   return (
     <Wrapper>
       <HomeContainer>
@@ -55,9 +57,8 @@ function Home() {
         </Title>
         <Button
           type="button"
-          className="button"
           onClick={() => {
-            navigate("/select/0");
+            navigate("/select");
           }}
           showcount={showcount[2]}
         >

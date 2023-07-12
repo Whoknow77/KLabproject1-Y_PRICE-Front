@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Wrapper } from "../styles/MapStyledComponents";
-import DefaultMap from "../components/DefaultMap";
-import Header from "../components/Header";
-import FoodDetail from "../components/FoodDetail";
-import ResDetail from "../components/ResDetail";
 import { Routes, Route } from "react-router-dom";
-import Error from "../components/Error";
+import {
+  DefaultMap,
+  Header,
+  FoodDetail,
+  ResDetail,
+} from "./../components/index";
+import Error from "./Error";
+
 function Map() {
   const { id } = useParams();
   const [search, setSearch] = useState(""); // 완료된 검색어
