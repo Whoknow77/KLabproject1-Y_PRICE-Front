@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { region } from "../region";
 import { useLocation } from "react-router-dom";
 import {
   HeaderWrapper,
@@ -10,6 +9,7 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 import { useEffect, useState } from "react";
 import { firebaseConfig } from "../apis";
+import { region } from "./../utils/region";
 
 initializeApp(firebaseConfig);
 
@@ -47,7 +47,7 @@ function Header({ input, setInput, setSearch, search, id }) {
     <HeaderWrapper input={input}>
       <Select
         onClick={() => {
-          navigate("/select/0");
+          navigate("/select");
         }}
       >
         <span className="city">{region[Number(id)].city}</span>

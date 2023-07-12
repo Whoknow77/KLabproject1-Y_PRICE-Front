@@ -5,9 +5,8 @@ import {
   CategoryBox,
   CategoryName,
 } from "../styles/CategoryStyledComponents";
-import { category } from "../region";
 import { useNavigate } from "react-router-dom";
-
+import { category } from "../utils/region";
 function Category({ input, id }) {
   const navigate = useNavigate();
 

@@ -8,6 +8,6 @@ const Background = styled.div`
   height: 800px;
 `;
 
-export default function Image({ img }) {
+export default function SelectBackgroundStyledComponents({ img }) {
   return <Background img={img} />;
 }

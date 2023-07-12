@@ -8,12 +8,12 @@ import {
   SelectBox,
   StyledSlider,
 } from "../styles/SelectStyledComponents";
-import { region } from "../region";
 import { useNavigate } from "react-router-dom";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Image from "./Image";
+import { region } from "../utils/region";
+import SelectBackgroundStyledComponents from "./../styles/SelectBackgroundStyledComponents";
 
 export default function Select() {
   const navigate = useNavigate();
@@ -26,11 +26,11 @@ export default function Select() {
     slidesToScroll: 1,
     // 애니메이션이 진행 중 일때
     beforeChange: (current, next) => {
-      // next
+      // back
       if (current - next === -5 || current - next === 1) {
         setId((prevId) => (prevId === 0 ? 5 : prevId - 1));
       }
-      // back
+      // next
       else {
         setId((prevId) => (prevId + 1) % 6);
       }
@@ -50,15 +50,14 @@ export default function Select() {
   return (
     <Wrapper>
       <StyledSlider {...settings}>
-        {["gung", "itaewon", "gangnam", "haeundae", "aewol-eup", "hongdae"].map(
-          (item) => {
-            return (
-              <div key={item}>
-                <Image img={`/img/${item}.jpg`} />
-              </div>
-            );
-          }
-        )}
+        {region.map((item) => {
+          return (
+            <SelectBackgroundStyledComponents
+              img={`/img/${item.area}.jpg`}
+              key={item.area}
+            />
+          );
+        })}
       </StyledSlider>
       <Title>
         <span>

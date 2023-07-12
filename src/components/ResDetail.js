@@ -11,13 +11,13 @@ import {
   Titlename,
   IndexButton,
 } from "../styles/ResDetailStyledComponents";
-import { category, region } from "../region";
 import { useLocation, useParams } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 
 import { Loading, ResMenuGroup, ResPhotoGroup, ResInfo } from "./index";
 import { firebaseConfig } from "../apis";
+import { region, category } from "./../utils/region";
 
 initializeApp(firebaseConfig);
 const index = ["Menu", "Photo", "Info"];

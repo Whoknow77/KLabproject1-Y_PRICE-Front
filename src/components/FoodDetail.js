@@ -28,13 +28,13 @@ import {
   FoodInfoPriceItem,
   FoodExplain,
 } from "../styles/FoodDetailStyledComponents";
-import { category } from "../region";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 import Loading from "./Loading";
 import regionexp from "../utils/regionexp";
 import { firebaseConfig } from "../apis";
+import { category } from "../utils/region";
 
 initializeApp(firebaseConfig);
 

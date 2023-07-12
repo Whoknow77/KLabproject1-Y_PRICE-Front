@@ -108,11 +108,9 @@ export default function MainCarousel(props) {
 
 `react-slick`의 다양한 메서드를 이용하라고 알려준다.
 
-`Wrapper`를 부모로 삼고. 그 안에서 `position`을 `absolute`값을 주어서 해결하였다.
+결국, 요소들을 하나의 컴포넌트 안에서 정렬하는 것은 불가능하고 따로 배치하여 `position`을 `absolute`값을 주어서 해결하였다.
 
-하지만 그닥 올바른 방법이 아닌 것 같다. 좀 더 깔끔한 방법을 찾으려면 차라리 라이브러리 없이 직접 구현하여 커스텀 하는 방향이 더 쉬울 것 같다는 생각이 들었다.
-
-따라서 다음부턴 캐러셀을 라이브러리없이 직접 구현해보려 한다.
+하지만 그닥 올바른 방법이 아닌 것 같다고 느낄만큼 불편하다는 느낌이 들었다. 좀 더 깔끔한 방법을 찾으려면 차라리 라이브러리 없이 직접 구현하여 커스텀 하는 방향이 더 쉬울 것 같다는 생각이 들었다.
 
 근데 여전히 문제는 초기에 슬라이드를 넘길때 아주 미세하게 깜빡인다는 점과 슬라이드를 넘기면서 전의 이미지와 다음의 이미지가 부드럽게 이어져야 하는데 다음의 이미지가 나오고 또 다음의 이미지가 겹쳐서 나오는 문제가 있다.
 
@@ -122,7 +120,7 @@ export default function MainCarousel(props) {
 
 react-slick 라이브러리의 특성상 이미지 슬라이드는 라이브러리가 제공하는 기능에 의해 자동으로 변경된다.
 
-따라서 이미지가 변할때마다 변하는 문구들은 따로 `useState`로 관리되는 변수를 통해 제어한다.
+따라서 지금보고 있는 이미지를 따로 `useState`로 관리되는 변수를 통해 제어하여야 한다.
 
 ```js
 const [id, setId] = useState(0);
@@ -153,7 +151,11 @@ const settings = {
 };
 ```
 
-슬라이더에 사용할 ref를 선언 후, `sliderRef`를 통해 조건에 따라 `sliderRef.current.slickGoTo()`를 이용해 슬라이드를 직접 조작하여 문제를 해결할 수 있다.
+`setId`는 `useState` 변경 함수 답게 상태 변경이 즉시 발생하는 것이 아니라 비동기적으로 처리된다. 즉, 상태 변경 요청을 한 후, 리액트가 상태를 업데이트하고 리렌더링을 수행하는 데에는 약간의 시간이 걸린다.
+
+`beforeChange는` 슬라이드가 바뀌기 전에 호출되므로, 클릭 이벤트로 인해 상태가 변경되기 전에 호출된다.
+
+`beforeChange` 함수는 (current,next)인자를 가지고 current : 이전 슬라이드의 인덱스, next : 다음 슬라이드의 인덱스를 나타내므로 beforeChange 내부에서 setId를 호출하면, 슬라이드가 실제로 바뀌기 전에 id 상태가 업데이트되는 것을 보장할 수 있다.
 
 ### img를 어둡게 처리하기
 
@@ -164,28 +166,17 @@ img태그의 흐림 속성을 직접 적용하는 방법과 **div태그에 backg
 이전에는 후자의 방법을 이용하여서 똑같이 img 태그 바깥의 div태그에 background에 이미지를 넣고 속성을 적용해보자.
 
 ```js
-export default function Image({ img }) {
-  return (
-    <div style={{}}>
-      <IMG src={img} />
-    </div>
-  );
-}
-
-const IMG = styled.img`
-  width: 100%;
-  height: 800px;
+const Background = styled.div`
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(${(props) => props.img});
   background-size: cover;
+  height: 800px;
 `;
+
+export default function SelectBackgroundStyledComponents({ img }) {
+  return <Background img={img} />;
+}
 ```
-
-`setId`는 `useState` 변경 함수 답게 상태 변경이 즉시 발생하는 것이 아니라 비동기적으로 처리된다. 즉, 상태 변경 요청을 한 후, 리액트가 상태를 업데이트하고 리렌더링을 수행하는 데에는 약간의 시간이 걸린다.
-
-`beforeChange는` 슬라이드가 바뀌기 전에 호출되므로, 클릭 이벤트로 인해 상태가 변경되기 전에 호출된다.
-
-`beforeChange` 함수는 (current,next)인자를 가지고 current : 이전 슬라이드의 인덱스, next : 다음 슬라이드의 인덱스를 나타내므로 beforeChange 내부에서 setId를 호출하면, 슬라이드가 실제로 바뀌기 전에 id 상태가 업데이트되는 것을 보장할 수 있다.
 
 ### 2. 이벤트 처리 방식과 클로저 함수
 
