@@ -5,7 +5,7 @@
 
 ## 플로우 차트
 
-<img src="https://i.postimg.cc/qMp4F1rH/image.png">
+<img src="https://i.postimg.cc/BvmrHPPR/image.png">
 
 ## 요구사항
 
