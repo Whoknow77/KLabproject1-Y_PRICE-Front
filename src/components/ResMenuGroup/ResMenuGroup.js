@@ -1,16 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import {
-  ResMenuWrapper,
-  Menu,
-  MenuTotalContainer,
-  MenuInfoContainer,
-  MenuTitle,
-  MenuPrice,
-  MenuAverageContainer,
-  AverageItem,
-  MenuAveragePrice,
-} from "../styles/ResMenuGroupStyledComponets";
-import Modal from "./Modal";
+import * as S from "./ResMenuGroupStyledComponets";
+import { Modal } from "../index";
 import { useState } from "react";
 
 function ResMenuGroup({ selected, target, id, foodtarget2, averageprice }) {
@@ -18,7 +8,7 @@ function ResMenuGroup({ selected, target, id, foodtarget2, averageprice }) {
   const [showModal, setShowmodal] = useState(false);
 
   return (
-    <ResMenuWrapper selected={selected}>
+    <S.ResMenuWrapper selected={selected}>
       {showModal && (
         <Modal
           onClose={() => setShowmodal(false)}
@@ -28,22 +18,20 @@ function ResMenuGroup({ selected, target, id, foodtarget2, averageprice }) {
       {target[0][1].menu &&
         Object.entries(target[0][1].menu).map(([key, value], index) => {
           const foodregex = /(tteokbokki|pork|bulgogi|bibimbap)/gi;
-          console.log(value.name);
           let priceflag = foodregex.test(value.name.toLowerCase());
-          console.log(priceflag);
           return (
-            <Menu key={index}>
-              <MenuTotalContainer>
-                <MenuInfoContainer>
-                  <MenuTitle>{value.name}</MenuTitle>
-                  <MenuPrice>
+            <S.Menu key={index}>
+              <S.MenuTotalContainer>
+                <S.MenuInfoContainer>
+                  <S.MenuTitle>{value.name}</S.MenuTitle>
+                  <S.MenuPrice>
                     {Number(
                       value.price.split(": ")[1].replace(/,/g, "")
                     ).toLocaleString("en")}
                     ₩
-                  </MenuPrice>
-                </MenuInfoContainer>
-                <MenuAverageContainer
+                  </S.MenuPrice>
+                </S.MenuInfoContainer>
+                <S.MenuAverageContainer
                   onClick={() => {
                     if (priceflag) {
                       navigate(`/map/${id}/food/${foodtarget2}`);
@@ -52,21 +40,21 @@ function ResMenuGroup({ selected, target, id, foodtarget2, averageprice }) {
                     }
                   }}
                 >
-                  <AverageItem>
+                  <S.AverageItem>
                     <span>Average Price</span>
-                    <MenuAveragePrice>
+                    <S.MenuAveragePrice>
                       {priceflag
                         ? averageprice.toLocaleString("en") + "₩"
                         : "---"}
-                    </MenuAveragePrice>
-                  </AverageItem>
+                    </S.MenuAveragePrice>
+                  </S.AverageItem>
                   <img src="/img/right.png" alt="right" />
-                </MenuAverageContainer>
-              </MenuTotalContainer>
-            </Menu>
+                </S.MenuAverageContainer>
+              </S.MenuTotalContainer>
+            </S.Menu>
           );
         })}
-    </ResMenuWrapper>
+    </S.ResMenuWrapper>
   );
 }
 export default ResMenuGroup;

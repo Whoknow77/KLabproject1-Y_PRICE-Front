@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Wrapper } from "../styles/MapStyledComponents";
+import { Wrapper } from "./MapStyledComponents";
 import { useParams, Routes, Route } from "react-router-dom";
 import {
   DefaultMap,
   Header,
   FoodDetail,
   ResDetail,
-} from "./../components/index";
-import Error from "./Error";
+} from "../../components/index";
+import Error from "../Error/Error";
 
 function Map() {
   const { id } = useParams();

@@ -1,22 +1,18 @@
-import {
-  Description,
-  ModalWrapper,
-  Warn,
-} from "../styles/ModalStyledComponents";
+import * as S from "./ModalStyledComponents";
 
 function Modal({ setShowmodal }) {
   return (
-    <ModalWrapper>
-      <Warn>
+    <S.ModalWrapper>
+      <S.Warn>
         Stay Tuned for
         <br />
         More Korean Food Prices
-      </Warn>
-      <Description>
+      </S.Warn>
+      <S.Description>
         Our team is working hard
         <br />
         to expand our range of dishes.
-      </Description>
+      </S.Description>
       <img
         src="/img/xmodal.png"
         alt="모달창 끄는 버튼"
@@ -24,7 +20,7 @@ function Modal({ setShowmodal }) {
           setShowmodal(false);
         }}
       />
-    </ModalWrapper>
+    </S.ModalWrapper>
   );
 }
 

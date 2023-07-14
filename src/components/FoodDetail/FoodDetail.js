@@ -1,40 +1,12 @@
 import { useEffect, useState } from "react";
-import {
-  FoodSearch,
-  FoodSection,
-  FoodInfo,
-  FoodInfoName,
-  FoodInfoNearby,
-  FoodInfoPrice,
-  FoodExchangeButton,
-  MoneyList,
-  MoneyItem,
-  FoodTransition,
-  TransitionTitle,
-  TransitionGraphBox,
-  TransitionGraph,
-  GraphItem,
-  SoldNumber,
-  SoldBar,
-  SoldPrice,
-  ReswithFood,
-  ResTitle,
-  Title1,
-  Title2,
-  Restuarants,
-  Restuarant,
-  ResName,
-  Price,
-  FoodInfoPriceItem,
-  FoodExplain,
-} from "../styles/FoodDetailStyledComponents";
+import * as S from "./FoodDetailStyledComponents";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
-import Loading from "./Loading";
-import regionexp from "../utils/regionexp";
-import { firebaseConfig } from "../apis";
-import { category } from "../utils/region";
+import regionexp from "../../utils/regionexp";
+import { firebaseConfig } from "../../apis/index";
+import { category } from "../../utils/region";
+import { Loading } from "./../index";
 
 initializeApp(firebaseConfig);
 
@@ -60,7 +32,9 @@ function Exchange({ averageprice, exchangesign }) {
       result = averageprice;
   }
 
-  return <FoodInfoPriceItem>{`${result}${exchangesign}`}</FoodInfoPriceItem>;
+  return (
+    <S.FoodInfoPriceItem>{`${result}${exchangesign}`}</S.FoodInfoPriceItem>
+  );
 }
 
 function FoodDetail({ ressearch, id }) {
@@ -146,24 +120,24 @@ function FoodDetail({ ressearch, id }) {
   }
 
   return (
-    <FoodSearch ressearch={ressearch}>
-      <FoodSection>
-        <FoodInfo>
-          <FoodInfoName>{category[foodId].enname}</FoodInfoName>
-          <FoodInfoNearby>Average Price Nearby</FoodInfoNearby>
-          <FoodInfoPrice>
+    <S.FoodSearch ressearch={ressearch}>
+      <S.FoodSection>
+        <S.FoodInfo>
+          <S.FoodInfoName>{category[foodId].enname}</S.FoodInfoName>
+          <S.FoodInfoNearby>Average Price Nearby</S.FoodInfoNearby>
+          <S.FoodInfoPrice>
             <Exchange averageprice={averageprice} exchangesign={exchangesign} />
-            <FoodExchangeButton
+            <S.FoodExchangeButton
               onClick={() => {
                 setMoneychange(!moneychange);
               }}
             >
               <span>{exchangesign}</span>
               <img src="/img/exchange_down.png" alt="exchange_down" />
-              <MoneyList moneychange={moneychange + ""}>
+              <S.MoneyList moneychange={moneychange + ""}>
                 {moneyitem.map((sign, index) => {
                   return (
-                    <MoneyItem
+                    <S.MoneyItem
                       key={index}
                       changeinfo={sign}
                       onClick={() => {
@@ -171,38 +145,38 @@ function FoodDetail({ ressearch, id }) {
                       }}
                     >
                       {sign}
-                    </MoneyItem>
+                    </S.MoneyItem>
                   );
                 })}
-              </MoneyList>
-            </FoodExchangeButton>
-          </FoodInfoPrice>
-        </FoodInfo>
+              </S.MoneyList>
+            </S.FoodExchangeButton>
+          </S.FoodInfoPrice>
+        </S.FoodInfo>
         {<img src={`/img/foodinfo${Number(foodId) + 1}.png`} alt="category" />}
-        <FoodExplain>{category[foodId].explain}</FoodExplain>
-      </FoodSection>
-      <FoodTransition>
-        <TransitionTitle>Now sold at this price!</TransitionTitle>
-        <TransitionGraphBox>
-          <TransitionGraph>
+        <S.FoodExplain>{category[foodId].explain}</S.FoodExplain>
+      </S.FoodSection>
+      <S.FoodTransition>
+        <S.TransitionTitle>Now sold at this price!</S.TransitionTitle>
+        <S.TransitionGraphBox>
+          <S.TransitionGraph>
             {Object.entries(frequencyPrice).map(([key, values], index) => (
-              <GraphItem key={index}>
-                <SoldNumber>{values}</SoldNumber>
-                <SoldBar count={values}></SoldBar>
-                <SoldPrice>{Number(key).toLocaleString("en")}</SoldPrice>
-              </GraphItem>
+              <S.GraphItem key={index}>
+                <S.SoldNumber>{values}</S.SoldNumber>
+                <S.SoldBar count={values}></S.SoldBar>
+                <S.SoldPrice>{Number(key).toLocaleString("en")}</S.SoldPrice>
+              </S.GraphItem>
             ))}
-          </TransitionGraph>
-        </TransitionGraphBox>
-      </FoodTransition>
+          </S.TransitionGraph>
+        </S.TransitionGraphBox>
+      </S.FoodTransition>
 
       {/* 가격 */}
-      <ReswithFood>
-        <ResTitle>
-          <Title1>These restaurants have</Title1>
-          <Title2>{category[foodId].name}</Title2>
-        </ResTitle>
-        <Restuarants>
+      <S.ReswithFood>
+        <S.ResTitle>
+          <S.Title1>These restaurants have</S.Title1>
+          <S.Title2>{category[foodId].name}</S.Title2>
+        </S.ResTitle>
+        <S.Restuarants>
           {Object.entries(userData).map(([resKey, res], index) => {
             // 가격은 useEffect에서 구한 객체로 검사하면 연산을 줄일 수 있음
             // 이미지 없을때 검사
@@ -217,7 +191,7 @@ function FoodDetail({ ressearch, id }) {
             return (
               isregion &&
               iscategory && (
-                <Restuarant
+                <S.Restuarant
                   key={index}
                   onClick={() => {
                     navigate(`/map/${id}/res/${resId}`);
@@ -229,20 +203,20 @@ function FoodDetail({ ressearch, id }) {
                     <img src={`${Imgurl}`} alt="" />
                   )}
                   <div>
-                    <ResName>{res.info.name}</ResName>
+                    <S.ResName>{res.info.name}</S.ResName>
                     <br />
-                    <Price>
+                    <S.Price>
                       <img src="/img/star.png" alt="별점 이미지" />
                       <span>{res.info.rating}</span>
-                    </Price>
+                    </S.Price>
                   </div>
-                </Restuarant>
+                </S.Restuarant>
               )
             );
           })}
-        </Restuarants>
-      </ReswithFood>
-    </FoodSearch>
+        </S.Restuarants>
+      </S.ReswithFood>
+    </S.FoodSearch>
   );
 }
 export default FoodDetail;

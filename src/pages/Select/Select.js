@@ -1,19 +1,11 @@
 import React, { useState } from "react";
-import {
-  Title,
-  Wrapper,
-  NextButton,
-  BackButton,
-  GoButton,
-  SelectBox,
-  StyledSlider,
-} from "../styles/SelectStyledComponents";
+import * as S from "./SelectStyledComponents";
 import { useNavigate } from "react-router-dom";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { region } from "../utils/region";
-import SelectBackgroundStyledComponents from "./../styles/SelectBackgroundStyledComponents";
+import { region } from "../../utils/region";
+import SelectBackgroundStyledComponents from "./SelectBackgroundStyledComponents";
 
 export default function Select() {
   const navigate = useNavigate();
@@ -36,20 +28,20 @@ export default function Select() {
       }
     },
     nextArrow: (
-      <NextButton>
+      <S.NextButton>
         <img src="/img/next.png" alt="" />
-      </NextButton>
+      </S.NextButton>
     ),
     prevArrow: (
-      <BackButton>
+      <S.BackButton>
         <img src="/img/back.png" alt="" />
-      </BackButton>
+      </S.BackButton>
     ),
   };
 
   return (
-    <Wrapper>
-      <StyledSlider {...settings}>
+    <S.Wrapper>
+      <S.StyledSlider {...settings}>
         {region.map((item) => {
           return (
             <SelectBackgroundStyledComponents
@@ -58,25 +50,25 @@ export default function Select() {
             />
           );
         })}
-      </StyledSlider>
-      <Title>
+      </S.StyledSlider>
+      <S.Title>
         <span>
           Choose the place
           <br />
           you want to visit
         </span>
-      </Title>
-      <SelectBox>
+      </S.Title>
+      <S.SelectBox>
         <span className="city">{region[id].city}</span>
         <span className="area">{region[id].area}</span>
-      </SelectBox>
-      <GoButton
+      </S.SelectBox>
+      <S.GoButton
         onClick={() => {
           navigate(`/map/${Number(id)}`);
         }}
       >
         Go
-      </GoButton>
-    </Wrapper>
+      </S.GoButton>
+    </S.Wrapper>
   );
 }

@@ -1,15 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import {
-  HeaderWrapper,
-  Select,
-  Search,
-} from "../styles/HeaderStyledComponents";
+import * as S from "./HeaderStyledComponents";
+
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 import { useEffect, useState } from "react";
-import { firebaseConfig } from "../apis";
-import { region } from "./../utils/region";
+import { firebaseConfig } from "../../apis/index";
+import { region } from "../../utils/region";
 
 initializeApp(firebaseConfig);
 
@@ -44,8 +41,8 @@ function Header({ input, setInput, setSearch, search, id }) {
   }, []);
 
   return (
-    <HeaderWrapper input={input}>
-      <Select
+    <S.HeaderWrapper input={input}>
+      <S.Select
         onClick={() => {
           navigate("/select");
         }}
@@ -53,8 +50,8 @@ function Header({ input, setInput, setSearch, search, id }) {
         <span className="city">{region[Number(id)].city}</span>
         <span className="area">{region[Number(id)].area}</span>
         <img src="/img/down.png" alt="down" />
-      </Select>
-      <Search>
+      </S.Select>
+      <S.Search>
         {foodflag && resflag && errorflag ? (
           <img
             src={"/img/searchbutton.png"}
@@ -119,8 +116,8 @@ function Header({ input, setInput, setSearch, search, id }) {
             setInput("");
           }}
         />
-      </Search>
-    </HeaderWrapper>
+      </S.Search>
+    </S.HeaderWrapper>
   );
 }
 

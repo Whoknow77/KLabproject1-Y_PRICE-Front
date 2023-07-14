@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {
-  Respreivew,
-  Title,
-  Card,
-  Restuarant,
-  ResName,
-  Price,
-} from "../styles/DefaultMapStyledComponents";
-import Category from "./Category";
-import regionexp from "../utils/regionexp";
+import * as S from "./DefaultMapStyledComponents";
+import regionexp from "../../utils/regionexp";
 import { useNavigate } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
-import { firebaseConfig } from "../apis";
+import { firebaseConfig } from "../../apis/index";
+import { Category } from "./../index";
 
 initializeApp(firebaseConfig);
 
@@ -46,9 +39,9 @@ function DefaultMap({ input, id }) {
       {/* 카테고리 추천 */}
       <Category input={input} id={id} />
       {/* 음식점 추천  */}
-      <Respreivew>
-        <Title>Looking for this restaurant?</Title>
-        <Card>
+      <S.Respreivew>
+        <S.Title>Looking for this restaurant?</S.Title>
+        <S.Card>
           {/* 음식점 정보 */}
           {Object.entries(userData).map(([resKey, res], index) => {
             // 이미지 없을때 검사
@@ -60,7 +53,7 @@ function DefaultMap({ input, id }) {
 
             return (
               foodFlag && (
-                <Restuarant
+                <S.Restuarant
                   key={index}
                   onClick={() => {
                     navigate(`/map/${id}/res/${resId}`);
@@ -72,20 +65,20 @@ function DefaultMap({ input, id }) {
                     <img src={`${Imgurl}`} alt="" />
                   )}
                   <div>
-                    <ResName>{res.info.name}</ResName>
+                    <S.ResName>{res.info.name}</S.ResName>
                     <br />
                     <br />
-                    <Price>
+                    <S.Price>
                       <img src="/img/star.png" alt="별점 이미지" />
                       <span>{res.info.rating}</span>
-                    </Price>
+                    </S.Price>
                   </div>
-                </Restuarant>
+                </S.Restuarant>
               )
             );
           })}
-        </Card>
-      </Respreivew>
+        </S.Card>
+      </S.Respreivew>
     </>
   );
 }

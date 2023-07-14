@@ -1,34 +1,29 @@
 import { useNavigate } from "react-router-dom";
-import {
-  ErrorExplain,
-  ErrorTitle,
-  ErrorWrapper,
-  GotoCategoryButton,
-} from "../styles/ErrorStyledComoponents";
+import * as S from "./ErrorStyledComoponents";
 
 function Error({ input, id }) {
   const navigate = useNavigate();
   return (
-    <ErrorWrapper>
+    <S.ErrorWrapper>
       <div className="ErrorLogo">
         <img src="/img/errorlogo.png" alt="에러로고" />
       </div>
-      <ErrorTitle>No Results</ErrorTitle>
-      <ErrorExplain>
+      <S.ErrorTitle>No Results</S.ErrorTitle>
+      <S.ErrorExplain>
         Try a different search or browse
         <br />
         Korean food categories YPrice
         <br />
         offers in your area
-      </ErrorExplain>
-      <GotoCategoryButton
+      </S.ErrorExplain>
+      <S.GotoCategoryButton
         onClick={() => {
           navigate(`/map/${id}/`);
         }}
       >
         Check Category
-      </GotoCategoryButton>
-    </ErrorWrapper>
+      </S.GotoCategoryButton>
+    </S.ErrorWrapper>
   );
 }
 

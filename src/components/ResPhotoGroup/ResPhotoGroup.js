@@ -1,6 +1,6 @@
-import { PhotoGroup } from "../styles/ResPhotogroupStyledComponents";
+import { PhotoGroup } from "./ResPhotoGroupStyledComponents";
 
-function ResPhotogroup({ target }) {
+function ResPhotoGroup({ target }) {
   return (
     <PhotoGroup>
       {Object.entries(target[0][1].photo).map(([key, value], index) => {
@@ -10,4 +10,4 @@ function ResPhotogroup({ target }) {
   );
 }
 
-export default ResPhotogroup;
+export default ResPhotoGroup;

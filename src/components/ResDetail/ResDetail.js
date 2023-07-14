@@ -1,23 +1,12 @@
 import React, { useEffect, useState } from "react";
-import {
-  Rating,
-  EmotionBox,
-  EmotionGroup,
-  Index,
-  ResDetailWrapper,
-  ResTitle,
-  ResTitleContainer,
-  TitleBox,
-  Titlename,
-  IndexButton,
-} from "../styles/ResDetailStyledComponents";
+import * as S from "./ResDetailStyledComponents";
 import { useLocation, useParams } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 
-import { Loading, ResMenuGroup, ResPhotoGroup, ResInfo } from "./index";
-import { firebaseConfig } from "../apis";
-import { region, category } from "./../utils/region";
+import { Loading, ResMenuGroup, ResPhotoGroup, ResInfo } from "../index";
+import { firebaseConfig } from "../../apis/index";
+import { region, category } from "../../utils/region";
 
 initializeApp(firebaseConfig);
 const index = ["Menu", "Photo", "Info"];
@@ -161,8 +150,8 @@ function ResDetail({ ressearch, id }) {
   }
 
   return (
-    <ResDetailWrapper ressearch={ressearch}>
-      <ResTitleContainer>
+    <S.ResDetailWrapper ressearch={ressearch}>
+      <S.ResTitleContainer>
         {target[0][1].info.main_img && (
           <img
             src={target[0][1].info.main_img}
@@ -171,43 +160,43 @@ function ResDetail({ ressearch, id }) {
             loading="lazy"
           />
         )}
-        <ResTitle>
-          <TitleBox>
-            <Titlename>{target[0][1].info.name}</Titlename>
-            <Rating>
+        <S.ResTitle>
+          <S.TitleBox>
+            <S.Titlename>{target[0][1].info.name}</S.Titlename>
+            <S.Rating>
               <img src="/img/star.png" alt="thumbs-up" />
               <span>{target[0][1].info.rating}</span>
-            </Rating>
-          </TitleBox>
-          <EmotionGroup>
+            </S.Rating>
+          </S.TitleBox>
+          <S.EmotionGroup>
             {target[0][1].review !== undefined &&
               Object.entries(target[0][1].review).map((reivewKey, review) => {
                 return (
-                  <EmotionBox key={review}>
+                  <S.EmotionBox key={review}>
                     <img src="/img/thumbs-up.png" alt="thumbs-up" />
                     <span style={{ color: "#fff" }}>{reivewKey[1].name}</span>
                     <span style={{ color: "#fff" }}>{reivewKey[1].count}</span>
-                  </EmotionBox>
+                  </S.EmotionBox>
                 );
               })}
-          </EmotionGroup>
-        </ResTitle>
-      </ResTitleContainer>
-      <Index>
+          </S.EmotionGroup>
+        </S.ResTitle>
+      </S.ResTitleContainer>
+      <S.Index>
         {index.map((item, idx) => {
           return (
-            <IndexButton
+            <S.IndexButton
               key={item}
               active={idx === selected}
               onClick={() => setSelected(idx)}
             >
               {item}
-            </IndexButton>
+            </S.IndexButton>
           );
         })}
-      </Index>
+      </S.Index>
       {ComponentToRender}
-    </ResDetailWrapper>
+    </S.ResDetailWrapper>
   );
 }
 

@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  HomeContainer,
-  MainTitle,
-  SubTitle,
-  Title,
-  Wrapper,
-  Button,
-  Logo,
-} from "../styles/HomeStyledComponents";
+import * as S from "./HomeStyledComponents";
 
 function Home() {
   const navigate = useNavigate();
@@ -32,13 +24,13 @@ function Home() {
   }, [count]);
 
   return (
-    <Wrapper>
-      <HomeContainer>
-        <Logo showcount={showcount[0]}>
+    <S.Wrapper>
+      <S.HomeContainer>
+        <S.Logo showcount={showcount[0]}>
           <img src="/img/homelogo.png" alt="homelogo" />
-        </Logo>
-        <Title showcount={showcount[1]}>
-          <MainTitle>
+        </S.Logo>
+        <S.Title showcount={showcount[1]}>
+          <S.MainTitle>
             Looking for
             <br />
             the <span>Current</span>
@@ -48,14 +40,14 @@ function Home() {
             of South
             <br />
             Korea?
-          </MainTitle>
-          <SubTitle>
+          </S.MainTitle>
+          <S.SubTitle>
             <span>Explore current local food costs and average</span>
             <br />
             <span>prices in South Korea effortlessly!</span>
-          </SubTitle>
-        </Title>
-        <Button
+          </S.SubTitle>
+        </S.Title>
+        <S.Button
           type="button"
           onClick={() => {
             navigate("/select");
@@ -63,9 +55,9 @@ function Home() {
           showcount={showcount[2]}
         >
           Start →
-        </Button>
-      </HomeContainer>
-    </Wrapper>
+        </S.Button>
+      </S.HomeContainer>
+    </S.Wrapper>
   );
 }
 
