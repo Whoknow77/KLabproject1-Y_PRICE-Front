@@ -32,7 +32,7 @@ function Map() {
           path="/"
           element={<DefaultMap input={input} id={id} search={search} />}
         />
-        <Route path="/food/:foodId/" element={<FoodDetail id={id} />}></Route>
+        z<Route path="/food/:foodId/" element={<FoodDetail id={id} />}></Route>
         <Route
           path="/res/:resId"
           element={<ResDetail id={id} search={search} />}
