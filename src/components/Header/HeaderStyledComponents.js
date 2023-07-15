@@ -14,19 +14,19 @@ export const Select = styled.div`
   margin: 10px auto;
   cursor: pointer;
   position: relative;
+`;
 
-  .city {
-    margin-right: 6px;
-    font-weight: 300;
-    font-size: 12px;
-    color: #818181;
-  }
+export const City = styled.span`
+  margin-right: 6px;
+  font-weight: 300;
+  font-size: 12px;
+  color: #818181;
+`;
 
-  .area {
-    font-weight: 500;
-    font-size: 15px;
-    color: #515151;
-  }
+export const Area = styled.span`
+  font-weight: 500;
+  font-size: 15px;
+  color: #515151;
 `;
 
 export const Search = styled.div`

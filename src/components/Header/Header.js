@@ -19,6 +19,7 @@ function Header({ input, setInput, setSearch, id }) {
   const [toggleflag, setToggleFlag] = useState(0);
   const [userData, setUserData] = useState([]);
 
+  // db 접근은 컴포넌트 마운트 최초 1회에만 해당하니 useEffect사용
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -48,8 +49,8 @@ function Header({ input, setInput, setSearch, id }) {
           setToggleFlag(!toggleflag);
         }}
       >
-        <span className="city">{region[Number(id)].city}</span>
-        <span className="area">{region[Number(id)].area}</span>
+        <S.City>{region[Number(id)].city}</S.City>
+        <S.Area>{region[Number(id)].area}</S.Area>
         <img src="/img/down.png" alt="down" />
         <S.RegionToggle toggleflag={toggleflag}>
           {region.map((item, index) => {

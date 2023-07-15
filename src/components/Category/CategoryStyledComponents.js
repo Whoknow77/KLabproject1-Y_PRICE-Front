@@ -17,8 +17,8 @@ export const CategoryTitle = styled.div`
 export const CategoryGroup = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   gap: 10px;
+  justify-content: space-evenly;
   img {
     padding: 5px;
   }
@@ -34,8 +34,8 @@ export const CategoryBox = styled.button`
   align-items: center;
   border: 1px solid #d9d9d9;
   padding: 12px;
-  width: 155px;
-  height: 236px;
+  width: 202px;
+  height: 244px;
   border-radius: 10px;
   img {
     padding: 0;
