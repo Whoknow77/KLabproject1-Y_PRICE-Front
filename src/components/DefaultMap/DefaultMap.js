@@ -38,6 +38,7 @@ function DefaultMap({ input, id }) {
     <>
       {/* 카테고리 추천 */}
       <Category input={input} id={id} />
+
       {/* 음식점 추천  */}
       <S.Respreivew>
         <S.Title>Looking for this restaurant?</S.Title>

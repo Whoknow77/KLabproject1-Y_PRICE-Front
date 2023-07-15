@@ -19,9 +19,6 @@ export const CategoryGroup = styled.div`
   flex-wrap: wrap;
   gap: 10px;
   justify-content: space-evenly;
-  img {
-    padding: 5px;
-  }
 `;
 
 export const CategoryBox = styled.button`
@@ -34,34 +31,25 @@ export const CategoryBox = styled.button`
   align-items: center;
   border: 1px solid #d9d9d9;
   padding: 12px;
-  width: 202px;
-  height: 244px;
+  width: 200px;
+  height: 240px;
   border-radius: 10px;
+  gap: 5px;
   img {
-    padding: 0;
     width: 130px;
     height: 130px;
   }
 `;
 
-export const CategoryName = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 1px;
-  gap: 5px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  .categorytitle {
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 18px;
-  }
-  .categoryexplain {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 18px;
-    color: #818181;
-  }
+export const CategoryName = styled.span`
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+`;
+
+export const CategoryExplain = styled.span`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #818181;
 `;
