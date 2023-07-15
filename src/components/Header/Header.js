@@ -12,13 +12,10 @@ initializeApp(firebaseConfig);
 function Header({ input, setInput, setSearch, id }) {
   const navigate = useNavigate();
   const location = useLocation();
-  // 음식과 음식점 정보를 보여줄때는 헤더의 뒤로가기 버튼을 생성
-  const foodflag = !location.pathname.includes("food");
-  const resflag = !location.pathname.includes("res");
-  const errorflag = !location.pathname.includes("error");
+  // 메인에서만 검색 버튼 나오게 함
+  const searchbuttonflag = location.pathname.slice(-5, 4) === "map";
   const [toggleflag, setToggleFlag] = useState(0);
   const [userData, setUserData] = useState([]);
-
   // db 접근은 컴포넌트 마운트 최초 1회에만 해당하니 useEffect사용
   useEffect(() => {
     const fetchData = async () => {
@@ -67,7 +64,7 @@ function Header({ input, setInput, setSearch, id }) {
         </S.RegionToggle>
       </S.Select>
       <S.Search>
-        {foodflag && resflag && errorflag ? (
+        {searchbuttonflag ? (
           <img
             src={"/img/searchbutton.png"}
             alt=""
@@ -88,9 +85,8 @@ function Header({ input, setInput, setSearch, id }) {
             }}
           />
         )}
-        <input
+        <S.SearchInput
           type="text"
-          className="searchinput"
           value={input}
           placeholder="Search food or restaurant"
           onChange={(e) => {
@@ -99,6 +95,7 @@ function Header({ input, setInput, setSearch, id }) {
           onKeyDown={(e) => {
             if (e.code === "Enter") {
               setSearch(e.target.value);
+              // 카테고리 검색
               if (input.toLowerCase() === "tteokbokki") {
                 navigate(`/map/${id}/food/0`);
               } else if (input.toLowerCase() === "bulgogi") {
@@ -107,30 +104,40 @@ function Header({ input, setInput, setSearch, id }) {
                 navigate(`/map/${id}/food/2`);
               } else if (input.toLowerCase() === "bibimbab") {
                 navigate(`/map/${id}/food/3`);
-              } else {
+              }
+              // 음식점 검색
+              else {
                 const target = Object.entries(userData).filter(
                   ([resKey, res], index) => {
                     return res.info.name === input;
                   }
                 );
+                // 검색어랑 맞지 않게 검색한 경우
                 if (target.length > 0) {
                   const resId = target[0][0].slice(-5, target[0][0].length);
                   navigate(`/map/${id}/res/${resId}`);
-                } else {
+                }
+                // 아무것도 입력하지 않고 엔터를 친 경우
+                else {
                   setInput("");
                   navigate(`/map/${id}/searcherror`);
                 }
               }
             }
           }}
-        />
-        <img
-          src="/img/xbutton.png"
-          alt="x"
-          onClick={() => {
-            setInput("");
-          }}
-        />
+        ></S.SearchInput>
+
+        <S.Xbutton>
+          {
+            <img
+              src="/img/xbutton.png"
+              alt="x"
+              onClick={() => {
+                setInput("");
+              }}
+            />
+          }
+        </S.Xbutton>
       </S.Search>
     </S.HeaderWrapper>
   );

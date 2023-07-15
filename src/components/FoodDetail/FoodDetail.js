@@ -82,7 +82,6 @@ function FoodDetail({ ressearch, id }) {
         let isPrice = false;
         if (isMenu) {
           isPrice = Object.values(res.menu).find((menu) => {
-            console.log(menu.name.toLowerCase("bibimbab"));
             return menu.name
               .toLowerCase()
               .includes(category[foodId].encategory.toLowerCase());

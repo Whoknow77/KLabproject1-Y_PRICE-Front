@@ -42,22 +42,29 @@ export const Search = styled.div`
   background: #ffffff;
   border: 1.5px solid #ffc300;
   border-radius: 27px;
+  img {
+    cursor: pointer;
+  }
+`;
 
-  .searchinput {
-    width: 90%;
-    height: 24px;
-    font-weight: 500;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    color: #ffc300;
+export const SearchInput = styled.input`
+  width: 90%;
+  height: 24px;
+  font-weight: 500;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  color: #ffc300;
+  border: none;
+  outline: none;
+  spellcheck="false";
+`;
+
+export const Xbutton = styled.button`
+  &:focus {
     border: none;
     outline: none;
-    spellcheck="false";
-}
-img{
-  cursor:pointer;
-}
+  }
 `;
 
 export const RegionToggle = styled.div`
