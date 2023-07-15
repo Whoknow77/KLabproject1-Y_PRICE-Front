@@ -13,6 +13,7 @@ export const Select = styled.div`
   align-items: center;
   margin: 10px auto;
   cursor: pointer;
+  position: relative;
 
   .city {
     margin-right: 6px;
@@ -57,4 +58,33 @@ export const Search = styled.div`
 img{
   cursor:pointer;
 }
+`;
+
+export const RegionToggle = styled.div`
+  display: flex;
+  transform-origin: top;
+  transform: scaleY(
+    ${({ toggleflag }) => (toggleflag ? "1" : "0")}
+  );
+  transition: transform 0.3s ease-in-out;
+  flex-direction: column;
+  position: absolute;
+  top: 25px;
+  width:90%;
+  gap: 3px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 5px;
+}
+`;
+
+export const ToggleRegion = styled.button`
+  padding: 5px;
+  font-size: 12px;
+  &:focus {
+    border: none;
+    outline: none;
+  }
 `;

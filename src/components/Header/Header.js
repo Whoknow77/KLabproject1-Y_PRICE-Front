@@ -1,5 +1,4 @@
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import * as S from "./HeaderStyledComponents";
 
 import { initializeApp } from "firebase/app";
@@ -10,13 +9,14 @@ import { region } from "../../utils/region";
 
 initializeApp(firebaseConfig);
 
-function Header({ input, setInput, setSearch, search, id }) {
+function Header({ input, setInput, setSearch, id }) {
   const navigate = useNavigate();
   const location = useLocation();
   // 음식과 음식점 정보를 보여줄때는 헤더의 뒤로가기 버튼을 생성
   const foodflag = !location.pathname.includes("food");
   const resflag = !location.pathname.includes("res");
   const errorflag = !location.pathname.includes("error");
+  const [toggleflag, setToggleFlag] = useState(0);
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
@@ -42,14 +42,28 @@ function Header({ input, setInput, setSearch, search, id }) {
 
   return (
     <S.HeaderWrapper input={input}>
+      {/* 지역 선택 토글 */}
       <S.Select
         onClick={() => {
-          navigate("/select");
+          setToggleFlag(!toggleflag);
         }}
       >
         <span className="city">{region[Number(id)].city}</span>
         <span className="area">{region[Number(id)].area}</span>
         <img src="/img/down.png" alt="down" />
+        <S.RegionToggle toggleflag={toggleflag}>
+          {region.map((item, index) => {
+            return (
+              <S.ToggleRegion
+                onClick={() => {
+                  navigate(`/map/${index}`);
+                }}
+              >
+                {item.area}
+              </S.ToggleRegion>
+            );
+          })}
+        </S.RegionToggle>
       </S.Select>
       <S.Search>
         {foodflag && resflag && errorflag ? (
