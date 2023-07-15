@@ -31,7 +31,7 @@ export const Card = styled.div`
   }
 `;
 
-export const Restuarant = styled.div`
+export const ResPreivew = styled.div`
   cursor: pointer;
   margin: 0 auto;
   margin-top: 10px;
@@ -41,17 +41,27 @@ export const Restuarant = styled.div`
   border: 1px solid #d9d9d9;
   border-radius: 10px;
   width: 92%;
+`;
 
-  div {
-    height: 70px;
-    padding: 13.5px 15px;
-    line-height: 5px;
-  }
-  img {
-    width: 70px;
-    height: 70px;
-    border-radius: 5px;
-  }
+export const ResInfo = styled.div`
+  height: 70px;
+  padding: 13.5px 15px;
+  line-height: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+`;
+
+export const ResImg = styled.img`
+  width: 70px;
+  height: 70px;
+  border-radius: 5px;
+`;
+
+export const ResRatingBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
 `;
 
 export const ResName = styled.span`
@@ -60,18 +70,11 @@ export const ResName = styled.span`
   font-size: 15px;
 `;
 
-export const Price = styled.span`
-  line-height: 20px;
-  font-weight: 300;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  img {
-    width: 16px;
-    height: 18px;
-  }
-  span {
-    color: #ffc300;
-  }
+export const RatingImg = styled.img`
+  width: 16px;
+  height: 18px;
+`;
+
+export const Ratingpoint = styled.span`
+  color: #ffc300;
 `;

@@ -1,11 +1,10 @@
 import * as S from "./CategoryStyledComponents";
 import { useNavigate } from "react-router-dom";
 import { category } from "../../utils/region";
-function Category({ input, id }) {
+function Category() {
   const navigate = useNavigate();
-
   return (
-    <S.CategoryWrapper input={input}>
+    <S.CategoryWrapper>
       <S.CategoryTitle>Categories</S.CategoryTitle>
       <S.CategoryGroup>
         {category.map((food, index) => {
@@ -13,7 +12,7 @@ function Category({ input, id }) {
             <S.CategoryBox
               key={index}
               onClick={() => {
-                navigate(`/map/${id}/food/${index}`);
+                navigate(`${window.location.pathname}food/${index}`);
               }}
             >
               <img src={`/img/category${index + 1}.png`} alt="" />

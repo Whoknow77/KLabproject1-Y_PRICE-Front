@@ -24,13 +24,13 @@ function Map() {
         setInput={setInput}
         setSearch={setSearch}
         search={search}
-        id={id}
+        mapid={id}
       />
 
       <Routes>
         <Route
           path="/"
-          element={<DefaultMap input={input} id={id} search={search} />}
+          element={<DefaultMap input={input} search={search} />}
         />
         <Route path="/food/:foodId/" element={<FoodDetail id={id} />}></Route>
         <Route

@@ -9,10 +9,11 @@ import { Category } from "./../index";
 
 initializeApp(firebaseConfig);
 
-function DefaultMap({ input, id }) {
+function DefaultMap() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState([]);
-  const regex = regionexp(id); // map 구별
+  const mapid = window.location.pathname.slice(-2, -1);
+  const regex = regionexp(mapid); // map 구별
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +38,7 @@ function DefaultMap({ input, id }) {
   return (
     <>
       {/* 카테고리 추천 */}
-      <Category input={input} id={id} />
+      <Category />
 
       {/* 음식점 추천  */}
       <S.Respreivew>
@@ -47,34 +48,33 @@ function DefaultMap({ input, id }) {
           {Object.entries(userData).map(([resKey, res], index) => {
             // 이미지 없을때 검사
             const Imgurl = res.info.main_img;
-            const ImgFlag = res.info.main_img.includes("None");
+            const Hasnotimg = res.info.main_img.includes("None");
+
             // 지역별로 음식점 거르기
-            const foodFlag = resKey.match(regex);
+            const HasCategory = resKey.match(regex);
             const resId = resKey.slice(-5, resKey.length);
 
             return (
-              foodFlag && (
-                <S.Restuarant
+              HasCategory && (
+                <S.ResPreivew
                   key={index}
                   onClick={() => {
-                    navigate(`/map/${id}/res/${resId}`);
+                    navigate(`${window.location.pathname}/res/${resId}`);
                   }}
                 >
-                  {ImgFlag ? (
-                    <img src={"/img/default.png"} alt="" />
+                  {Hasnotimg ? (
+                    <S.ResImg src={"/img/default/png"} alt="" />
                   ) : (
-                    <img src={`${Imgurl}`} alt="" />
+                    <S.ResImg src={`${Imgurl}`} alt="" />
                   )}
-                  <div>
+                  <S.ResInfo>
                     <S.ResName>{res.info.name}</S.ResName>
-                    <br />
-                    <br />
-                    <S.Price>
-                      <img src="/img/star.png" alt="별점 이미지" />
-                      <span>{res.info.rating}</span>
-                    </S.Price>
-                  </div>
-                </S.Restuarant>
+                    <S.ResRatingBox>
+                      <S.RatingImg src="/img/star.png" alt="별점 이미지" />
+                      <S.Ratingpoint>{res.info.rating}</S.Ratingpoint>
+                    </S.ResRatingBox>
+                  </S.ResInfo>
+                </S.ResPreivew>
               )
             );
           })}

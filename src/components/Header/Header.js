@@ -9,7 +9,7 @@ import { region } from "../../utils/region";
 
 initializeApp(firebaseConfig);
 
-function Header({ input, setInput, setSearch, id }) {
+function Header({ input, setInput, setSearch, mapid }) {
   const navigate = useNavigate();
   const location = useLocation();
   // 메인에서만 검색 버튼 나오게 함
@@ -39,15 +39,15 @@ function Header({ input, setInput, setSearch, id }) {
   }, []);
 
   return (
-    <S.HeaderWrapper input={input}>
+    <S.HeaderWrapper>
       {/* 지역 선택 토글 */}
       <S.Select
         onClick={() => {
           setToggleFlag(!toggleflag);
         }}
       >
-        <S.City>{region[Number(id)].city}</S.City>
-        <S.Area>{region[Number(id)].area}</S.Area>
+        <S.City>{region[Number(mapid)].city}</S.City>
+        <S.Area>{region[Number(mapid)].area}</S.Area>
         <img src="/img/down.png" alt="down" />
         <S.RegionToggle toggleflag={toggleflag}>
           {region.map((item, index) => {
@@ -65,14 +65,7 @@ function Header({ input, setInput, setSearch, id }) {
       </S.Select>
       <S.Search>
         {searchbuttonflag ? (
-          <img
-            src={"/img/searchbutton.png"}
-            alt=""
-            onClick={() => {
-              setSearch("");
-              setInput("");
-            }}
-          />
+          <img src={"/img/searchbutton.png"} alt="" />
         ) : (
           <img
             src={"/img/leftbutton.png"}
@@ -96,32 +89,39 @@ function Header({ input, setInput, setSearch, id }) {
             if (e.code === "Enter") {
               setSearch(e.target.value);
               // 카테고리 검색
-              if (input.toLowerCase() === "tteokbokki") {
-                navigate(`/map/${id}/food/0`);
-              } else if (input.toLowerCase() === "bulgogi") {
-                navigate(`/map/${id}/food/1`);
-              } else if (input.toLowerCase() === "samgyeopsal") {
-                navigate(`/map/${id}/food/2`);
-              } else if (input.toLowerCase() === "bibimbab") {
-                navigate(`/map/${id}/food/3`);
-              }
-              // 음식점 검색
-              else {
-                const target = Object.entries(userData).filter(
-                  ([resKey, res], index) => {
-                    return res.info.name === input;
+              const SearchCategory = input.toLowerCase();
+              switch (SearchCategory) {
+                case "tteokbokki":
+                  navigate(`/map/${mapid}/food/0`);
+                  break;
+                case "bulgogi":
+                  navigate(`/map/${mapid}/food/1`);
+                  break;
+
+                case "samgyeopsal":
+                  navigate(`/map/${mapid}/food/2`);
+                  break;
+
+                case "bibimbab":
+                  navigate(`/map/${mapid}/food/3`);
+                  break;
+                default:
+                  // 음식점 검색
+                  const target = Object.entries(userData).filter(
+                    ([resKey, res], index) => {
+                      return res.info.name === input;
+                    }
+                  );
+                  // 옳게 입력한 경우
+                  if (target.length > 0) {
+                    const resId = target[0][0].slice(-5, target[0][0].length);
+                    navigate(`/map/${mapid}/res/${resId}`);
                   }
-                );
-                // 검색어랑 맞지 않게 검색한 경우
-                if (target.length > 0) {
-                  const resId = target[0][0].slice(-5, target[0][0].length);
-                  navigate(`/map/${id}/res/${resId}`);
-                }
-                // 아무것도 입력하지 않고 엔터를 친 경우
-                else {
-                  setInput("");
-                  navigate(`/map/${id}/searcherror`);
-                }
+                  // 아무것도 입력하지 않고 엔터를 친 경우
+                  else {
+                    setInput("");
+                    navigate(`/map/${mapid}/searcherror`);
+                  }
               }
             }
           }}
