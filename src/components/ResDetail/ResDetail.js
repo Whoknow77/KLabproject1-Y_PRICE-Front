@@ -11,7 +11,7 @@ import { region, category } from "../../utils/region";
 initializeApp(firebaseConfig);
 const index = ["Menu", "Photo", "Info"];
 
-function ResDetail({ ressearch, id }) {
+function ResDetail({ id }) {
   const [selected, setSelected] = useState(0);
   const { resId } = useParams();
   const [userData, setUserData] = useState([]);
@@ -150,7 +150,7 @@ function ResDetail({ ressearch, id }) {
   }
 
   return (
-    <S.ResDetailWrapper ressearch={ressearch}>
+    <S.ResDetailWrapper>
       <S.ResTitleContainer>
         {target[0][1].info.main_img && (
           <img

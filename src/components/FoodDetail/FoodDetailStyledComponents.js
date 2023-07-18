@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FoodSearch = styled.div`
+export const FoodWrapper = styled.div`
   display: flex;
   width: 90%;
   margin: 0 auto;
@@ -14,10 +14,11 @@ export const FoodSection = styled.div`
   height: 404px;
   background: #fff1c5;
   border-radius: 10px;
-  img {
-    width: 100%;
-    height: 230px;
-  }
+`;
+
+export const FoodImg = styled.img`
+  width: 100%;
+  height: 230px;
 `;
 
 export const FoodInfo = styled.div`
@@ -53,10 +54,9 @@ export const FoodInfoPriceItem = styled.div`
   font-style: normal;
   font-weight: 700;
   font-size: 40px;
-  display: inline-block;
 `;
 
-export const FoodExchangeButton = styled.button`
+export const ExchangeButton = styled.button`
   position: relative;
   padding: 4px 10px;
   background: #ffc300;
@@ -73,9 +73,7 @@ export const FoodExchangeButton = styled.button`
 `;
 
 export const MoneyList = styled.div`
-  transform: scaleY(
-    ${({ moneychange }) => (moneychange === "true" ? "1" : "0")}
-  );
+  transform: scaleY(${({ exchangetoggle }) => (exchangetoggle ? "1" : "0")});
   margin-top: 10px;
   transform-origin: top;
   transition: transform 0.3s ease-in-out;
@@ -95,7 +93,7 @@ export const MoneyList = styled.div`
   border-radius: 5px;
 `;
 
-export const MoneyItem = styled.button`
+export const Sign = styled.button`
   background: none;
   font-weight: 700;
   font-size: 24px;
@@ -122,14 +120,11 @@ export const TransitionTitle = styled.div`
   gap: 15px;
 `;
 
-export const TransitionGraphBox = styled.div`
+export const TransitionGraph = styled.div`
   margin-top: 15px;
   height: 100%;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
-`;
-
-export const TransitionGraph = styled.div`
   padding: 15px;
   height: 283px;
   display: flex;

@@ -12,7 +12,7 @@ function Category() {
             <S.CategoryBox
               key={index}
               onClick={() => {
-                navigate(`${window.location.pathname}food/${index}`);
+                navigate(`${window.location.pathname}/food/${index}`);
               }}
             >
               <img src={`/img/category${index + 1}.png`} alt="" />

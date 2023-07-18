@@ -46,16 +46,23 @@ function DefaultMap() {
         <S.Card>
           {/* 음식점 정보 */}
           {Object.entries(userData).map(([resKey, res], index) => {
-            // 이미지 없을때 검사
+            // 음식점 이미지 여부 검사
             const Imgurl = res.info.main_img;
             const Hasnotimg = res.info.main_img.includes("None");
+            // 메뉴 있는 가게만
+            const HasMenu = res.menu;
 
             // 지역별로 음식점 거르기
             const HasCategory = resKey.match(regex);
             const resId = resKey.slice(-5, resKey.length);
+            let Rating = res.info.rating;
+            if (res.info.rating === "0.0") {
+              Rating = "Not privided";
+            }
 
             return (
-              HasCategory && (
+              HasCategory &&
+              HasMenu && (
                 <S.ResPreivew
                   key={index}
                   onClick={() => {
@@ -71,7 +78,7 @@ function DefaultMap() {
                     <S.ResName>{res.info.name}</S.ResName>
                     <S.ResRatingBox>
                       <S.RatingImg src="/img/star.png" alt="별점 이미지" />
-                      <S.Ratingpoint>{res.info.rating}</S.Ratingpoint>
+                      <S.Ratingpoint>{Rating}</S.Ratingpoint>
                     </S.ResRatingBox>
                   </S.ResInfo>
                 </S.ResPreivew>

@@ -1,51 +1,25 @@
 import { useEffect, useState } from "react";
 import * as S from "./FoodDetailStyledComponents";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, get } from "firebase/database";
 import regionexp from "../../utils/regionexp";
-import { firebaseConfig } from "../../apis/index";
 import { category } from "../../utils/region";
 import { Loading } from "./../index";
+import { getDatabase, ref, get } from "firebase/database";
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "../../apis/index";
+import { Exchange } from "../../utils/Exchange";
 
 initializeApp(firebaseConfig);
 
-function Exchange({ averageprice, exchangesign }) {
-  let result = averageprice;
-  switch (exchangesign) {
-    case "€":
-      result = parseFloat(averageprice * 0.0007).toFixed(2);
-      break;
-    case "£":
-      result = parseFloat(averageprice * 0.0000061).toFixed(2);
-      break;
-    case "¥":
-      result = parseFloat(averageprice * 0.0053).toFixed(2);
-      break;
-    case "$":
-      result = parseFloat(averageprice * 0.00076).toFixed(2);
-      break;
-    case "₩":
-      result = averageprice.toLocaleString("en");
-      break;
-    default:
-      result = averageprice;
-  }
-
-  return (
-    <S.FoodInfoPriceItem>{`${result}${exchangesign}`}</S.FoodInfoPriceItem>
-  );
-}
-
-function FoodDetail({ ressearch, id }) {
+const FoodDetail = ({ id }) => {
   const navigate = useNavigate();
 
   const regex = regionexp(id); // map 구별
   const { foodId } = useParams();
   const [userData, setUserData] = useState([]);
   const [frequencyPrice, setFrequencyPrice] = useState({}); // 가격 정보 담는 객체
-  const moneyitem = ["€", "£", "¥", "$", "₩"]; // 화폐들
-  const [moneychange, setMoneychange] = useState(false); // 환전
+  const signs = ["€", "£", "¥", "$", "₩"]; // 화폐들
+  const [exchangetoggle, setExchangetoggle] = useState(0); // 환전 버튼 토글
   const [exchangesign, setExchangesign] = useState("₩"); // 현재 화폐
   const [averageprice, setAverageprice] = useState(0);
   const location = useLocation();
@@ -74,20 +48,22 @@ function FoodDetail({ ressearch, id }) {
       let totalprice = 0;
       let count = 0;
       Object.entries(data).forEach(([resKey, res], index) => {
-        const isregion = resKey.match(regex); // 지역
+        // restaurant_id_삼겹살 29, object
+        const isregion = resKey.match(regex); // 지역, 00~14 등등
         const iscategory = category[foodId].category.includes(
           res.info.category
         ); // 카테고리
-        const isMenu = res.menu; // 메뉴
-        let isPrice = false;
-        if (isMenu) {
-          isPrice = Object.values(res.menu).find((menu) => {
+
+        // 메뉴
+        const isMenu =
+          res.menu &&
+          Object.values(res.menu).find((menu) => {
             return menu.name
               .toLowerCase()
               .includes(category[foodId].encategory.toLowerCase());
           });
-        }
-        if (isregion && iscategory && isMenu && isPrice) {
+
+        if (isregion && iscategory && isMenu) {
           const menuprice = Number(
             Object.values(res.menu)
               .find((menu) => {
@@ -110,8 +86,7 @@ function FoodDetail({ ressearch, id }) {
       setFrequencyPrice(newFrequencyPrice);
     };
     fetchData();
-  }, [location.pathname]);
-  // 경로가 바뀔때마다 새로계산
+  }, []);
 
   // 음식점(target)을 찾기 전까지 로딩창 표시
   if (!averageprice) {
@@ -119,57 +94,66 @@ function FoodDetail({ ressearch, id }) {
   }
 
   return (
-    <S.FoodSearch ressearch={ressearch}>
+    <S.FoodWrapper>
+      {/* 가격 정보*/}
       <S.FoodSection>
         <S.FoodInfo>
           <S.FoodInfoName>{category[foodId].enname}</S.FoodInfoName>
           <S.FoodInfoNearby>Average Price Nearby</S.FoodInfoNearby>
           <S.FoodInfoPrice>
-            <Exchange averageprice={averageprice} exchangesign={exchangesign} />
-            <S.FoodExchangeButton
+            <Exchange
+              // 현재금액
+              averageprice={averageprice}
+              // 화폐
+              exchangesign={exchangesign}
+            />
+            <S.ExchangeButton
               onClick={() => {
-                setMoneychange(!moneychange);
+                setExchangetoggle(!exchangetoggle);
               }}
             >
               <span>{exchangesign}</span>
               <img src="/img/exchange_down.png" alt="exchange_down" />
-              <S.MoneyList moneychange={moneychange + ""}>
-                {moneyitem.map((sign, index) => {
+              <S.MoneyList exchangetoggle={exchangetoggle}>
+                {signs.map((sign, index) => {
                   return (
-                    <S.MoneyItem
+                    <S.Sign
                       key={index}
-                      changeinfo={sign}
                       onClick={() => {
                         setExchangesign(sign);
                       }}
                     >
                       {sign}
-                    </S.MoneyItem>
+                    </S.Sign>
                   );
                 })}
               </S.MoneyList>
-            </S.FoodExchangeButton>
+            </S.ExchangeButton>
           </S.FoodInfoPrice>
         </S.FoodInfo>
-        {<img src={`/img/foodinfo${Number(foodId) + 1}.png`} alt="category" />}
+        <S.FoodImg
+          src={`/img/foodinfo${Number(foodId) + 1}.png`}
+          alt="FoodImg"
+        />
         <S.FoodExplain>{category[foodId].explain}</S.FoodExplain>
       </S.FoodSection>
+
+      {/* 가격 그래프*/}
       <S.FoodTransition>
         <S.TransitionTitle>Now sold at this price!</S.TransitionTitle>
-        <S.TransitionGraphBox>
-          <S.TransitionGraph>
-            {Object.entries(frequencyPrice).map(([key, values], index) => (
-              <S.GraphItem key={index}>
-                <S.SoldNumber>{values}</S.SoldNumber>
-                <S.SoldBar count={values}></S.SoldBar>
-                <S.SoldPrice>{Number(key).toLocaleString("en")}</S.SoldPrice>
-              </S.GraphItem>
-            ))}
-          </S.TransitionGraph>
-        </S.TransitionGraphBox>
+
+        <S.TransitionGraph>
+          {Object.entries(frequencyPrice).map(([key, values], index) => (
+            <S.GraphItem key={index}>
+              <S.SoldNumber>{values}</S.SoldNumber>
+              <S.SoldBar count={values}></S.SoldBar>
+              <S.SoldPrice>{Number(key).toLocaleString("en")}</S.SoldPrice>
+            </S.GraphItem>
+          ))}
+        </S.TransitionGraph>
       </S.FoodTransition>
 
-      {/* 가격 */}
+      {/* 카테고리 별 음식점*/}
       <S.ReswithFood>
         <S.ResTitle>
           <S.Title1>These restaurants have</S.Title1>
@@ -215,7 +199,7 @@ function FoodDetail({ ressearch, id }) {
           })}
         </S.Restuarants>
       </S.ReswithFood>
-    </S.FoodSearch>
+    </S.FoodWrapper>
   );
-}
+};
 export default FoodDetail;
