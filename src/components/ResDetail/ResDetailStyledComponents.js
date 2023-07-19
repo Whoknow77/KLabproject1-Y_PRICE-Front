@@ -14,7 +14,7 @@ export const ResTitleContainer = styled.div`
   margin-bottom: 17px;
 `;
 
-export const ResTitleImg = styled.img`
+export const ResImg = styled.img`
   width: 90px;
   height: 90px;
   border: 0.5px solid #d9d9d9;
@@ -45,7 +45,7 @@ export const Rating = styled.span`
   align-items: center;
 `;
 
-export const Star = styled.img`
+export const RatingImg = styled.img`
   width: 16px;
   height: 18px;
 `;

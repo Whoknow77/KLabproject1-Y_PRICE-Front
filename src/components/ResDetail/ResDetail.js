@@ -115,16 +115,19 @@ const ResDetail = ({ mapid, showModal, setShowmodal }) => {
   return (
     <S.ResDetailWrapper>
       <S.ResTitleContainer>
-        {target[1].info.main_img && (
-          <S.ResTitleImg src={target[1].info.main_img} />
+        {target[1].info.main_img ? (
+          <S.ResImg src={"/img/default.png"} alt="" />
+        ) : (
+          <S.ResImg src={target[1].info.main_img} alt="" />
         )}
+
         <S.ResTitle>
           <S.TitleBox>
             {/* 제목  */}
             <S.Titlename>{target[1].info.name}</S.Titlename>
             {/* 평점  */}
             <S.Rating>
-              <S.Star src="/img/star.png" alt="thumbs-up" />
+              <S.RatingImg src="/img/star.png" alt="thumbs-up" />
               <S.RatingPoint> {target[1].info.rating} </S.RatingPoint>
             </S.Rating>
           </S.TitleBox>

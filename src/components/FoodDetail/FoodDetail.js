@@ -191,16 +191,16 @@ const FoodDetail = ({ id }) => {
                   }}
                 >
                   {isImg ? (
-                    <img src={"/img/default.png"} alt="" />
+                    <S.ResImg src={"/img/default.png"} alt="" />
                   ) : (
-                    <img src={`${Imgurl}`} alt="" />
+                    <S.ResImg src={`${Imgurl}`} alt="" />
                   )}
                   <div>
                     <S.ResName>{res.info.name}</S.ResName>
                     <br />
                     <S.Price>
-                      <img src="/img/star.png" alt="별점 이미지" />
-                      <span>{res.info.rating}</span>
+                      <S.RatingImg src="/img/star.png" alt="별점 이미지" />
+                      <S.Ratingpoint>{res.info.rating}</S.Ratingpoint>
                     </S.Price>
                   </div>
                 </S.Restuarant>

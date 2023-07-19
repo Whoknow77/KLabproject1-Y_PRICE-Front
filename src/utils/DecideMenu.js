@@ -23,7 +23,7 @@ export const DecideMenu = (
         />
       );
     case 1:
-      return <ResPhotoGroup target={target}></ResPhotoGroup>;
+      return <ResPhotoGroup target={target} />;
     case 2:
       return <ResInfo target={target} />;
     default:

@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import * as S from "./ErrorStyledComponents";
 
-const Error = ({ input, id }) => {
+const Error = ({ id }) => {
   const navigate = useNavigate();
   return (
     <S.ErrorWrapper>
       <div className="ErrorLogo">
-        <img src="/img/errorlogo.png" alt="에러로고" />
+        <img src="/img/errorlogo.png" alt="에러 로고" />
       </div>
       <S.ErrorTitle>No Results</S.ErrorTitle>
       <S.ErrorExplain>

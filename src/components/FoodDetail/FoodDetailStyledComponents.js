@@ -213,10 +213,11 @@ export const Restuarant = styled.div`
     text-align: left;
     padding: 13.5px 5px;
   }
-  img {
-    width: 70px;
-    height: 70px;
-  }
+`;
+
+export const ResImg = styled.img`
+  width: 70px;
+  height: 70px;
 `;
 
 export const ResName = styled.span`
@@ -234,10 +235,11 @@ export const Price = styled.span`
   span {
     color: #ffc300;
   }
-  img {
-    width: 16px;
-    height: 18px;
-  }
+`;
+
+export const RatingImg = styled.img`
+  width: 16px;
+  height: 18px;
 `;
 
 export const FoodExplain = styled.span`
@@ -248,4 +250,7 @@ export const FoodExplain = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+export const Ratingpoint = styled.span`
+  color: #ffc300;
 `;

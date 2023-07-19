@@ -70,7 +70,7 @@ const DefaultMap = () => {
                   }}
                 >
                   {Hasnotimg ? (
-                    <S.ResImg src={"/img/default/png"} alt="" />
+                    <S.ResImg src={"/img/default.png"} alt="" />
                   ) : (
                     <S.ResImg src={`${Imgurl}`} alt="" />
                   )}
