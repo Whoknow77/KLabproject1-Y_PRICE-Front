@@ -1,11 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import * as S from "./ResMenuGroupStyledComponets";
 import { Modal } from "../index";
-import { useState } from "react";
 
-function ResMenuGroup({ selected, target, id, foodtarget2, averageprice }) {
+const ResMenuGroup = ({
+  selected,
+  target,
+  id,
+  foodtarget2,
+  averageprice,
+  showModal,
+  setShowmodal,
+}) => {
   const navigate = useNavigate();
-  const [showModal, setShowmodal] = useState(false);
 
   return (
     <S.ResMenuWrapper selected={selected}>
@@ -15,8 +21,8 @@ function ResMenuGroup({ selected, target, id, foodtarget2, averageprice }) {
           setShowmodal={setShowmodal}
         />
       )}
-      {target[0][1].menu &&
-        Object.entries(target[0][1].menu).map(([key, value], index) => {
+      {target[1].menu &&
+        Object.entries(target[1].menu).map(([key, value], index) => {
           const foodregex = /(tteokbokki|pork|bulgogi|bibimbap)/gi;
           let priceflag = foodregex.test(value.name.toLowerCase());
           return (
@@ -56,5 +62,5 @@ function ResMenuGroup({ selected, target, id, foodtarget2, averageprice }) {
         })}
     </S.ResMenuWrapper>
   );
-}
+};
 export default ResMenuGroup;

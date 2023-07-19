@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import * as S from "./FoodDetailStyledComponents";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import regionexp from "../../utils/regionexp";
 import { category } from "../../utils/region";
 import { Loading } from "./../index";
@@ -22,7 +22,6 @@ const FoodDetail = ({ id }) => {
   const [exchangetoggle, setExchangetoggle] = useState(0); // 환전 버튼 토글
   const [exchangesign, setExchangesign] = useState("₩"); // 현재 화폐
   const [averageprice, setAverageprice] = useState(0);
-  const location = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,9 +49,10 @@ const FoodDetail = ({ id }) => {
       Object.entries(data).forEach(([resKey, res], index) => {
         // restaurant_id_삼겹살 29, object
         const isregion = resKey.match(regex); // 지역, 00~14 등등
+        // 카테고리
         const iscategory = category[foodId].category.includes(
           res.info.category
-        ); // 카테고리
+        );
 
         // 메뉴
         const isMenu =

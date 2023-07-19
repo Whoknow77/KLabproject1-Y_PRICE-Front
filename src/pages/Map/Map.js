@@ -9,7 +9,8 @@ import {
 } from "../../components/index";
 import Error from "../Error/Error";
 
-function Map() {
+const Map = () => {
+  const [showModal, setShowmodal] = useState(false);
   const { id } = useParams();
   const [search, setSearch] = useState(""); // 엔터 후 검색어
   const [input, setInput] = useState(""); // 검색어
@@ -17,7 +18,7 @@ function Map() {
   // ressearch는 saerch가 변할때만 바뀌어야한다.
 
   return (
-    <Wrapper>
+    <Wrapper showModal={showModal} className={showModal ? "blur" : ""}>
       {/* 검색 바 */}
       <Header
         input={input}
@@ -28,18 +29,21 @@ function Map() {
       />
 
       <Routes>
-        <Route
-          path="/"
-          element={<DefaultMap input={input} search={search} />}
-        />
+        <Route path="/" element={<DefaultMap />} />
         <Route path="/food/:foodId/" element={<FoodDetail id={id} />}></Route>
         <Route
           path="/res/:resId"
-          element={<ResDetail id={id} search={search} />}
+          element={
+            <ResDetail
+              id={id}
+              showModal={showModal}
+              setShowmodal={setShowmodal}
+            />
+          }
         ></Route>
         <Route path="*" element={<Error id={id} />}></Route>
       </Routes>
     </Wrapper>
   );
-}
+};
 export default Map;

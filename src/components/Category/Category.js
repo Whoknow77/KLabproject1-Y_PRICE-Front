@@ -1,7 +1,7 @@
 import * as S from "./CategoryStyledComponents";
 import { useNavigate } from "react-router-dom";
 import { category } from "../../utils/region";
-function Category() {
+const Category = () => {
   const navigate = useNavigate();
   return (
     <S.CategoryWrapper>
@@ -24,6 +24,6 @@ function Category() {
       </S.CategoryGroup>
     </S.CategoryWrapper>
   );
-}
+};
 
 export default Category;

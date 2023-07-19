@@ -9,7 +9,7 @@ import { Category } from "./../index";
 
 initializeApp(firebaseConfig);
 
-function DefaultMap() {
+const DefaultMap = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState([]);
   const mapid = window.location.pathname.slice(-2, -1);
@@ -89,6 +89,6 @@ function DefaultMap() {
       </S.Respreivew>
     </>
   );
-}
+};
 
 export default DefaultMap;

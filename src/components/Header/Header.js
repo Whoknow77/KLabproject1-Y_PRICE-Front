@@ -9,7 +9,7 @@ import { region } from "../../utils/region";
 
 initializeApp(firebaseConfig);
 
-function Header({ input, setInput, setSearch, mapid }) {
+const Header = ({ input, setInput, setSearch, mapid }) => {
   const navigate = useNavigate();
   const location = useLocation();
   // 메인에서만 검색 버튼 나오게 함
@@ -141,6 +141,6 @@ function Header({ input, setInput, setSearch, mapid }) {
       </S.Search>
     </S.HeaderWrapper>
   );
-}
+};
 
 export default Header;

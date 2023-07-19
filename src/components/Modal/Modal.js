@@ -13,7 +13,7 @@ function Modal({ setShowmodal }) {
         <br />
         to expand our range of dishes.
       </S.Description>
-      <img
+      <S.XModal
         src="/img/xmodal.png"
         alt="모달창 끄는 버튼"
         onClick={() => {

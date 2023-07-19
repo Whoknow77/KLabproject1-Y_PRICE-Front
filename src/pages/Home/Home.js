@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./HomeStyledComponents";
 
-function Home() {
+const Home = () => {
   const navigate = useNavigate();
   const [count, setCount] = useState(0);
   const [showcount, setShowcount] = useState([0, 0, 0]);
@@ -59,6 +59,6 @@ function Home() {
       </S.HomeContainer>
     </S.Wrapper>
   );
-}
+};
 
 export default Home;

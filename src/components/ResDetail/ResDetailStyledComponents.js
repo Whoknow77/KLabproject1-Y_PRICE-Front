@@ -12,12 +12,13 @@ export const ResTitleContainer = styled.div`
   gap: 20px;
   margin-top: 16px;
   margin-bottom: 17px;
-  .Restitleimg {
-    width: 90px;
-    height: 90px;
-    border: 0.5px solid #d9d9d9;
-    border-radius: 5px;
-  }
+`;
+
+export const ResTitleImg = styled.img`
+  width: 90px;
+  height: 90px;
+  border: 0.5px solid #d9d9d9;
+  border-radius: 5px;
 `;
 
 export const ResTitle = styled.div`
@@ -39,23 +40,31 @@ export const Titlename = styled.span`
 `;
 
 export const Rating = styled.span`
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 18px;
   display: flex;
   gap: 5px;
   align-items: center;
-  color: #ffc300;
-  img {
-    width: 16px;
-    height: 18px;
-  }
+`;
+
+export const Star = styled.img`
+  width: 16px;
+  height: 18px;
+`;
+
+export const RatingPoint = styled.span`
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
 `;
 
 export const EmotionGroup = styled.div`
   display: flex;
   gap: 7px;
   flex-wrap: wrap;
+`;
+
+export const Thumbsup = styled.img`
+  width: 11px;
+  height: 11px;
 `;
 export const EmotionBox = styled.div`
   display: flex;
@@ -70,7 +79,15 @@ export const EmotionBox = styled.div`
   line-height: 11px;
 `;
 
-export const Index = styled.div`
+export const ReviewName = styled.span`
+  color: #fff;
+`;
+
+export const ReviewNumber = styled.span`
+  color: #fff;
+`;
+
+export const Tab = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,7 +95,6 @@ export const Index = styled.div`
   gap: 40px;
   width: 100%;
   height: 48px;
-  background: rgba(255, 255, 255, 0.5);
   border-top: 0.5px solid #d9d9d9;
   backdrop-filter: blur(15px);
 `;

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-function Foodmap({ searchPlace }) {
+const Foodmap = ({ searchPlace }) => {
   const mapRef = useRef(null);
   const infowindowRef = useRef(null);
 
@@ -19,9 +19,7 @@ function Foodmap({ searchPlace }) {
 
     const ps = new kakao.maps.services.Places();
 
-    ps.keywordSearch(searchPlace, placesSearchCB);
-
-    function placesSearchCB(data, status, pagination) {
+    const placesSearchCB = (data, status, pagination) => {
       if (status === kakao.maps.services.Status.OK) {
         const firstPlace = data[0];
         map.setCenter(new kakao.maps.LatLng(firstPlace.y, firstPlace.x));
@@ -31,9 +29,10 @@ function Foodmap({ searchPlace }) {
           displayMarker(firstPlace);
         }, 100);
       }
-    }
+    };
 
-    function displayMarker(place) {
+    ps.keywordSearch(searchPlace, placesSearchCB);
+    const displayMarker = (place) => {
       const marker = new kakao.maps.Marker({
         map: map,
         position: new kakao.maps.LatLng(place.y, place.x),
@@ -51,7 +50,7 @@ function Foodmap({ searchPlace }) {
       const bounds = new kakao.maps.LatLngBounds();
       bounds.extend(new kakao.maps.LatLng(place.y, place.x));
       map.setBounds(bounds);
-    }
+    };
   }, [searchPlace]);
 
   useEffect(() => {
@@ -77,6 +76,6 @@ function Foodmap({ searchPlace }) {
       }}
     ></div>
   );
-}
+};
 
 export default Foodmap;

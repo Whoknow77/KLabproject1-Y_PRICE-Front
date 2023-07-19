@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import * as S from "./ErrorStyledComponents";
 
-function Error({ input, id }) {
+const Error = ({ input, id }) => {
   const navigate = useNavigate();
   return (
     <S.ErrorWrapper>
@@ -25,6 +25,6 @@ function Error({ input, id }) {
       </S.GotoCategoryButton>
     </S.ErrorWrapper>
   );
-}
+};
 
 export default Error;

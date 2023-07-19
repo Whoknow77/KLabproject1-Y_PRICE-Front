@@ -7,7 +7,6 @@ export const ModalWrapper = styled.div`
   background: #ffffff;
   box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
-
   position: fixed;
   top: 50%;
   left: 50%;
@@ -16,14 +15,16 @@ export const ModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  img {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    top: 12px;
-    right: 12px;
-    cursor: pointer;
-  }
+  z-index: 1001;
+`;
+
+export const XModal = styled.img`
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
 `;
 
 export const Warn = styled.span`
