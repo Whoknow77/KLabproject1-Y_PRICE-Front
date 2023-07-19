@@ -99,7 +99,7 @@ export const Tab = styled.div`
   backdrop-filter: blur(15px);
 `;
 
-export const IndexButton = styled.button`
+export const Menu = styled.button`
   &:focus {
     outline: none;
   }

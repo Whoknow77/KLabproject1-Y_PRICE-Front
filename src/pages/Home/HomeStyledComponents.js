@@ -18,7 +18,7 @@ export const Logo = styled.div`
   margin: 92px auto 0 auto;
   img {
     transition: opacity 1s ease-in-out;
-    opacity: ${(showcount) => (showcount ? "1" : "0")};
+    opacity: ${({ showcount }) => (showcount ? "1" : "0")};
   }
 `;
 
@@ -29,7 +29,7 @@ export const Title = styled.div`
   flex-direction: column;
   gap: 30px;
   transition: opacity 1s ease-in-out;
-  opacity: ${(showcount) => (showcount ? "1" : "0")};
+  opacity: ${({ showcount }) => (showcount ? "1" : "0")};
 `;
 export const Button = styled.button`
   margin-top: 85px;
@@ -47,7 +47,7 @@ export const Button = styled.button`
     outline: none;
   }
   transition: opacity 1s ease-in-out;
-  opacity: ${(showcount) => (showcount ? "1" : "0")};
+  opacity: ${({ showcount }) => (showcount ? "1" : "0")};
 `;
 
 export const MainTitle = styled.div`

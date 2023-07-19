@@ -15,8 +15,6 @@ const Map = () => {
   const [search, setSearch] = useState(""); // 엔터 후 검색어
   const [input, setInput] = useState(""); // 검색어
 
-  // ressearch는 saerch가 변할때만 바뀌어야한다.
-
   return (
     <Wrapper showModal={showModal} className={showModal ? "blur" : ""}>
       {/* 검색 바 */}
@@ -35,7 +33,7 @@ const Map = () => {
           path="/res/:resId"
           element={
             <ResDetail
-              id={id}
+              mapid={id}
               showModal={showModal}
               setShowmodal={setShowmodal}
             />

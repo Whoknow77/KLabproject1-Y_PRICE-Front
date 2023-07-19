@@ -84,6 +84,7 @@ export const RegionToggle = styled.div`
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(15px);
   border-radius: 5px;
+  z-index:5;
 }
 `;
 

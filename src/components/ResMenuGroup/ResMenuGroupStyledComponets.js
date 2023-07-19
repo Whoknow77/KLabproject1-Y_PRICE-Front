@@ -17,27 +17,19 @@ export const Menu = styled.div`
   padding: 15px;
   gap: 10px;
   width: 270px;
-  height: 137px;
 
-  background: #ffffff;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   @media (max-width: 595px) {
     width: 100%;
     height: 84px;
-  }
-`;
-
-export const MenuTotalContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  height: 107px;
-  @media (max-width: 595px) {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
   }
 `;
 
@@ -91,4 +83,8 @@ export const MenuAveragePrice = styled.div`
   line-height: 20px;
   text-align: left;
   color: #ffc300;
+`;
+export const RightButton = styled.img`
+  width: 18px;
+  height: 18px;
 `;

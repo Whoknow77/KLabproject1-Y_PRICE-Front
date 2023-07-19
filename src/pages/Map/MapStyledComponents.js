@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   margin: 0 auto;
   width: 100%;
   height: 100vh;
-
   &.blur::after {
     content: "";
     position: fixed;

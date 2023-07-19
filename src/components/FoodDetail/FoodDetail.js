@@ -169,11 +169,21 @@ const FoodDetail = ({ id }) => {
             const iscategory = category[foodId].category.includes(
               res.info.category
             ); // 카테고리
+            // 메뉴
+            const ismenu =
+              res.menu &&
+              Object.values(res.menu).find((menu) => {
+                return menu.name
+                  .toLowerCase()
+                  .includes(category[foodId].encategory.toLowerCase());
+              });
+
             const resId = resKey.slice(-5, resKey.length); // 떡볶이00, 떡볶이 01, ...
 
             return (
               isregion &&
-              iscategory && (
+              iscategory &&
+              ismenu && (
                 <S.Restuarant
                   key={index}
                   onClick={() => {

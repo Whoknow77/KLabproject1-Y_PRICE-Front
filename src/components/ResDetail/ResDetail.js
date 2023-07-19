@@ -11,13 +11,13 @@ import { DecideMenu } from "../../utils/DecideMenu";
 
 initializeApp(firebaseConfig);
 
-const ResDetail = ({ id, showModal, setShowmodal }) => {
-  const [selected, setSelected] = useState(0);
+const ResDetail = ({ mapid, showModal, setShowmodal }) => {
+  const [menu, setMenu] = useState(0); // 메뉴 번호
   const { resId } = useParams();
   const [userData, setUserData] = useState([]);
   const [target, setTarget] = useState(null); // 식당
   const [averageprice, setAverageprice] = useState(0);
-  const regex = regionexp(id);
+  const regex = regionexp(mapid);
   // 탭 메뉴
   const TabMenu = ["Menu", "Photo", "Info"];
 
@@ -103,10 +103,10 @@ const ResDetail = ({ id, showModal, setShowmodal }) => {
 
   // Menu Photo Info 중 하나를 렌더링 하는 컴포넌트
   const ComponentToRender = DecideMenu(
-    selected,
+    menu,
     target,
     categoryid,
-    id,
+    mapid,
     averageprice,
     showModal,
     setShowmodal
@@ -116,7 +116,7 @@ const ResDetail = ({ id, showModal, setShowmodal }) => {
     <S.ResDetailWrapper>
       <S.ResTitleContainer>
         {target[1].info.main_img && (
-          <S.ResTitleImg src={target[1].info.main_img} Loading="lazy" />
+          <S.ResTitleImg src={target[1].info.main_img} />
         )}
         <S.ResTitle>
           <S.TitleBox>
@@ -146,13 +146,13 @@ const ResDetail = ({ id, showModal, setShowmodal }) => {
       <S.Tab>
         {TabMenu.map((item, idx) => {
           return (
-            <S.IndexButton
+            <S.Menu
               key={item}
-              active={idx === selected}
-              onClick={() => setSelected(idx)}
+              active={idx === menu}
+              onClick={() => setMenu(idx)}
             >
               {item}
-            </S.IndexButton>
+            </S.Menu>
           );
         })}
       </S.Tab>
