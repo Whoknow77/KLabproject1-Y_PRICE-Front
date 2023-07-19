@@ -5,8 +5,8 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 
 import { Loading, ResMenuGroup, ResPhotoGroup, ResInfo } from "../index";
-import { firebaseConfig } from "../../apis/index";
-import { region, category } from "../../utils/region";
+import { firebaseConfig } from "../../utils/initfirebase";
+import { category } from "../../utils/region";
 
 initializeApp(firebaseConfig);
 const index = ["Menu", "Photo", "Info"];

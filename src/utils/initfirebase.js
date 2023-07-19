@@ -1,5 +1,3 @@
-import React from "react";
-
 export const firebaseConfig = {
   apiKey: "AIzaSyAlaS2RB7V3YmLAzMV5TKVsHJT8eckYNFE",
   authDomain: "yprice-e94af.firebaseapp.com",

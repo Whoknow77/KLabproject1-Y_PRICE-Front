@@ -4,7 +4,7 @@ import * as S from "./HeaderStyledComponents";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 import { useEffect, useState } from "react";
-import { firebaseConfig } from "../../apis/index";
+import { firebaseConfig } from "../../utils/initfirebase";
 import { region } from "../../utils/region";
 
 initializeApp(firebaseConfig);

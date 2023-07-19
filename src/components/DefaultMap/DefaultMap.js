@@ -4,7 +4,7 @@ import regionexp from "../../utils/regionexp";
 import { useNavigate } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
-import { firebaseConfig } from "../../apis/index";
+import { firebaseConfig } from "../../utils/initfirebase";
 import { Category } from "./../index";
 
 initializeApp(firebaseConfig);

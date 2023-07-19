@@ -6,7 +6,7 @@ import { category } from "../../utils/region";
 import { Loading } from "./../index";
 import { getDatabase, ref, get } from "firebase/database";
 import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../../apis/index";
+import { firebaseConfig } from "../../utils/initfirebase";
 import { Exchange } from "../../utils/Exchange";
 
 initializeApp(firebaseConfig);
