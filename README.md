@@ -3,6 +3,13 @@
 이 서비스는 외국인 관광객을 위해 지역별로 음식/음식점의 정보와 가격대를 제공합니다.
 **데모페이지** --> https://k-labproject1-y-price-front.vercel.app/
 
+- 검색어
+  - Tteokbokki
+  - Bulgogi
+  - bibimbap
+  - Samgyeopsal
+  - 그 외 음식점 이름
+
 ## 플로우 차트
 
 <img src="https://i.postimg.cc/7hP821Kv/image.png">

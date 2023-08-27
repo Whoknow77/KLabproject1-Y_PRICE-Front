@@ -1,11 +1,11 @@
 // 지역
 export const region = [
-  { city: "Seoul", area: "Gyeongbokgung" },
-  { city: "Seoul", area: "Itaewon" },
-  { city: "Seoul", area: "Gangnam" },
-  { city: "Busan", area: "Haeundae" },
-  { city: "Jeju", area: "Aewol-eup" },
-  { city: "Seoul", area: "Hongdae" },
+  { city: "Seoul", area: "gyeongbokgung" },
+  { city: "Seoul", area: "itaewon" },
+  { city: "Seoul", area: "gangnam" },
+  { city: "Busan", area: "haeundae" },
+  { city: "Jeju", area: "aewol-eup" },
+  { city: "Seoul", area: "hongdae" },
 ];
 
 // 카테고리
