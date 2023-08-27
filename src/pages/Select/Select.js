@@ -45,8 +45,9 @@ export default function Select() {
         {region.map((item) => {
           return (
             <SelectBackgroundStyledComponents
-              img={`/img/${item.area}.jpg`}
+              img={process.env.PUBLIC_URL + `/img/${item.area}.jpg`}
               key={item.area}
+              alt="지역 선택 이미지"
             />
           );
         })}
